@@ -2,3 +2,5 @@ sidebar:
     wellcome: Wellcome
     navigation: Navigation
     portofolio: Portofolio
+form:
+    submit: submit
