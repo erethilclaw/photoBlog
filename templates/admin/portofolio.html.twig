@@ -13,17 +13,21 @@
             <div class="box-header with-border">
                 <h3 class="box-title">portofolio</h3>
             </div>
+            {{ form_start(portofolioForm) }}
             <div class="box-body">
+                <div class="form-group">
+                    <label for="fname">First name:</label><br>
+                    <input type="text" id="fname" name="fname"><br><br>
+                </div>
                 <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <input type="file" id="exampleInputFile" multiple>
-
-                    <p class="help-block">Example block-level help text here.</p>
                 </div>
             </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">{{ 'form.submit'|trans }}</button>
             </div>
+            {{ form_end(portofolioForm) }}
 
         </div>
     </section>
