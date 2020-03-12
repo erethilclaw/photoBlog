@@ -27,7 +27,7 @@ class Image
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\PortofolioPage", inversedBy="natureGallery")
+     * @ORM\ManyToOne(targetEntity="App\Entity\PortofolioPage", inversedBy="natureGallery", cascade={"persist"})
      */
     private $portofolioPage;
 
@@ -70,5 +70,10 @@ class Image
         $this->portofolioPage = $portofolioPage;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

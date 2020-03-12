@@ -3,7 +3,7 @@
 {{ parent() }}
 
 {% endblock %}
-
+{% block title %}{% endblock %}
 {% block body %}
     <section class="content-header">
         <h1>{{ 'sidebar.portofolio'|trans }}</h1>
@@ -13,33 +13,27 @@
             <div class="box-header with-border">
                 <h3 class="box-title">portofolio</h3>
             </div>
-            {{ form_start(portofolioForm) }}
             <div class="box-body">
-                <div class="form-group">
+                {{ form_start(portofolioForm) }}
+                {{ form_widget(portofolioForm) }}
+            {#    <div class="form-group">
                     <label for="fname">First name:</label><br>
                     <input type="text" id="fname" name="fname"><br><br>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <input type="file" id="exampleInputFile" multiple>
-                </div>
+                </div>#}
             </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">{{ 'form.submit'|trans }}</button>
+                {{ form_end(portofolioForm) }}
             </div>
-            {{ form_end(portofolioForm) }}
-
         </div>
     </section>
 
 {% endblock %}
 
-{% block title %}
-
-{% endblock %}
-
-{% block javascripts %}
 
 
-{% endblock %}
 

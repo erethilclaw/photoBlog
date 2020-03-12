@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\PortofolioPage;
 use App\Form\PortofolioPageType;
+use App\Transformer\ImageToPageTransformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,6 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
+    private $uploads;
+
+    public function __construct(string $uploads)
+    {
+        $this->uploads = $uploads;
+    }
+
     /**
      * @Route("/admin", name="admin")
      */
@@ -27,20 +36,31 @@ class AdminController extends AbstractController
     {
         $page = $em->getRepository(PortofolioPage::class)->findAll();
 
-        $form = $this->createForm(PortofolioPageType::class, $page);
+        $form = $this->createForm(PortofolioPageType::class, $page[0]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            dd($form->getData());
+            $files = $request->files->get('portofolio_page')['natureGallery'];
             /**
              * @var PortofolioPage $page
              */
             $page = $form->getData();
+
+            foreach ($files as $file){
+                $filename = md5(uniqid()).'.'. $file->guessExtension();
+                $file->move($this->getParameter('upload_directory'), $filename);
+
+                $image = new Image();
+                $image->setName($filename);
+                $image->setUrl($this->getParameter('upload_directory').$filename);
+
+                $page->addNatureGallery($image);
+            }
+
             $em->persist($page);
             $em->flush();
 
-            return $this->redirectToRoute('llistatMarques');
+            return $this->redirectToRoute('portofolio_manager');
         }
         return $this->render('admin/portofolio.html.twig', [
             'portofolioForm' => $form->createView()

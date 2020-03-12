@@ -19,7 +19,7 @@ class PortofolioPage
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="portofolioPage")
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="portofolioPage", cascade={"persist"})
      */
     private $natureGallery;
 
