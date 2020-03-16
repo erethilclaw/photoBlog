@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Image;
 use App\Entity\PortofolioPage;
 use App\Form\PortofolioPageType;
+use App\Service\FileUploader;
 use App\Transformer\ImageToPageTransformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -14,13 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
-    private $uploads;
-
-    public function __construct(string $uploads)
-    {
-        $this->uploads = $uploads;
-    }
-
     /**
      * @Route("/admin", name="admin")
      */
@@ -40,6 +34,11 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var FileUploader
+             */
+            $fileUploader = new FileUploader($this->getParameter('upload_directory'));
+
             $files = $request->files->get('portofolio_page')['natureGallery'];
             /**
              * @var PortofolioPage $page
@@ -47,8 +46,7 @@ class AdminController extends AbstractController
             $page = $form->getData();
 
             foreach ($files as $file){
-                $filename = md5(uniqid()).'.'. $file->guessExtension();
-                $file->move($this->getParameter('upload_directory'), $filename);
+                $filename = $fileUploader->uploadImage($file);
 
                 $image = new Image();
                 $image->setName($filename);
