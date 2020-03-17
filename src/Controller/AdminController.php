@@ -31,30 +31,29 @@ class AdminController extends AbstractController
         $page = $em->getRepository(PortofolioPage::class)->findAll();
         $portofolio = $page[0];
 
-        $form = $this->createForm(PortofolioPageType::class, $page[0]);
+        $form = $this->createForm(PortofolioPageType::class, $portofolio);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $portofolio->removeAllNatureGallery();
-
-            $portofolio = $form->getData();
-
-            $natureGalleryRoute = $this->getParameter('upload_directory').'natureGallery/';
-            $fileUploader = new FileUploader($natureGalleryRoute);
-            $fileUploader->removeAll();
-
             $files = $request->files->get('portofolio_page')['natureGallery'];
+            if (!empty($files)) {
+                $portofolio->removeAllNatureGallery();
+                $natureGalleryRoute = $this->getParameter('upload_directory').'natureGallery/';
+                $fileUploader = new FileUploader($natureGalleryRoute);
+                $fileUploader->removeAll();
 
+                $portofolio = $form->getData();
 
-            foreach ($files as $file){
-                $filename = $fileUploader->uploadImage($file);
+                foreach ($files as $file){
+                    $filename = $fileUploader->uploadImage($file);
 
-                $image = new Image();
-                $image->setName($filename);
-                $image->setUrl($this->getParameter('upload_directory').'natureGallery/'.$filename);
+                    $image = new Image();
+                    $image->setName($filename);
+                    $image->setUrl($this->getParameter('upload_directory').'natureGallery/'.$filename);
 
-                $portofolio->addNatureGallery($image);
+                    $portofolio->addNatureGallery($image);
+                }
             }
 
             $em->persist($portofolio);

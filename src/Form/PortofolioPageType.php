@@ -25,7 +25,8 @@ class PortofolioPageType extends AbstractType
            ->add('natureGallery', FileType::class, [
                'multiple' => true,
                'label' => 'upload files',
-               'mapped' => false
+               'mapped' => false,
+               'required' => false
                ])
         ;
        /* $builder
