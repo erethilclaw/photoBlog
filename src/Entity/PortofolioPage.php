@@ -63,4 +63,11 @@ class PortofolioPage
 
         return $this;
     }
+
+    public function removeAllNatureGallery(){
+        $natureGallery = $this->getNatureGallery();
+        foreach ($natureGallery as $image){
+            $this->removeNatureGallery($image);
+        }
+    }
 }

@@ -30,6 +30,15 @@ class FileUploader
         return $fileName;
     }
 
+    public function removeAll(){
+        $files = glob($this->targetDirectory.'*'); //get all file names
+        //dd($files);
+        foreach($files as $file){
+            if(is_file($file))
+                unlink($file); //delete file
+        }
+    }
+
     public function getTargetDirectory()
     {
         return $this->targetDirectory;

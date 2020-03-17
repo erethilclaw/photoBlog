@@ -29,33 +29,35 @@ class AdminController extends AbstractController
     public function portofolio(Request $request, EntityManagerInterface $em)
     {
         $page = $em->getRepository(PortofolioPage::class)->findAll();
+        $portofolio = $page[0];
 
         $form = $this->createForm(PortofolioPageType::class, $page[0]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /**
-             * @var FileUploader
-             */
-            $fileUploader = new FileUploader($this->getParameter('upload_directory'));
+
+            $portofolio->removeAllNatureGallery();
+
+            $portofolio = $form->getData();
+
+            $natureGalleryRoute = $this->getParameter('upload_directory').'natureGallery/';
+            $fileUploader = new FileUploader($natureGalleryRoute);
+            $fileUploader->removeAll();
 
             $files = $request->files->get('portofolio_page')['natureGallery'];
-            /**
-             * @var PortofolioPage $page
-             */
-            $page = $form->getData();
+
 
             foreach ($files as $file){
                 $filename = $fileUploader->uploadImage($file);
 
                 $image = new Image();
                 $image->setName($filename);
-                $image->setUrl($this->getParameter('upload_directory').$filename);
+                $image->setUrl($this->getParameter('upload_directory').'natureGallery/'.$filename);
 
-                $page->addNatureGallery($image);
+                $portofolio->addNatureGallery($image);
             }
 
-            $em->persist($page);
+            $em->persist($portofolio);
             $em->flush();
 
             return $this->redirectToRoute('portofolio_manager');
