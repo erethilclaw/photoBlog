@@ -29,15 +29,12 @@ class PortofolioPageType extends AbstractType
                'required' => false
                ])
         ;
-       /* $builder
-            ->add('image')->addModelTransformer($this->transformer);*/
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => PortofolioPage::class
-            //'data_class' => null
         ]);
     }
 }
