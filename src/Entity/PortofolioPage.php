@@ -62,8 +62,8 @@ class PortofolioPage
         if ($this->natureGallery->contains($natureGallery)) {
             $this->natureGallery->removeElement($natureGallery);
             // set the owning side to null (unless already changed)
-            if ($natureGallery->getPortofolioPage() === $this) {
-                $natureGallery->setPortofolioPage(null);
+            if ($natureGallery->getNatureGallery() === $this) {
+                $natureGallery->setNatureGallery(null);
             }
         }
 
@@ -74,6 +74,12 @@ class PortofolioPage
         $natureGallery = $this->getNatureGallery();
         foreach ($natureGallery as $image){
             $this->removeNatureGallery($image);
+        }
+    }
+    public function removeAlleventGallery(){
+        $eventGallery = $this->getEventGallery();
+        foreach ($eventGallery as $image){
+            $this->removeEventGallery($image);
         }
     }
 

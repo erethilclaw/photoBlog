@@ -56,16 +56,16 @@ class AdminController extends AbstractController
                 }
             }
 
-            $files = $request->files->get('portofolio_page')['eventGallery'];
-            if (!empty($files)) {
-                $portofolio->removeAllNatureGallery();
-                $natureGalleryRoute = $this->getParameter('upload_directory').'eventGallery/';
-                $fileUploader = new FileUploader($natureGalleryRoute);
+            $eventfiles = $request->files->get('portofolio_page')['eventGallery'];
+            if (!empty($eventfiles)) {
+                $portofolio->removeAlleventGallery();
+                $eventGalleryRoute = $this->getParameter('upload_directory').'eventGallery/';
+                $fileUploader = new FileUploader($eventGalleryRoute);
                 $fileUploader->removeAll();
 
                 $portofolio = $form->getData();;
 
-                foreach ($files as $file){
+                foreach ($eventfiles as $file){
                     $filename = $fileUploader->uploadImage($file);
 
                     $image = new Image();
