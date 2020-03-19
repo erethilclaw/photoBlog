@@ -43,7 +43,7 @@ class AdminController extends AbstractController
                 $fileUploader = new FileUploader($natureGalleryRoute);
                 $fileUploader->removeAll();
 
-                $portofolio = $form->getData();
+                $portofolio = $form->getData();;
 
                 foreach ($files as $file){
                     $filename = $fileUploader->uploadImage($file);
@@ -53,6 +53,26 @@ class AdminController extends AbstractController
                     $image->setUrl($this->getParameter('upload_directory').'natureGallery/'.$filename);
 
                     $portofolio->addNatureGallery($image);
+                }
+            }
+
+            $files = $request->files->get('portofolio_page')['eventGallery'];
+            if (!empty($files)) {
+                $portofolio->removeAllNatureGallery();
+                $natureGalleryRoute = $this->getParameter('upload_directory').'eventGallery/';
+                $fileUploader = new FileUploader($natureGalleryRoute);
+                $fileUploader->removeAll();
+
+                $portofolio = $form->getData();;
+
+                foreach ($files as $file){
+                    $filename = $fileUploader->uploadImage($file);
+
+                    $image = new Image();
+                    $image->setName($filename);
+                    $image->setUrl($this->getParameter('upload_directory').'eventGallery/'.$filename);
+
+                    $portofolio->addEventGallery($image);
                 }
             }
 

@@ -29,7 +29,12 @@ class Image
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\PortofolioPage", inversedBy="natureGallery", cascade={"persist"})
      */
-    private $portofolioPage;
+    private $natureGallery;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PortofolioPage", inversedBy="eventGallery")
+     */
+    private $eventGallery;
 
     public function getId(): ?int
     {
@@ -60,14 +65,14 @@ class Image
         return $this;
     }
 
-    public function getPortofolioPage(): ?PortofolioPage
+    public function getNatureGallery(): ?PortofolioPage
     {
-        return $this->portofolioPage;
+        return $this->natureGallery;
     }
 
-    public function setPortofolioPage(?PortofolioPage $portofolioPage): self
+    public function setNatureGallery(?PortofolioPage $natureGallery): self
     {
-        $this->portofolioPage = $portofolioPage;
+        $this->natureGallery = $natureGallery;
 
         return $this;
     }
@@ -75,5 +80,17 @@ class Image
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getEventGallery(): ?PortofolioPage
+    {
+        return $this->eventGallery;
+    }
+
+    public function setEventGallery(?PortofolioPage $eventGallery): self
+    {
+        $this->eventGallery = $eventGallery;
+
+        return $this;
     }
 }

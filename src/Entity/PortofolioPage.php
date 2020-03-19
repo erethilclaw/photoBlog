@@ -19,13 +19,19 @@ class PortofolioPage
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="portofolioPage", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="natureGallery", cascade={"persist"})
      */
     private $natureGallery;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="eventGallery", cascade={"persist"})
+     */
+    private $eventGallery;
 
     public function __construct()
     {
         $this->natureGallery = new ArrayCollection();
+        $this->eventGallery = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -45,7 +51,7 @@ class PortofolioPage
     {
         if (!$this->natureGallery->contains($natureGallery)) {
             $this->natureGallery[] = $natureGallery;
-            $natureGallery->setPortofolioPage($this);
+            $natureGallery->setNatureGallery($this);
         }
 
         return $this;
@@ -69,5 +75,36 @@ class PortofolioPage
         foreach ($natureGallery as $image){
             $this->removeNatureGallery($image);
         }
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getEventGallery(): Collection
+    {
+        return $this->eventGallery;
+    }
+
+    public function addEventGallery(Image $eventGallery): self
+    {
+        if (!$this->eventGallery->contains($eventGallery)) {
+            $this->eventGallery[] = $eventGallery;
+            $eventGallery->setEventGallery($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventGallery(Image $eventGallery): self
+    {
+        if ($this->eventGallery->contains($eventGallery)) {
+            $this->eventGallery->removeElement($eventGallery);
+            // set the owning side to null (unless already changed)
+            if ($eventGallery->getEventGallery() === $this) {
+                $eventGallery->setEventGallery(null);
+            }
+        }
+
+        return $this;
     }
 }

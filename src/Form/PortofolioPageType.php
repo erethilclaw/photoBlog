@@ -14,7 +14,7 @@ class PortofolioPageType extends AbstractType
 {
     private $transformer;
 
-    public function __construct( ImageToPageTransformer $transformer)
+    public function __construct(ImageToPageTransformer $transformer)
     {
         $this->transformer = $transformer;
     }
@@ -22,13 +22,18 @@ class PortofolioPageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           ->add('natureGallery', FileType::class, [
-               'multiple' => true,
-               'label' => 'upload files',
-               'mapped' => false,
-               'required' => false
-               ])
-        ;
+            ->add('natureGallery', FileType::class, [
+                'multiple' => true,
+                'label' => 'Nature Gallery Images',
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('eventGallery', FileType::class, [
+                'multiple' => true,
+                'label' => 'Event Gallery Images',
+                'mapped' => false,
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
