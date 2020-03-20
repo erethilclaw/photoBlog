@@ -17,25 +17,25 @@ class PortofolioPageType extends AbstractType
         $builder
             ->add('natureGallery', FileType::class, [
                 'multiple' => true,
-                'label' => 'Nature Gallery Images',
+                'label' => 'form.natureGallery',
                 'mapped' => false,
                 'required' => false
             ])
             ->add('eventGallery', FileType::class, [
                 'multiple' => true,
-                'label' => 'Event Gallery Images',
+                'label' => 'form.eventGallery',
                 'mapped' => false,
                 'required' => false
             ])
             ->add('sesionGallery', FileType::class, [
                 'multiple' => true,
-                'label' => 'Sesion Gallery Images',
+                'label' => 'form.sesionGallery',
                 'mapped' => false,
                 'required' => false
             ])
             ->add('showGallery', FileType::class, [
                 'multiple' => true,
-                'label' => 'Show Gallery Images',
+                'label' => 'form.showGallery',
                 'mapped' => false,
                 'required' => false
             ]);

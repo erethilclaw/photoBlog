@@ -4,3 +4,7 @@ sidebar:
     portofolio: Portofolio
 form:
     submit: submit
+    natureGallery: Upload nature images
+    showGallery: Upload show images
+    eventGallery: Upload event images
+    sesionGallery: Upload sesion images
