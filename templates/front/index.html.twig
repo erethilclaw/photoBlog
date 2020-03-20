@@ -24,5 +24,13 @@
     {% for image in portofolioPage.eventGallery %}
         <img src="{{ asset('uploads/eventGallery/' ~ image.name) }}"  style="max-width:100px;border:0;">
     {% endfor %}
+    <h1>sesionGallery</h1>
+    {% for image in portofolioPage.sesionGallery %}
+        <img src="{{ asset('uploads/sesionGallery/' ~ image.name) }}"  style="max-width:100px;border:0;">
+    {% endfor %}
+    <h1>showGallery</h1>
+    {% for image in portofolioPage.showGallery %}
+        <img src="{{ asset('uploads/showGallery/' ~ image.name) }}"  style="max-width:100px;border:0;">
+    {% endfor %}
 </div>
 {% endblock %}

@@ -28,10 +28,27 @@ class PortofolioPage
      */
     private $eventGallery;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="sesionGallery", cascade={"persist"})
+     */
+    private $sesionGallery;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="showGallery", cascade={"persist"})
+     */
+    private $showGallery;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->natureGallery = new ArrayCollection();
         $this->eventGallery = new ArrayCollection();
+        $this->sesionGallery = new ArrayCollection();
+        $this->showGallery = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,12 +93,6 @@ class PortofolioPage
             $this->removeNatureGallery($image);
         }
     }
-    public function removeAlleventGallery(){
-        $eventGallery = $this->getEventGallery();
-        foreach ($eventGallery as $image){
-            $this->removeEventGallery($image);
-        }
-    }
 
     /**
      * @return Collection|Image[]
@@ -110,6 +121,101 @@ class PortofolioPage
                 $eventGallery->setEventGallery(null);
             }
         }
+
+        return $this;
+    }
+
+    public function removeAlleventGallery(){
+        $eventGallery = $this->getEventGallery();
+        foreach ($eventGallery as $image){
+            $this->removeEventGallery($image);
+        }
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getSesionGallery(): Collection
+    {
+        return $this->sesionGallery;
+    }
+
+    public function addSesionGallery(Image $sesionGallery): self
+    {
+        if (!$this->sesionGallery->contains($sesionGallery)) {
+            $this->sesionGallery[] = $sesionGallery;
+            $sesionGallery->setSesionGallery($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSesionGallery(Image $sesionGallery): self
+    {
+        if ($this->sesionGallery->contains($sesionGallery)) {
+            $this->sesionGallery->removeElement($sesionGallery);
+            // set the owning side to null (unless already changed)
+            if ($sesionGallery->getSesionGallery() === $this) {
+                $sesionGallery->setSesionGallery(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function removeAllSesionGallery(){
+        $sesionGallery = $this->getSesionGallery();
+        foreach ($sesionGallery as $image){
+            $this->removeSesionGallery($image);
+        }
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getShowGallery(): Collection
+    {
+        return $this->showGallery;
+    }
+
+    public function addShowGallery(Image $showGallery): self
+    {
+        if (!$this->showGallery->contains($showGallery)) {
+            $this->showGallery[] = $showGallery;
+            $showGallery->setShowGallery($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShowGallery(Image $showGallery): self
+    {
+        if ($this->showGallery->contains($showGallery)) {
+            $this->showGallery->removeElement($showGallery);
+            // set the owning side to null (unless already changed)
+            if ($showGallery->getShowGallery() === $this) {
+                $showGallery->setShowGallery(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function removeAllShowGallery(){
+        $showGallery = $this->getShowGallery();
+        foreach ($showGallery as $image){
+            $this->removeShowGallery($image);
+        }
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

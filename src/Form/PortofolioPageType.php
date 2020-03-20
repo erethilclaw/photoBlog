@@ -12,13 +12,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PortofolioPageType extends AbstractType
 {
-    private $transformer;
-
-    public function __construct(ImageToPageTransformer $transformer)
-    {
-        $this->transformer = $transformer;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -31,6 +24,18 @@ class PortofolioPageType extends AbstractType
             ->add('eventGallery', FileType::class, [
                 'multiple' => true,
                 'label' => 'Event Gallery Images',
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('sesionGallery', FileType::class, [
+                'multiple' => true,
+                'label' => 'Sesion Gallery Images',
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('showGallery', FileType::class, [
+                'multiple' => true,
+                'label' => 'Show Gallery Images',
                 'mapped' => false,
                 'required' => false
             ]);

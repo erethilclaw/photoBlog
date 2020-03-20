@@ -29,15 +29,15 @@ class AdminController extends AbstractController
     public function portofolio(Request $request, EntityManagerInterface $em)
     {
         $page = $em->getRepository(PortofolioPage::class)->findAll();
-        $portofolio = $page[0];
+        $portofolio = $em->getRepository(PortofolioPage::class)->findOneBy(['slug'=>'portofolioPage']);
 
         $form = $this->createForm(PortofolioPageType::class, $portofolio);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $files = $request->files->get('portofolio_page')['natureGallery'];
-            if (!empty($files)) {
+            $natureFiles = $request->files->get('portofolio_page')['natureGallery'];
+            if (!empty($natureFiles)) {
                 $portofolio->removeAllNatureGallery();
                 $natureGalleryRoute = $this->getParameter('upload_directory').'natureGallery/';
                 $fileUploader = new FileUploader($natureGalleryRoute);
@@ -45,7 +45,7 @@ class AdminController extends AbstractController
 
                 $portofolio = $form->getData();;
 
-                foreach ($files as $file){
+                foreach ($natureFiles as $file){
                     $filename = $fileUploader->uploadImage($file);
 
                     $image = new Image();
@@ -73,6 +73,46 @@ class AdminController extends AbstractController
                     $image->setUrl($this->getParameter('upload_directory').'eventGallery/'.$filename);
 
                     $portofolio->addEventGallery($image);
+                }
+            }
+
+            $sesionFiles = $request->files->get('portofolio_page')['sesionGallery'];
+            if (!empty($sesionFiles)) {
+                $portofolio->removeAllSesionGallery();
+                $sesionGalleryRoute = $this->getParameter('upload_directory').'sesionGallery/';
+                $fileUploader = new FileUploader($sesionGalleryRoute);
+                $fileUploader->removeAll();
+
+                $portofolio = $form->getData();;
+
+                foreach ($sesionFiles as $file){
+                    $filename = $fileUploader->uploadImage($file);
+
+                    $image = new Image();
+                    $image->setName($filename);
+                    $image->setUrl($this->getParameter('upload_directory').'sesionGallery/'.$filename);
+
+                    $portofolio->addSesionGallery($image);
+                }
+            }
+
+            $showfiles = $request->files->get('portofolio_page')['showGallery'];
+            if (!empty($showfiles)) {
+                $portofolio->removeAllShowGallery();
+                $showGalleryRoute = $this->getParameter('upload_directory').'showGallery/';
+                $fileUploader = new FileUploader($showGalleryRoute);
+                $fileUploader->removeAll();
+
+                $portofolio = $form->getData();;
+
+                foreach ($showfiles as $file){
+                    $filename = $fileUploader->uploadImage($file);
+
+                    $image = new Image();
+                    $image->setName($filename);
+                    $image->setUrl($this->getParameter('upload_directory').'showGallery/'.$filename);
+
+                    $portofolio->addShowGallery($image);
                 }
             }
 

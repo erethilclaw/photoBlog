@@ -36,6 +36,16 @@ class Image
      */
     private $eventGallery;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PortofolioPage", inversedBy="showGallery")
+     */
+    private $showGallery;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PortofolioPage", inversedBy="sesionGallery")
+     */
+    private $sesionGallery;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +100,30 @@ class Image
     public function setEventGallery(?PortofolioPage $eventGallery): self
     {
         $this->eventGallery = $eventGallery;
+
+        return $this;
+    }
+
+    public function getShowGallery(): ?PortofolioPage
+    {
+        return $this->showGallery;
+    }
+
+    public function setShowGallery(?PortofolioPage $showGallery): self
+    {
+        $this->showGallery = $showGallery;
+
+        return $this;
+    }
+
+    public function getSesionGallery(): ?PortofolioPage
+    {
+        return $this->sesionGallery;
+    }
+
+    public function setSesionGallery(?PortofolioPage $sesionGallery): self
+    {
+        $this->sesionGallery = $sesionGallery;
 
         return $this;
     }
