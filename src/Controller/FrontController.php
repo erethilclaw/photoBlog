@@ -14,11 +14,11 @@ class FrontController extends AbstractController
      */
     public function index(EntityManagerInterface $em)
     {
-        $page = $em->getRepository(PortofolioPage::class)->findAll();
+        $page = $em->getRepository(PortofolioPage::class)->findOneBy(['slug'=>'portofolioPage']);
 
         return $this->render('front/index.html.twig', [
             'controller_name' => 'FrontController',
-            'portofolioPage' => $page[0]
+            'portofolioPage' => $page
         ]);
     }
 }

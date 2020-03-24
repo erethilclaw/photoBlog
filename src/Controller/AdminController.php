@@ -28,7 +28,6 @@ class AdminController extends AbstractController
      */
     public function portofolio(Request $request, EntityManagerInterface $em)
     {
-        $page = $em->getRepository(PortofolioPage::class)->findAll();
         $portofolio = $em->getRepository(PortofolioPage::class)->findOneBy(['slug'=>'portofolioPage']);
 
         $form = $this->createForm(PortofolioPageType::class, $portofolio);

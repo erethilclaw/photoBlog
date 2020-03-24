@@ -3,9 +3,6 @@
 
 namespace App\Service;
 
-
-use App\Entity\Image;
-use PhpParser\Node\Scalar\MagicConst\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class FileUploader
@@ -32,7 +29,6 @@ class FileUploader
 
     public function removeAll(){
         $files = glob($this->targetDirectory.'*'); //get all file names
-        //dd($files);
         foreach($files as $file){
             if(is_file($file))
                 unlink($file); //delete file
