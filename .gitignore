@@ -15,3 +15,4 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 /src/DataFixtures/AppFixtures.php
+/public/uploads/
