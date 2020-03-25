@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Mail;
 use App\Entity\PortofolioPage;
 use App\Form\MailType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,7 +37,24 @@ class FrontController extends AbstractController
      */
     public function contact(Request $request)
     {
-        $form = $this->createForm(MailType::class, $mail);
+        $form = $this->createForm(MailType::class);
         $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        /**
+         * @var Mail
+         */
+        $mail = $form->getData();
+
+        $this->em->persist($mail);
+        $this->em->flush();
+
+        return $this->redirectToRoute('front');
+    }
+
+    return $this->render('front/contact.html.twig', [
+       'mailForm' => $form->createView()
+    ]);
+
     }
 }
