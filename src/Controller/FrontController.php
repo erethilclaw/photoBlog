@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FrontController extends AbstractController
 {
@@ -35,7 +36,7 @@ class FrontController extends AbstractController
     /**
      * @Route("/contact", name="contact_page")
      */
-    public function contact(Request $request)
+    public function contact(Request $request, TranslatorInterface $translator)
     {
         $form = $this->createForm(MailType::class);
         $form->handleRequest($request);
@@ -49,7 +50,7 @@ class FrontController extends AbstractController
         $this->em->persist($mail);
         $this->em->flush();
 
-        $this->addFlash('success', 'mail enviat!');
+        $this->addFlash('success', $translator->trans('flash_messages.mail_sended'));
 
         return $this->redirectToRoute('front');
     }
