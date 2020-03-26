@@ -8,3 +8,5 @@ form:
     showGallery: Upload show images
     eventGallery: Upload event images
     sesionGallery: Upload sesion images
+flash_messages:
+    mail_sended: mail was sended!

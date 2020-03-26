@@ -1,0 +1,7 @@
+.alert {
+    border-style: solid;
+}
+
+.alert-success {
+    background-color: green;
+}

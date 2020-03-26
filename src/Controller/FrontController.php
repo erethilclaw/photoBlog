@@ -49,6 +49,8 @@ class FrontController extends AbstractController
         $this->em->persist($mail);
         $this->em->flush();
 
+        $this->addFlash('success', 'mail enviat!');
+
         return $this->redirectToRoute('front');
     }
 

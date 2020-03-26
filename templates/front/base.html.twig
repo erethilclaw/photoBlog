@@ -1,8 +1,15 @@
 {% block title %}{% endblock %}
-
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('css/front.css')}}">
+{% endblock %}
 
 <body>
 {{ include('front/header.html.twig') }}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
 {% block body %}
 {% endblock %}
 </body>
