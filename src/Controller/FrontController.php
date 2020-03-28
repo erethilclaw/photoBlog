@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Mail;
 use App\Entity\PortofolioPage;
 use App\Form\MailType;
+use App\Mailer\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +15,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class FrontController extends AbstractController
 {
     private $em;
+    private $mailer;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, MailerService $mailer)
     {
         $this->em = $em;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -49,6 +52,8 @@ class FrontController extends AbstractController
 
         $this->em->persist($mail);
         $this->em->flush();
+
+        $this->mailer->respondContact($mail);
 
         $this->addFlash('success', $translator->trans('flash_messages.mail_sended'));
 
