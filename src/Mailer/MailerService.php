@@ -4,7 +4,7 @@
 namespace App\Mailer;
 
 
-use App\Entity\Mail;
+use App\Entity\Contact;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -18,7 +18,7 @@ class MailerService
         $this->mailer = $mailer;
     }
 
-    public function respondContact(Mail $contact){
+    public function respondContact(Contact $contact){
         $email = (new Email())
             ->from(self::FROM)
             ->to($contact->getEmail())

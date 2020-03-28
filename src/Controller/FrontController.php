@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Mail;
+use App\Entity\Contact;
 use App\Entity\PortofolioPage;
-use App\Form\MailType;
+use App\Form\ContactType;
 use App\Mailer\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,12 +41,12 @@ class FrontController extends AbstractController
      */
     public function contact(Request $request, TranslatorInterface $translator)
     {
-        $form = $this->createForm(MailType::class);
+        $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
         /**
-         * @var Mail
+         * @var Contact
          */
         $mail = $form->getData();
 

@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Mail;
+use App\Entity\Contact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Mail|null find($id, $lockMode = null, $lockVersion = null)
- * @method Mail|null findOneBy(array $criteria, array $orderBy = null)
- * @method Mail[]    findAll()
- * @method Mail[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Contact|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Contact|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Contact[]    findAll()
+ * @method Contact[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MailRepository extends ServiceEntityRepository
+class ContactRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Mail::class);
+        parent::__construct($registry, Contact::class);
     }
 
     // /**
-    //  * @return Mail[] Returns an array of Mail objects
+    //  * @return Contact[] Returns an array of Contact objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MailRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Mail
+    public function findOneBySomeField($value): ?Contact
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')
