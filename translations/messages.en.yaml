@@ -1,3 +1,6 @@
+navbar:
+    home: Home
+    contact: Contact
 sidebar:
     wellcome: Wellcome
     navigation: Navigation
