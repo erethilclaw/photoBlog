@@ -34,15 +34,14 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            //in case someday add sometext
+            //$portofolio = $form->getData();
             $natureFiles = $request->files->get('portofolio_page')['natureGallery'];
             if (!empty($natureFiles)) {
                 $portofolio->removeAllNatureGallery();
                 $natureGalleryRoute = $this->getParameter('upload_directory').'natureGallery/';
                 $fileUploader = new FileUploader($natureGalleryRoute);
                 $fileUploader->removeAll();
-
-                $portofolio = $form->getData();;
 
                 foreach ($natureFiles as $file){
                     $filename = $fileUploader->uploadImage($file);
@@ -62,8 +61,6 @@ class AdminController extends AbstractController
                 $fileUploader = new FileUploader($eventGalleryRoute);
                 $fileUploader->removeAll();
 
-                $portofolio = $form->getData();;
-
                 foreach ($eventfiles as $file){
                     $filename = $fileUploader->uploadImage($file);
 
@@ -82,8 +79,6 @@ class AdminController extends AbstractController
                 $fileUploader = new FileUploader($sesionGalleryRoute);
                 $fileUploader->removeAll();
 
-                $portofolio = $form->getData();;
-
                 foreach ($sesionFiles as $file){
                     $filename = $fileUploader->uploadImage($file);
 
@@ -101,8 +96,6 @@ class AdminController extends AbstractController
                 $showGalleryRoute = $this->getParameter('upload_directory').'showGallery/';
                 $fileUploader = new FileUploader($showGalleryRoute);
                 $fileUploader->removeAll();
-
-                $portofolio = $form->getData();;
 
                 foreach ($showfiles as $file){
                     $filename = $fileUploader->uploadImage($file);

@@ -11,5 +11,9 @@ form:
     showGallery: Upload show images
     eventGallery: Upload event images
     sesionGallery: Upload sesion images
+contact_form:
+    name: Name
+    email: Email
+    message: Message
 flash_messages:
     mail_sended: mail was sended!
