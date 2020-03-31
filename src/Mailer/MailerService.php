@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Mailer;
 
-
 use App\Entity\Contact;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 
 class MailerService
 {
@@ -19,13 +17,17 @@ class MailerService
     }
 
     public function respondContact(Contact $contact){
-        $email = (new Email())
+        $email = (new TemplatedEmail())
             ->from(self::FROM)
             ->to($contact->getEmail())
             ->subject('Time for Symfony Mailer!')
             ->text('Sending emails is fun again!')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
-
+           // ->html('<p>See Twig integration for better HTML integration!</p>');
+            ->htmlTemplate('email/contact.html.twig')
+            ->context([
+                'date' => new \DateTime(),
+                'contact' => $contact
+            ]);
         $this->mailer->send($email);
     }
 }
