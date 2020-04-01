@@ -15,5 +15,6 @@ contact_form:
     name: Name
     email: Email
     message: Message
+    email_error: email is not valid
 flash_messages:
     mail_sended: mail was sended!
