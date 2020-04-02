@@ -1,7 +1,7 @@
 {% extends 'front/base.html.twig' %}
 
 {% block body %}
-{{ form_start(mailForm) }}
+{{ form_start(mailForm, {'attr': {'novalidate': 'novalidate'}}) }}
                 {{ form_widget(mailForm) }}
     <button type="submit" >{{ 'form.submit'|trans }}</button>
     {{ form_end(mailForm) }}

@@ -19,17 +19,34 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank(message="not_blank")
+     * @Assert\Length(
+     *     min="4",
+     *     max="20",
+     *     minMessage="contact.name_min",
+     *     maxMessage="contact.name_max",
+     *     allowEmptyString="false"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\Email(message="contact.email")
+     * @Assert\NotBlank(message="not_blank")
      */
     private $email;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="not_blank")
+     * @Assert\Length(
+     *     min="20",
+     *     max="250",
+     *     minMessage="contact.message_min",
+     *     maxMessage="contact.message_max",
+     *     allowEmptyString="false"
+     * )
      */
     private $message;
 

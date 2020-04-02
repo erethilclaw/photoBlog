@@ -16,3 +16,4 @@
 ###< symfony/web-server-bundle ###
 /src/DataFixtures/AppFixtures.php
 /public/uploads/
+/src/Migrations/
