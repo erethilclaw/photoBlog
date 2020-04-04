@@ -15,7 +15,24 @@
             </div>
             <div class="box-body">
                 {{ form_start(contactForm, {'attr': {'novalidate': 'novalidate'}}) }}
-                {{ form_widget(contactForm) }}
+                <div class="nav nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li><a href="#text_en" data-toggle="tab" >{{ 'form.text_en'|trans }}</a></li>
+                        <li><a href="#text_ca" data-toggle="tab" >{{ 'form.text_ca'|trans }}</a></li>
+                        <li><a href="#text_es" data-toggle="tab">{{ 'form.text_es'|trans }}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane in active fade" id="text_en">
+                            {{ form_row(contactForm.text_en) }}
+                        </div>
+                        <div class="tab-pane fade" id="text_ca">
+                            {{ form_row(contactForm.text_ca) }}
+                        </div>
+                        <div class="tab-pane fade" id="text_es">
+                            {{ form_row(contactForm.text_es) }}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">{{ 'form.submit'|trans }}</button>
