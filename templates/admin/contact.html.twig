@@ -1,31 +1,28 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 {% block stylesheets %}
-{{ parent() }}
+    {{ parent() }}
 
 {% endblock %}
 {% block title %}{% endblock %}
 {% block body %}
     <section class="content-header">
-        <h1>{{ 'sidebar.portofolio'|trans }}</h1>
+        <h1>{{ 'sidebar.contact'|trans }}</h1>
     </section>
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">{{ 'sidebar.portofolio'|trans }}</h3>
+                <h3 class="box-title">{{ 'sidebar.contact'|trans }}</h3>
             </div>
             <div class="box-body">
-                {{ form_start(portofolioForm, {'attr': {'novalidate': 'novalidate'}}) }}
-                {{ form_widget(portofolioForm) }}
+                {{ form_start(contactForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                {{ form_widget(contactForm) }}
             </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">{{ 'form.submit'|trans }}</button>
-                {{ form_end(portofolioForm) }}
+                {{ form_end(contactForm) }}
             </div>
         </div>
     </section>
 
 {% endblock %}
-
-
-
 

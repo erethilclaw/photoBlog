@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\ContactPage;
 use App\Entity\Image;
 use App\Entity\PortofolioPage;
+use App\Form\ContactPageType;
 use App\Form\PortofolioPageType;
 use App\Service\FileUploader;
 use App\Transformer\ImageToPageTransformer;
@@ -115,6 +117,31 @@ class AdminController extends AbstractController
         }
         return $this->render('admin/portofolio.html.twig', [
             'portofolioForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/admin/contact_manager", name="contact_manager")
+     */
+    public function contact(Request $request, EntityManagerInterface $em){
+        $contactPage = $em->getRepository(ContactPage::class)->findOneBy(['slug'=>'contact']);
+
+        $form = $this->createForm(ContactPageType::class, $contactPage);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var ContactPage
+             */
+            $contactPage = $form->getData();
+
+            $em->persist($contactPage);
+            $em->flush();
+
+            return $this->redirectToRoute('contact_manager');
+        }
+        return $this->render('admin/contact.html.twig', [
+            'contactForm' => $form->createView()
         ]);
     }
 }
