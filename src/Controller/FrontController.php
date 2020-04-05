@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Entity\ContactPage;
 use App\Entity\PortofolioPage;
 use App\Form\ContactType;
 use App\Mailer\MailerService;
@@ -41,6 +42,8 @@ class FrontController extends AbstractController
      */
     public function contact(Request $request, TranslatorInterface $translator)
     {
+        $contactPage = $this->em->getRepository(ContactPage::class)->findOneBy(['slug'=>'contactPage']);
+
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
@@ -61,7 +64,8 @@ class FrontController extends AbstractController
     }
 
     return $this->render('front/contact.html.twig', [
-       'mailForm' => $form->createView()
+        'mailForm' => $form->createView(),
+        'contactPage' => $contactPage
     ]);
 
     }
