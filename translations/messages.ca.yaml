@@ -1,0 +1,24 @@
+navbar:
+    home: INICI
+    contact: CONTACTE
+sidebar:
+    wellcome: Wellcome
+    navigation: Navigation
+    portofolio: Portofolio
+    contact: Contact
+form:
+    submit: submit
+    natureGallery: Upload nature images
+    showGallery: Upload show images
+    eventGallery: Upload event images
+    sesionGallery: Upload sesion images
+    text_es: Spanish text
+    text_ca: Catalan text
+    text_en: English text
+contact_form:
+    name: Nom
+    email: Email
+    message: Missatge
+    email_error: email is not valid
+flash_messages:
+    mail_sended: mail was sended!

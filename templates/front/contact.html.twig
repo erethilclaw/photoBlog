@@ -2,7 +2,12 @@
 {% block title %}{% endblock %}
 {% block body %}
     <div>
-        {{ contactPage.textEn|raw }}
+   {#     {% if locale == 'en' %}
+            {{ contactPage.textEn|raw }}
+        {% endif %}
+        {% if locale == 'ca' %}
+            {{ contactPage.textCa|raw }}
+        {% endif %}#}
     </div>
     <div>
         {{ form_start(mailForm, {'attr': {'novalidate': 'novalidate'}}) }}

@@ -2,3 +2,19 @@
     <a href="{{ path('front') }}">{{ 'navbar.home'|trans }}</a>
     <a href="{{ path('contact_page') }}">{{ 'navbar.contact'|trans }}</a>
 </div>
+<div>
+    {% block leng %}
+        {% set locale = app.request.locale %}
+        {{ dump(locale) }}
+        <li class="Button">
+            <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}">
+             EN
+            </a>
+        </li>
+        <li>
+            <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}">
+                CA
+            </a>
+        </li>
+    {% endblock %}
+</div>
