@@ -124,7 +124,7 @@ class AdminController extends AbstractController
      * @Route("/admin/contact_manager", name="contact_manager")
      */
     public function contact(Request $request, EntityManagerInterface $em){
-        $contactPage = $em->getRepository(ContactPage::class)->findOneBy(['slug'=>'contact']);
+        $contactPage = $em->getRepository(ContactPage::class)->findOneBy(['slug'=>'contactPage']);
 
         $form = $this->createForm(ContactPageType::class, $contactPage);
         $form->handleRequest($request);
