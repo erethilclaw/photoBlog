@@ -4,8 +4,6 @@
 </div>
 <div>
     {% block leng %}
-        {% set locale = app.request.locale %}
-        {{ dump(locale) }}
         <li class="Button">
             <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}">
              EN
@@ -14,6 +12,11 @@
         <li>
             <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}">
                 CA
+            </a>
+        </li>
+        <li>
+            <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}">
+                ES
             </a>
         </li>
     {% endblock %}
