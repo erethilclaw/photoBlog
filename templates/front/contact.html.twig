@@ -2,17 +2,22 @@
 {% block title %}{% endblock %}
 {% block body %}
     <div>
-   {#     {% if locale == 'en' %}
+        {% set locale = app.request.locale %}
+
+        {% if locale == 'en' %}
             {{ contactPage.textEn|raw }}
         {% endif %}
         {% if locale == 'ca' %}
             {{ contactPage.textCa|raw }}
-        {% endif %}#}
+        {% endif %}
+        {% if locale == 'es' %}
+            {{ contactPage.textEs|raw }}
+        {% endif %}
     </div>
     <div>
         {{ form_start(mailForm, {'attr': {'novalidate': 'novalidate'}}) }}
         {{ form_widget(mailForm) }}
-        <button type="submit" >{{ 'form.submit'|trans }}</button>
+        <button type="submit">{{ 'form.submit'|trans }}</button>
         {{ form_end(mailForm) }}
     </div>
 {% endblock %}
