@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\AboutMePage;
 use App\Entity\Contact;
 use App\Entity\ContactPage;
 use App\Entity\PortofolioPage;
@@ -69,5 +70,18 @@ class FrontController extends AbstractController
         'contactPage' => $contactPage
     ]);
 
+    }
+
+    /**
+     * @Route("/about_me", name="aboutMe")
+     */
+    public function aboutMe()
+    {
+        $aboutMePage = $this->em->getRepository(AboutMePage::class)->findOneBy(['slug'=>'aboutMePage']);
+
+
+        return $this->render('front/aboutMe.html.twig', [
+           'aboutMePage' => $aboutMePage
+        ]);
     }
 }

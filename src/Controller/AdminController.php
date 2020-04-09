@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\AboutMePage;
 use App\Entity\ContactPage;
 use App\Entity\Image;
 use App\Entity\PortofolioPage;
+use App\Form\AboutMePageType;
 use App\Form\ContactPageType;
 use App\Form\PortofolioPageType;
 use App\Service\FileUploader;
@@ -142,6 +144,31 @@ class AdminController extends AbstractController
         }
         return $this->render('admin/contact.html.twig', [
             'contactForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/admin/about_me_manager", name="about_me_manager")
+     */
+    public function aboutMe(Request $request, EntityManagerInterface $em){
+        $aboutMePage = $em->getRepository(AboutMePage::class)->findOneBy(['slug'=> 'aboutMePage']);
+
+        $form = $this->createForm(AboutMePageType::class, $aboutMePage);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var AboutMePage
+             */
+            $aboutMePage = $form->getData();
+
+            $em->persist($aboutMePage);
+            $em->flush();
+
+            return $this->redirectToRoute('about_me_manager');
+        }
+        return $this->render('admin/aboutMe.html.twig', [
+            'aboutMeForm' => $form->createView()
         ]);
     }
 }

@@ -1,11 +1,13 @@
 navbar:
     home: HOME
     contact: CONTACT
+    aboutMe: ABOUT ME
 sidebar:
     wellcome: Wellcome
     navigation: Navigation
     portofolio: Portofolio
     contact: Contact
+    aboutMe: About me
 form:
     submit: submit
     natureGallery: Upload nature images
