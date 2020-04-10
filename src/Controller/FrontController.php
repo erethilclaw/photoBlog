@@ -84,4 +84,12 @@ class FrontController extends AbstractController
            'aboutMePage' => $aboutMePage
         ]);
     }
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function test()
+    {
+        return $this->render('test.html.twig');
+    }
 }

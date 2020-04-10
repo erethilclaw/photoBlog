@@ -5,3 +5,7 @@
 .alert-success {
     background-color: green;
 }
+
+.thumb {
+    max-width: 100px
+}
