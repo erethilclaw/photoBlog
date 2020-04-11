@@ -17,6 +17,12 @@ form:
     text_es: Spanish text
     text_ca: Catalan text
     text_en: English text
+front:
+    portofolio:
+        natureGallery: Nature
+        eventGallery: Events
+        sesionGallery: Sesions
+        showGallery: Shows
 contact_form:
     name: Name
     email: Email
