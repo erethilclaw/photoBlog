@@ -1,24 +1,13 @@
-<div>
+<div class="topnav">
     <a href="{{ path('front') }}">{{ 'navbar.home'|trans }}</a>
     <a href="{{ path('contact_page') }}">{{ 'navbar.contact'|trans }}</a>
     <a href="{{ path('aboutMe') }}">{{ 'navbar.aboutMe'|trans }}</a>
+    <div>
+        {% block leng %}
+            <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}">EN</a>
+            <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}">CA</a>
+            <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}">ES</a>
+        {% endblock %}
+    </div>
 </div>
-<div>
-    {% block leng %}
-        <li class="Button">
-            <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}">
-             EN
-            </a>
-        </li>
-        <li>
-            <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}">
-                CA
-            </a>
-        </li>
-        <li>
-            <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}">
-                ES
-            </a>
-        </li>
-    {% endblock %}
-</div>
+

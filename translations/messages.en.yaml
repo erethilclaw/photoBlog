@@ -19,10 +19,12 @@ form:
     text_en: English text
 front:
     portofolio:
+        namePage: Portofolio
         natureGallery: Nature
         eventGallery: Events
         sesionGallery: Sesions
         showGallery: Shows
+        showAll: Show All
 contact_form:
     name: Name
     email: Email

@@ -3,52 +3,52 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/simple-lightbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/filter-gallery.css') }}">
 {% endblock %}
 
 {% block body %}
-
-    <div class="sesionGallery">
-        <h1>{{ 'front.portofolio.sesionGallery'|trans }}</h1>
-        {% for image in portofolioPage.sesionGallery %}
-            <a href="{{ asset('uploads/sesionGallery/' ~ image.name) }}"><img class="thumb"
-                                                                              src="{{ asset('uploads/sesionGallery/' ~ image.name) }}"
-                                                                              alt="" title=""/></a>
-        {% endfor %}
+    <div class="row">
+        <div id="myBtnContainer">
+            <button class="btn active" > {{ 'front.portofolio.showAll'|trans }}</button>
+            <button class="btn" > {{ 'front.portofolio.sesionGallery'|trans }}</button>
+            <button class="btn" > {{ 'front.portofolio.showGallery'|trans }}</button>
+            <button class="btn" > {{ 'front.portofolio.natureGallery'|trans }}</button>
+            <button class="btn" > {{ 'front.portofolio.eventGallery'|trans }}</button>
+        </div>
     </div>
 
-    <div class="showGallery">
-        <h1>{{ 'front.portofolio.showGallery'|trans }}</h1>
-        {% for image in portofolioPage.showGallery %}
-            <a href="{{ asset('uploads/showGallery/' ~ image.name) }}"><img class="thumb"
-                                                                            src="{{ asset('uploads/showGallery/' ~ image.name) }}"
-                                                                            alt="" title=""/></a>
-        {% endfor %}
-    </div>
+    <div class="row">
+        <div class="sesionGallery column">
+            {% for image in portofolioPage.sesionGallery %}
+                <a href="{{ asset('uploads/sesionGallery/' ~ image.name) }}"><img src="{{ asset('uploads/sesionGallery/' ~ image.name) }}"/></a>
+            {% endfor %}
+        </div>
 
-    <div class="natureGallery">
-        <h1>{{ 'front.portofolio.natureGallery'|trans }}</h1>
-        {% for image in portofolioPage.natureGallery %}
-            <a href="{{ asset('uploads/natureGallery/' ~ image.name) }}"><img class="thumb"
-                                                                              src="{{ asset('uploads/natureGallery/' ~ image.name) }}"
-                                                                              alt="" title=""/></a>
-        {% endfor %}
-    </div>
+        <div class="showGallery column">
+            {% for image in portofolioPage.showGallery %}
+                <a href="{{ asset('uploads/showGallery/' ~ image.name) }}"><img src="{{ asset('uploads/showGallery/' ~ image.name) }}"/></a>
+            {% endfor %}
+        </div>
 
-    <div class="eventGallery">
-        <h1>{{ 'front.portofolio.eventGallery'|trans }}</h1>
-        {% for image in portofolioPage.eventGallery %}
-            <a href="{{ asset('uploads/eventGallery/' ~ image.name) }}"><img class="thumb"
-                                                                             src="{{ asset('uploads/eventGallery/' ~ image.name) }}"
-                                                                             alt="" title=""/></a>
-        {% endfor %}
-    </div>
+        <div class="natureGallery column">
+            {% for image in portofolioPage.natureGallery %}
+                <a href="{{ asset('uploads/natureGallery/' ~ image.name) }}"><img src="{{ asset('uploads/natureGallery/' ~ image.name) }}"/></a>
+            {% endfor %}
+        </div>
 
+        <div class="eventGallery column">
+            {% for image in portofolioPage.eventGallery %}
+                <a href="{{ asset('uploads/eventGallery/' ~ image.name) }}"><img src="{{ asset('uploads/eventGallery/' ~ image.name) }}"/></a>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/simple-lightbox.js') }}"></script>
+    <script src="{{ asset('js/filter-gallery.js') }}"></script>
     <script>
         var sesion = new SimpleLightbox('.sesionGallery a', { /* options */});
         var show = new SimpleLightbox('.showGallery a', { /* options */});
