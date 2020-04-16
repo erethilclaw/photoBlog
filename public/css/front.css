@@ -32,6 +32,12 @@ header {
 
 .logo {
     cursor: pointer;
+    max-height: 3rem;
+}
+
+.flag {
+    cursor: pointer;
+    max-height: 1.5rem;
 }
 
 .nav-links {

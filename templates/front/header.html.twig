@@ -1,5 +1,5 @@
 <header>
-    <img src="" class="logo row" alt="logo">
+    <img src="{{ asset('images/logo.png') }}" class="logo row" alt="logo">
     <ul class="nav-links row">
         <li><a href="{{ path('front') }}">{{ 'navbar.home'|trans }}</a></li>
         <li><a href="{{ path('aboutMe') }}">{{ 'navbar.aboutMe'|trans }}</a></li>
@@ -7,9 +7,10 @@
     </ul>
 
     <ul class="nav-links row">
-        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}">EN</a></li>
-        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}">CA</a></li>
-        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}">ES</a></li>
+        <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
+        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}"><img class="flag" alt="en" src="{{ asset('images/uk.png') }}"/></a></li>
+        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}"><img class="flag" alt="ca" src="{{ asset('images/catalan.png') }}"/></a></li>
+        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}"><img class="flag" alt="es" src="{{ asset('images/spain.png') }}"/></a></li>
     </ul>
 
 </header>
