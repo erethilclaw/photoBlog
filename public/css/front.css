@@ -29,6 +29,7 @@ header {
     background-color: #333;
     font-size: 1rem;
     max-height: 2.75rem;
+    overflow: hidden;
 }
 
 .logo {
@@ -60,6 +61,15 @@ header {
    color: #0088a9;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .row {
+    padding-top: 3.25rem;
+}
 /* Style the content */
 .content {
     background-color: #ddd;
