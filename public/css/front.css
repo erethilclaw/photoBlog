@@ -45,6 +45,7 @@ header {
     display: none;
     cursor: pointer;
 }
+
 .flag {
     cursor: pointer;
     max-height: 1.5rem;
@@ -82,6 +83,8 @@ header {
 }
 .active{
    !important display: block;
+    opacity: 1;
+    animation: fade 1s;
 }
 /* Style the content */
 .content {
@@ -117,6 +120,16 @@ header {
     width: 100%;
 }
 
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
     .column {
@@ -140,18 +153,16 @@ header {
     .flag-box{
         text-align: center;
     }
-    .links-box {
-        flex-direction: column;
-        text-align: center;
-        display: none;
-    }
+
     .hamburgerBtn{
         display: block;
-
     }
     .nav-links {
         flex-direction: column;
         display: none;
+        -webkit-transition: opacity 600ms, visibility 600ms;
+        transition: opacity 600ms, visibility 600ms;
+    }
     }
     .nav-links li {
         text-align: center;
