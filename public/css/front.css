@@ -24,7 +24,7 @@ li, a {
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /*align-items: center;*/
     padding: 0.25rem;
     background-color: #333;
     font-size: 1rem;
@@ -37,6 +37,14 @@ header {
     max-height: 3rem;
 }
 
+#hamburger {
+    display: none;
+}
+.hamburgerBtn {
+    padding-top: 0.75rem;
+    display: none;
+    cursor: pointer;
+}
 .flag {
     cursor: pointer;
     max-height: 1.5rem;
@@ -69,6 +77,9 @@ header {
 
 .sticky + .row {
     padding-top: 3.25rem;
+}
+.active{
+    display: block;
 }
 /* Style the content */
 .content {
@@ -119,15 +130,24 @@ header {
         flex-direction: column;
         max-height: fit-content;
     }
+    .hamburgerBox{
+        justify-content: space-between;
+        max-width: 100%;
+    }
+    .flag-box{
+        text-align: center;
+    }
+    .hamburgerBtn{
+        display: block;
+
+    }
     .nav-links {
         flex-direction: column;
     }
     .nav-links li {
         text-align: center;
     }
-    .flag_box {
-        flex-direction: row;
-    }
+
     .column {
         -ms-flex: 100%;
         flex: 100%;

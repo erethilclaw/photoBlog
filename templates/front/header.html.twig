@@ -1,17 +1,22 @@
 <header id="navbar">
-    <img src="{{ asset('images/logo.png') }}" class="logo row" alt="logo">
+    <div class="hamburgerBox row">
+        <img src="{{ asset('images/logo.png') }}" class="logo" alt="logo">
+        <input type="checkbox" id="hamburger">
+        <label for="hamburger" class="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </label>
+    </div>
     <ul class="nav-links row">
         <li><a href="{{ path('front') }}">{{ 'navbar.home'|trans }}</a></li>
         <li><a href="{{ path('aboutMe') }}">{{ 'navbar.aboutMe'|trans }}</a></li>
         <li><a href="{{ path('contact_page') }}">{{ 'navbar.contact'|trans }}</a></li>
     </ul>
 
-    <ul class="nav-links row flag_box">
+    <ul class="nav-links flag-box">
         <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
         <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}"><img class="flag" alt="en" src="{{ asset('images/uk.png') }}"/></a></li>
         <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}"><img class="flag" alt="ca" src="{{ asset('images/catalan.png') }}"/></a></li>
         <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}"><img class="flag" alt="es" src="{{ asset('images/spain.png') }}"/></a></li>
     </ul>
-
 </header>
 
