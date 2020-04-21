@@ -8,13 +8,13 @@ var navbar = $("#navbar")[0];
 var sticky = navbar.offsetTop;
 
 // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function myFunction() {
+/*function myFunction() {
     if (window.pageYOffset >= sticky) {
         navbar.classList.add("sticky")
     } else {
         navbar.classList.remove("sticky");
     }
-}
+}*/
 //hamburger
 $(function() {
     $(".hamburgerBtn").on("click", function() {
