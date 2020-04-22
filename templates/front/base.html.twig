@@ -20,7 +20,7 @@
     <div class="site-content">
         {% block body %}{% endblock %}
     </div>
-    <div class="footer">footer</div>
+    {{ include('front/footer.html.twig') }}
     {% block javascripts %}
         <!-- jQuery 3 -->
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
