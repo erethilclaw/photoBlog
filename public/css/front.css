@@ -87,15 +87,6 @@ header {
    color: #0088a9;
 }
 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.sticky + .row {
-    padding-top: 3.25rem;
-}
 .active{
    !important display: block;
     opacity: 1;
@@ -172,7 +163,7 @@ footer-link{
 @media screen and (max-width: 600px) {
     header{
         flex-direction: column;
-        max-height: fit-content;
+        max-height: 2.75rem;
     }
     .hamburgerBox{
         justify-content: space-between;
