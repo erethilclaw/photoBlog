@@ -14,7 +14,7 @@
 
 .site-content{
     flex: 1;
-    margin-top: 50px;
+    margin-top: 3.75rem;
 }
 
 body {
@@ -43,13 +43,13 @@ header {
     padding: 0.25rem;
     background-color: #333;
     font-size: 1rem;
-    max-height: 2.75rem;
+    max-height: fit-content;
     overflow: hidden;
 }
 
 .logo {
     cursor: pointer;
-    max-height: 3rem;
+    max-height: 2.5rem;
 }
 
 #hamburger {
@@ -63,7 +63,7 @@ header {
 
 .flag {
     cursor: pointer;
-    max-height: 1.5rem;
+    max-height: 1.2rem;
 }
 .active {
     display: block !important;
@@ -88,7 +88,7 @@ header {
 }
 
 .active{
-   !important display: block;
+    display: block !important;
     opacity: 1;
     animation: fade 1s;
 }
@@ -108,10 +108,7 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-footer-link{
-    list-style: none;
-    color: #0a0a0a;
-}
+
 .footer li {
     display: inline-block;
 }
@@ -163,7 +160,7 @@ footer-link{
 @media screen and (max-width: 600px) {
     header{
         flex-direction: column;
-        max-height: 2.75rem;
+        max-height: fit-content;
     }
     .hamburgerBox{
         justify-content: space-between;
