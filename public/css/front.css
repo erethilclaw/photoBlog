@@ -43,13 +43,13 @@ header {
     padding: 0.25rem;
     background-color: #333;
     font-size: 1rem;
-    max-height: fit-content;
+    max-height: 2.75rem;
     overflow: hidden;
 }
 
 .logo {
     cursor: pointer;
-    max-height: 2.5rem;
+    max-height: 3rem;
 }
 
 #hamburger {
@@ -161,6 +161,9 @@ header {
     header{
         flex-direction: column;
         max-height: fit-content;
+    }
+    .logo{
+        max-height: 2.2rem;
     }
     .hamburgerBox{
         justify-content: space-between;
