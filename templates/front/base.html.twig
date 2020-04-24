@@ -11,7 +11,9 @@
 </head>
 <div class="site-wraper">
     <body>
-    {{ include('front/header.html.twig') }}
+    {% block header %}
+        {{ include('front/header.html.twig') }}
+    {% endblock %}
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}

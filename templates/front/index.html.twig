@@ -7,35 +7,29 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div id="myBtnContainer">
-            <button class="btn active" > {{ 'front.portofolio.showAll'|trans }}</button>
-            <button class="btn" > {{ 'front.portofolio.sesionGallery'|trans }}</button>
-            <button class="btn" > {{ 'front.portofolio.showGallery'|trans }}</button>
-            <button class="btn" > {{ 'front.portofolio.natureGallery'|trans }}</button>
-            <button class="btn" > {{ 'front.portofolio.eventGallery'|trans }}</button>
-        </div>
-    </div>
 
     <div class="row">
-        <div class="sesionGallery column">
+        <div class="sesionGallery ">
             {% for image in portofolioPage.sesionGallery %}
                 <a href="{{ asset('uploads/sesionGallery/' ~ image.name) }}"><img src="{{ asset('uploads/sesionGallery/' ~ image.name) }}"/></a>
             {% endfor %}
         </div>
-
+    </div>
+    <div class="row">
         <div class="showGallery column">
             {% for image in portofolioPage.showGallery %}
                 <a href="{{ asset('uploads/showGallery/' ~ image.name) }}"><img src="{{ asset('uploads/showGallery/' ~ image.name) }}"/></a>
             {% endfor %}
         </div>
-
+    </div>
+    <div class="row">
         <div class="natureGallery column">
             {% for image in portofolioPage.natureGallery %}
                 <a href="{{ asset('uploads/natureGallery/' ~ image.name) }}"><img src="{{ asset('uploads/natureGallery/' ~ image.name) }}"/></a>
             {% endfor %}
         </div>
-
+    </div>
+    <div class="row">
         <div class="eventGallery column">
             {% for image in portofolioPage.eventGallery %}
                 <a href="{{ asset('uploads/eventGallery/' ~ image.name) }}"><img src="{{ asset('uploads/eventGallery/' ~ image.name) }}"/></a>
