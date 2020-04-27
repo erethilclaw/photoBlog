@@ -92,6 +92,21 @@ header {
     opacity: 1;
     animation: fade 1s;
 }
+
+.section-links{
+    display: flex;
+    justify-content: center;
+    background-color: lightgrey;
+    opacity: 75%;
+}
+
+.section-links span{
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    font-family: 'Merienda';
+    font-size: 0.7rem;
+}
+
 /* Style the content */
 .content {
     background-color: #ddd;
