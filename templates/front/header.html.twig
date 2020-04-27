@@ -20,5 +20,13 @@
             <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}"><img class="flag" alt="es" src="{{ asset('images/spain.png') }}"/></a></li>
         </ul>
     </header>
+    {% block headerExtension %}
+        {% set url = app.request.attributes.get('_route') %}
+        {% if url == "front" %}
+        <div>
+            <span>test1</span>
+        </div>
+        {% endif %}
+    {% endblock %}
 </div>
 
