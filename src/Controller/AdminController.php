@@ -40,7 +40,8 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //in case someday add sometext
             //$portofolio = $form->getData();
-            $natureFiles = $request->files->get('portofolio_page')['natureGallery'];
+            //$natureFiles = $request->files->get('portofolio_page')['natureGallery'];
+            $natureFiles = $form['natureGallery']->getData();
             if (!empty($natureFiles)) {
                 $portofolio->removeAllNatureGallery();
                 $natureGalleryRoute = $this->getParameter('upload_directory').'natureGallery/';
@@ -58,7 +59,7 @@ class AdminController extends AbstractController
                 }
             }
 
-            $eventfiles = $request->files->get('portofolio_page')['eventGallery'];
+            $eventfiles = $form['eventGallery']->getData();
             if (!empty($eventfiles)) {
                 $portofolio->removeAlleventGallery();
                 $eventGalleryRoute = $this->getParameter('upload_directory').'eventGallery/';
@@ -76,7 +77,7 @@ class AdminController extends AbstractController
                 }
             }
 
-            $sesionFiles = $request->files->get('portofolio_page')['sesionGallery'];
+            $sesionFiles = $form['sesionGallery']->getData();
             if (!empty($sesionFiles)) {
                 $portofolio->removeAllSesionGallery();
                 $sesionGalleryRoute = $this->getParameter('upload_directory').'sesionGallery/';
@@ -94,7 +95,7 @@ class AdminController extends AbstractController
                 }
             }
 
-            $showfiles = $request->files->get('portofolio_page')['showGallery'];
+            $showfiles = $form['showGallery']->getData();
             if (!empty($showfiles)) {
                 $portofolio->removeAllShowGallery();
                 $showGalleryRoute = $this->getParameter('upload_directory').'showGallery/';
