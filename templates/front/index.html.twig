@@ -7,38 +7,32 @@
 {% endblock %}
 
 {% block body %}
-    <section id="sesion-gallery">
-        <div class="row">
-            <div class="sesionGallery ">
-                {% for image in portofolioPage.sesionGallery %}
-                    <a href="{{ asset('uploads/sesionGallery/' ~ image.name) }}"><img src="{{ asset('uploads/sesionGallery/' ~ image.name) }}"/></a>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
     <div class="row">
-        <div class="showGallery column">
+        <div class="sesionGallery column" id="sesion-gallery">
+            {% for image in portofolioPage.sesionGallery %}
+                <a href="{{ asset('uploads/sesionGallery/' ~ image.name) }}"><img
+                            src="{{ asset('uploads/sesionGallery/' ~ image.name) }}"/></a>
+            {% endfor %}
+        </div>
+        <div class="showGallery column" id="show-gallery">
             {% for image in portofolioPage.showGallery %}
-                <a href="{{ asset('uploads/showGallery/' ~ image.name) }}"><img src="{{ asset('uploads/showGallery/' ~ image.name) }}"/></a>
+                <a href="{{ asset('uploads/showGallery/' ~ image.name) }}"><img
+                            src="{{ asset('uploads/showGallery/' ~ image.name) }}"/></a>
             {% endfor %}
         </div>
-    </div>
-    <div class="row">
-        <div class="natureGallery column">
+        <div class="natureGallery column" id="nature-gallery">
             {% for image in portofolioPage.natureGallery %}
-                <a href="{{ asset('uploads/natureGallery/' ~ image.name) }}"><img src="{{ asset('uploads/natureGallery/' ~ image.name) }}"/></a>
+                <a href="{{ asset('uploads/natureGallery/' ~ image.name) }}"><img
+                            src="{{ asset('uploads/natureGallery/' ~ image.name) }}"/></a>
             {% endfor %}
         </div>
-    </div>
-    <div class="row">
-        <div class="eventGallery column">
+        <div class="eventGallery column" id="event-gallery">
             {% for image in portofolioPage.eventGallery %}
-                <a href="{{ asset('uploads/eventGallery/' ~ image.name) }}"><img src="{{ asset('uploads/eventGallery/' ~ image.name) }}"/></a>
+                <a href="{{ asset('uploads/eventGallery/' ~ image.name) }}"><img
+                            src="{{ asset('uploads/eventGallery/' ~ image.name) }}"/></a>
             {% endfor %}
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascripts %}

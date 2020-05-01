@@ -140,24 +140,22 @@ section div{
     justify-content: center;
 }
 .row {
-    display: -ms-flexbox; /* IE10 */
     display: flex;
-    -ms-flex-wrap: wrap; /* IE10 */
     flex-wrap: wrap;
     padding: 1rem 2rem;
 }
 
 /* Create four equal columns that sits next to each other */
 .column {
-    flex: 20%;
-    max-width: 100%;
+    flex: 25%;
+    max-width: 25%;
     padding: 0 4px;
 }
 
-.row a img {
+.column a img {
     margin-top: 8px;
     vertical-align: middle;
-    width: 19%;
+    width: 100%;
 }
 
 @keyframes fade {

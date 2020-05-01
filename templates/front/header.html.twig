@@ -15,20 +15,26 @@
 
         <ul class="nav-links flag-box ">
             <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
-            <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}"><img class="flag" alt="en" src="{{ asset('images/uk.png') }}"/></a></li>
-            <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}"><img class="flag" alt="ca" src="{{ asset('images/catalan.png') }}"/></a></li>
-            <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}"><img class="flag" alt="es" src="{{ asset('images/spain.png') }}"/></a></li>
+            <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}"><img class="flag" alt="en"
+                                                                                                   src="{{ asset('images/uk.png') }}"/></a>
+            </li>
+            <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}"><img class="flag" alt="ca"
+                                                                                                   src="{{ asset('images/catalan.png') }}"/></a>
+            </li>
+            <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}"><img class="flag" alt="es"
+                                                                                                   src="{{ asset('images/spain.png') }}"/></a>
+            </li>
         </ul>
     </header>
     {% block headerExtension %}
         {% set url = app.request.attributes.get('_route') %}
         {% if url == "front" %}
-        <div class="section-links">
-            <a href="#sesion-gallery"><span>{{ 'front.portofolio.sesionGallery'|trans }}</span></a>
-            <span>{{ 'front.portofolio.showGallery'|trans }}</span>
-            <span>{{ 'front.portofolio.natureGallery'|trans }}</span>
-            <span>{{ 'front.portofolio.eventGallery'|trans }}</span>
-        </div>
+            <div class="section-links">
+                <a href="#sesion-gallery"><span>{{ 'front.portofolio.sesionGallery'|trans }}</span></a>
+                <a href="#show-gallery"><span>{{ 'front.portofolio.showGallery'|trans }}</span></a>
+                <a href="#nature-gallery"><span>{{ 'front.portofolio.natureGallery'|trans }}</span></a>
+                <a href="#event-gallery"><span>{{ 'front.portofolio.eventGallery'|trans }}</span></a>
+            </div>
         {% endif %}
     {% endblock %}
 </div>
