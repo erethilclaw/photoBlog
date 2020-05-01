@@ -5,10 +5,13 @@ namespace App\Form;
 use App\Entity\PortofolioPage;
 use App\Transformer\ImageToPageTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Image;
+
 
 class PortofolioPageType extends AbstractType
 {
@@ -19,7 +22,12 @@ class PortofolioPageType extends AbstractType
                 'multiple' => true,
                 'label' => 'form.natureGallery',
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+              /*  'constraints' => [
+                    new Image([
+                        'maxSize' => '5M',
+                    ])
+                ],*/
             ])
             ->add('eventGallery', FileType::class, [
                 'multiple' => true,

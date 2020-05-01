@@ -24,7 +24,7 @@
         {% set url = app.request.attributes.get('_route') %}
         {% if url == "front" %}
         <div class="section-links">
-            <span>{{ 'front.portofolio.sesionGallery'|trans }}</span>
+            <a href="#sesion-gallery"><span>{{ 'front.portofolio.sesionGallery'|trans }}</span></a>
             <span>{{ 'front.portofolio.showGallery'|trans }}</span>
             <span>{{ 'front.portofolio.natureGallery'|trans }}</span>
             <span>{{ 'front.portofolio.eventGallery'|trans }}</span>

@@ -7,14 +7,16 @@
 {% endblock %}
 
 {% block body %}
-
-    <div class="row">
-        <div class="sesionGallery ">
-            {% for image in portofolioPage.sesionGallery %}
-                <a href="{{ asset('uploads/sesionGallery/' ~ image.name) }}"><img src="{{ asset('uploads/sesionGallery/' ~ image.name) }}"/></a>
-            {% endfor %}
+    <section id="sesion-gallery">
+        <div class="row">
+            <div class="sesionGallery ">
+                {% for image in portofolioPage.sesionGallery %}
+                    <a href="{{ asset('uploads/sesionGallery/' ~ image.name) }}"><img src="{{ asset('uploads/sesionGallery/' ~ image.name) }}"/></a>
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    </section>
+
     <div class="row">
         <div class="showGallery column">
             {% for image in portofolioPage.showGallery %}
