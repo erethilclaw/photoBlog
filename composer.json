@@ -6,6 +6,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "laminas/laminas-code": "^3.4",
+        "laminas/laminas-eventmanager": "^3.2",
         "sensio/framework-extra-bundle": "^5.5",
         "sensiolabs/security-checker": "^6.0",
         "symfony/asset": "4.4.*",
@@ -19,13 +21,13 @@
         "symfony/maker-bundle": "^1.14",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "4.4.*",
+        "symfony/security-http": "4.4.*",
         "symfony/translation": "4.4.*",
         "symfony/twig-pack": "^1.0",
         "symfony/validator": "4.4.*",
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
-        "easycorp/easy-log-handler": "^1.0.7",
         "symfony/debug-bundle": "*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/profiler-pack": "*",
