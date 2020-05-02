@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -10,10 +9,6 @@
 /.idea
 /.env
 ###< symfony/framework-bundle ###
-
-###> symfony/web-server-bundle ###
-/.web-server-pid
-###< symfony/web-server-bundle ###
 /src/DataFixtures/AppFixtures.php
 /public/uploads/
 /src/Migrations/
