@@ -188,14 +188,6 @@ section div{
         position: relative;
         bottom: 0rem;
     }
-    .hamburgerBox{
-        justify-content: space-between;
-        max-width: 100%;
-    }
-
-    .flag-box{
-        text-align: center;
-    }
 
     .hamburgerBtn{
         display: block;
