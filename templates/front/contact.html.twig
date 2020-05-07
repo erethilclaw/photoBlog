@@ -1,9 +1,8 @@
 {% extends 'front/base.html.twig' %}
 {% block title %}{% endblock %}
 {% block body %}
-    <div>
         {% set locale = app.request.locale %}
-
+    <div class="row" id="contact-title">
         {% if locale == 'en' %}
             {{ contactPage.textEn|raw }}
         {% endif %}
@@ -14,11 +13,18 @@
             {{ contactPage.textEs|raw }}
         {% endif %}
     </div>
-    <div>
-        {{ form_start(mailForm, {'attr': {'novalidate': 'novalidate'}}) }}
-        {{ form_widget(mailForm) }}
-        <button type="submit">{{ 'form.submit'|trans }}</button>
-        {{ form_end(mailForm) }}
+    <div class="row">
+        <div class="contact-column">
+            <i class="fa fa-map-marker">Chicago, US</i><br><br>
+            <i class="fa fa-phone" >Phone: +00 151515</i><br><br>
+            <i class="fa fa-envelope" >Email: mail@mail.com </i><br><br>
+        </div>
+        <div class="contact-column">
+            {{ form_start(mailForm, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(mailForm) }}
+            <button type="submit">{{ 'form.submit'|trans }}</button>
+            {{ form_end(mailForm) }}
+        </div>
     </div>
 {% endblock %}
 

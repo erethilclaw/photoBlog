@@ -20,8 +20,8 @@
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #ddd;
+    font-family: "Lato",Sans-Serif;
+    background-color: #fcfcfc;
 }
 
 li, a {
@@ -42,7 +42,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0.25rem;
-    background-color: #333;
+    background-color: #242424;
     font-size: 1rem;
     max-height: 2.75rem;
     overflow: hidden;
@@ -112,13 +112,6 @@ header {
     color: black;
 }
 
-/* Style the content */
-.content {
-    background-color: #ddd;
-    padding: 10px;
-    height: 200px; /* Should be removed. Only for demonstration */
-}
-
 /* Style the footer */
 .footer {
     background-color: #f1f1f1;
@@ -149,13 +142,28 @@ section div{
 .column {
     flex: 25%;
     max-width: 25%;
-    padding: 0 4px;
+    padding: 0 0.3rem;
 }
 
 .column a img {
     margin-top: 8px;
     vertical-align: middle;
     width: 100%;
+}
+
+#contact-title {
+    flex-direction: column;
+    text-align: center;
+}
+
+.contact-column {
+    flex: 50%;
+    max-width: 50%;
+    padding: 0 4px;
+}
+
+.contact-column i{
+    padding-left: 3rem;
 }
 
 @keyframes fade {
