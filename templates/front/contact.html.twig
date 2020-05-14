@@ -2,32 +2,33 @@
 {% block title %}{% endblock %}
 {% block body %}
         {% set locale = app.request.locale %}
-    <div class="row" id="contact-title">
-        {% if locale == 'en' %}
-            {{ contactPage.textEn|raw }}
-        {% endif %}
-        {% if locale == 'ca' %}
-            {{ contactPage.textCa|raw }}
-        {% endif %}
-        {% if locale == 'es' %}
-            {{ contactPage.textEs|raw }}
-        {% endif %}
-    </div>
-    <div class="row">
-        <div class="media">
+    <div class="container">
+        <div class="box">
+            {% if locale == 'en' %}
+                {{ contactPage.textEn|raw }}
+            {% endif %}
+            {% if locale == 'ca' %}
+                {{ contactPage.textCa|raw }}
+            {% endif %}
+            {% if locale == 'es' %}
+                {{ contactPage.textEs|raw }}
+            {% endif %}
+        </div>
+        <div class="box">
             <ul>
                 <li><i class="fa fa-map-marker">Chicago, US</i></li>
                 <li><i class="fa fa-phone" >Phone: +00 151515</i></li>
                 <li><i class="fa fa-envelope" >Email: mail@mail.com </i></li>
             </ul>
         </div>
-        <div class="form-contact">
+        <div class="box">
             {{ form_start(mailForm, {'attr': {'novalidate': 'novalidate'}}) }}
             {{ form_widget(mailForm) }}
             <button type="submit">{{ 'form.submit'|trans }}</button>
             {{ form_end(mailForm) }}
         </div>
     </div>
+
 {% endblock %}
 
 

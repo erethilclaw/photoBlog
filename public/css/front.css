@@ -157,28 +157,25 @@ section div{
     width: 100%;
 }
 
-#contact-title {
-    flex-direction: column;
+.container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.box{
+    padding: 1rem;
+    flex-basis: 100%;
     text-align: center;
 }
 
-.media {
-    padding: 1rem;
-    color: black;
-    font-size: 1rem;
-    flex: 1;
-    margin-left: 5rem;
-}
-
-.media li {
+.box li {
     color: #0a0a0a;
     list-style-type: none;
+    display: inline-block;
 }
 
-.form-contact {
-    flex: 1;
-    padding: 1rem;
-}
 
 @keyframes fade {
     0% {
@@ -196,12 +193,6 @@ section div{
         -ms-flex: 50%;
         flex: 50%;
         max-width: 50%;
-    }
-    .media {
-        flex: 2;
-    }
-    .form-contact {
-        flex: 2;
     }
 }
 
