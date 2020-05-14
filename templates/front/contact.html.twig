@@ -14,12 +14,14 @@
         {% endif %}
     </div>
     <div class="row">
-        <div class="contact-column">
-            <i class="fa fa-map-marker">Chicago, US</i><br><br>
-            <i class="fa fa-phone" >Phone: +00 151515</i><br><br>
-            <i class="fa fa-envelope" >Email: mail@mail.com </i><br><br>
+        <div class="media">
+            <ul>
+                <li><i class="fa fa-map-marker">Chicago, US</i></li>
+                <li><i class="fa fa-phone" >Phone: +00 151515</i></li>
+                <li><i class="fa fa-envelope" >Email: mail@mail.com </i></li>
+            </ul>
         </div>
-        <div class="contact-column">
+        <div class="form-contact">
             {{ form_start(mailForm, {'attr': {'novalidate': 'novalidate'}}) }}
             {{ form_widget(mailForm) }}
             <button type="submit">{{ 'form.submit'|trans }}</button>
