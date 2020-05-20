@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Merienda:wght@500&display=swap');
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 
 }
-.site-wraper{
+
+.site-wraper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.site-content{
+.site-content {
     flex: 1;
     margin-top: 3.75rem;
     color: #777;
@@ -21,7 +22,7 @@
 
 body {
     margin: 0;
-    font-family: "Lato",Sans-Serif;
+    font-family: "Lato", Sans-Serif;
     background-color: #fcfcfc;
 }
 
@@ -37,12 +38,14 @@ li, a {
     color: #edf0f1;
     text-decoration: none;
 }
+
 .parent {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
 }
+
 header {
     display: flex;
     justify-content: space-between;
@@ -62,6 +65,7 @@ header {
 #hamburger {
     display: none;
 }
+
 .hamburgerBtn {
     padding-top: 0.5rem;
     display: none;
@@ -72,9 +76,11 @@ header {
     cursor: pointer;
     max-height: 1.2rem;
 }
+
 .active {
     display: block !important;
 }
+
 .nav-links {
     list-style: none;
 }
@@ -91,23 +97,23 @@ header {
 }
 
 .nav-links li a:hover {
-   color: #0088a9;
+    color: #0088a9;
 }
 
-.active{
+.active {
     display: block !important;
     opacity: 1;
     animation: fade 1s;
 }
 
-.section-links{
+.section-links {
     display: flex;
     justify-content: center;
     background-color: lightgrey;
     opacity: 75%;
 }
 
-.section-links span{
+.section-links span {
     padding: 0.2rem 0.5rem;
     cursor: pointer;
     font-family: 'Merienda';
@@ -131,13 +137,15 @@ header {
 .footer li {
     display: inline-block;
 }
-.footer li a{
+
+.footer li a {
     color: #0a0a0a;
 }
 
-section div{
+section div {
     justify-content: center;
 }
+
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -157,14 +165,14 @@ section div{
     width: 100%;
 }
 
-.container{
+.container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 
 }
 
-.box{
+.box {
     padding: 1rem;
     flex-basis: 100%;
     text-align: center;
@@ -176,6 +184,32 @@ section div{
     display: inline-block;
 }
 
+.box li a {
+    color: #0a0a0a;
+}
+
+.box input {
+    margin: 0.25rem;
+    padding: 0.25rem;
+}
+
+.box textarea {
+    width: 24.4rem;
+    height: 15rem;
+    resize: none;
+}
+
+button {
+    align-items: flex-end;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    text-transform: capitalize;
+    cursor: pointer;
+    padding: 0.65rem 0.8rem;
+    background-color: #0a0a0a;
+    color: #fcfcfc;
+}
 
 @keyframes fade {
     0% {
@@ -198,19 +232,21 @@ section div{
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-    header{
+    header {
         flex-direction: column;
         max-height: fit-content;
     }
-    .logo{
+
+    .logo {
         max-height: 2.2rem;
         position: relative;
         bottom: 0rem;
     }
 
-    .hamburgerBtn{
+    .hamburgerBtn {
         display: block;
     }
+
     .nav-links {
         flex-direction: column;
         display: none;
@@ -225,10 +261,24 @@ section div{
     .row {
         padding: 0.1rem 0.1rem;
     }
+
     .column {
         -ms-flex: 100%;
         flex: 100%;
         max-width: 100%;
+    }
+
+
+}
+
+@media screen and (max-width: 430px) {
+    .box textarea {
+        width: 20rem;
+        height: 15rem;
+    }
+
+    .box input {
+        width: 20rem;
     }
 }
 
