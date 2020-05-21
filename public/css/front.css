@@ -169,7 +169,6 @@ section div {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
 }
 
 .box {
@@ -178,29 +177,39 @@ section div {
     text-align: center;
 }
 
-.box li {
+.box2 {
+    padding: 1rem;
+    flex-basis: 33%;
+}
+
+.box2 li {
     color: #0a0a0a;
     list-style-type: none;
     display: inline-block;
+    letter-spacing: 0.1rem;
 }
 
-.box li a {
+.box2 li i {
+    font-size: 0.9rem;
+}
+
+.box2 li a {
     color: #0a0a0a;
 }
 
-.box input {
-    margin: 0.25rem;
+.box2 input {
+    margin: 0.12rem;
     padding: 0.25rem;
 }
 
-.box textarea {
+.box2 textarea {
     width: 24.4rem;
     height: 15rem;
     resize: none;
 }
 
 button {
-    align-items: flex-end;
+    /*align-items: flex-end;*/
     border: none;
     text-decoration: none;
     text-align: center;
@@ -267,11 +276,9 @@ button {
         flex: 100%;
         max-width: 100%;
     }
-
-
 }
 
-@media screen and (max-width: 430px) {
+/*@media screen and (max-width: 430px) {
     .box textarea {
         width: 20rem;
         height: 15rem;
@@ -280,7 +287,7 @@ button {
     .box input {
         width: 20rem;
     }
-}
+}*/
 
 .alert {
     border-style: solid;
