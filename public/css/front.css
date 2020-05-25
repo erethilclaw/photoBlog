@@ -179,7 +179,11 @@ section div {
 
 .box2 {
     padding: 1rem;
-    flex-basis: 25%;
+    flex-basis: 33%;
+}
+
+.box2 ul {
+    padding-left: 3rem;
 }
 
 .box2 li {
@@ -197,14 +201,17 @@ section div {
 }
 
 .box2 input {
-    margin: 0.12rem;
+    margin: 0.12rem 0rem;
     padding: 0.25rem;
+    width: 12rem;
 }
 
 .box2 textarea {
-    width: 24.4rem;
+    margin: 0.12rem 0rem;
+    width: 24.3rem;
     height: 15rem;
     resize: none;
+    padding: 0.25rem;
 }
 
 button {
@@ -276,18 +283,11 @@ button {
         flex: 100%;
         max-width: 100%;
     }
+
+    .box2 input {
+        width: 24.3rem;
+    }
 }
-
-/*@media screen and (max-width: 430px) {
-    .box textarea {
-        width: 20rem;
-        height: 15rem;
-    }
-
-    .box input {
-        width: 20rem;
-    }
-}*/
 
 .alert {
     border-style: solid;
