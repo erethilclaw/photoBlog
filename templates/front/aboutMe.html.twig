@@ -1,17 +1,19 @@
 {% extends 'front/base.html.twig' %}
 {% block title %}{% endblock %}
 {% block body %}
-    <div>
-        {% set locale = app.request.locale %}
+    <div class="container">
+        <div class="box">
+            {% set locale = app.request.locale %}
 
-        {% if locale == 'en' %}
-            {{ aboutMePage.textEn|raw }}
-        {% endif %}
-        {% if locale == 'ca' %}
-            {{ aboutMePage.textCa|raw }}
-        {% endif %}
-        {% if locale == 'es' %}
-            {{ aboutMePage.textEs|raw }}
-        {% endif %}
+            {% if locale == 'en' %}
+                {{ aboutMePage.textEn|raw }}
+            {% endif %}
+            {% if locale == 'ca' %}
+                {{ aboutMePage.textCa|raw }}
+            {% endif %}
+            {% if locale == 'es' %}
+                {{ aboutMePage.textEs|raw }}
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
