@@ -180,6 +180,7 @@ section div {
 .box p {
     margin-left: 10rem;
     margin-right: 10rem;
+    text-align: justify;
 }
 
 .box2 {
@@ -230,6 +231,11 @@ button {
     background-color: #0a0a0a;
     color: #fcfcfc;
     margin-left: 20.2rem;
+}
+
+.form_error ul li{
+    margin-left: -3rem;
+    color: red;
 }
 
 @keyframes fade {
