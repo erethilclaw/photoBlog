@@ -1,5 +1,8 @@
-<h1>Welcome {{ contact.name }}!</h1>
+<h1>mail from {{ contact.name }}!</h1>
 
 <p>
-    your mail on {{ date|date('F jS') }} has been recieved!
+   On {{ date|date('F jS') }}
 </p>
+
+<p> {{ contact.message }}</p>
+<p> address {{ contact.email }}</p>

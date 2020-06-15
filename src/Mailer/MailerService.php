@@ -20,8 +20,8 @@ class MailerService
         $email = (new TemplatedEmail())
             ->from(self::FROM)
             ->to($contact->getEmail())
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
+            ->subject('Lair of claw mail!!')
+            ->text($contact->getMessage())
            // ->html('<p>See Twig integration for better HTML integration!</p>');
             ->htmlTemplate('email/contact.html.twig')
             ->context([
