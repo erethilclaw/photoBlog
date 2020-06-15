@@ -14,12 +14,12 @@
     {% block header %}
         {{ include('front/header.html.twig') }}
     {% endblock %}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
     <div class="site-content">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
         {% block body %}{% endblock %}
     </div>
     {{ include('front/footer.html.twig') }}
