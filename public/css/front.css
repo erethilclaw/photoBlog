@@ -238,6 +238,19 @@ button {
     color: red;
 }
 
+.alert {
+    border-style: solid;
+}
+
+.alert-success {
+    background-color: lightgreen;
+    border-width: 1px;
+    border-color: green;
+    text-align: center;
+    margin-top: 0.25rem;
+    margin-bottom: -1.3rem;
+}
+
 @keyframes fade {
     0% {
         opacity: 0;
@@ -302,13 +315,11 @@ button {
     .box2 input {
         width: 24.3rem;
     }
+    .alert-success {
+        margin-bottom: -0.5rem;
+        margin-top: 0.4rem;
+    }
 }
 
-.alert {
-    border-style: solid;
-}
 
-.alert-success {
-    background-color: green;
-}
 

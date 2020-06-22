@@ -42,7 +42,7 @@ class Contact
      * @Assert\NotBlank(message="not_blank")
      * @Assert\Length(
      *     min="20",
-     *     max="250",
+     *     max="500",
      *     minMessage="contact.message_min",
      *     maxMessage="contact.message_max",
      *     allowEmptyString="false"
