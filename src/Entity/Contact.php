@@ -41,7 +41,7 @@ class Contact
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="not_blank")
      * @Assert\Length(
-     *     min="20",
+     *     min="10",
      *     max="500",
      *     minMessage="contact.message_min",
      *     maxMessage="contact.message_max",

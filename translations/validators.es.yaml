@@ -1,0 +1,7 @@
+contact:
+    email: email no es válido
+    name_min: Tu nombre no puede tener menos de 4 caracteres
+    name_max: Tu nombre no puede tener mas de 20 caracteres
+    message_min: Un mensaje un poco corto, seguro puedes escribir más ;)
+    message_max: Me encanta leer, pero trata ser un poco más conciso.
+not_blank: Este campo no puede quedar vació.

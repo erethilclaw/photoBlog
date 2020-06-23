@@ -1,0 +1,34 @@
+navbar:
+    home: INICIO
+    contact: CONTACTO
+    aboutMe: SOBRE MI
+sidebar:
+    wellcome: Bienvenido
+    navigation: Navegación
+    portofolio: Portofolio
+    contact: Contacto
+    aboutMe: Sobre mi
+form:
+    submit: enviar
+    natureGallery: Subir imagenes naturaleza
+    showGallery: Subir imagenes espectaculos
+    eventGallery: Subir imagenes eventos
+    sesionGallery: Subir imagenes sesiones
+    text_es: Texto Español
+    text_ca: Texto Catalan
+    text_en: Texto Inglés
+front:
+    portofolio:
+        namePage: Portofolio
+        natureGallery: Naturaleza
+        eventGallery: Eventos
+        sesionGallery: Sesiones
+        showGallery: Espectaculos
+        showAll: Mostrar todo
+contact_form:
+    name: Nombre
+    email: Email
+    message: Mensaje
+    email_error: email no es válido
+flash_messages:
+    mail_sended: mail fue enviado!

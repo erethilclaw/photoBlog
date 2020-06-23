@@ -1,24 +1,34 @@
 navbar:
     home: INICI
     contact: CONTACTE
+    aboutMe: SOBRE MI
 sidebar:
-    wellcome: Wellcome
-    navigation: Navigation
-    portofolio: Portofolio
-    contact: Contact
+    wellcome: Benvingut
+    navigation: Navegació
+    portofolio: Portofoli
+    contact: Contacte
+    aboutMe: Sobre mi
 form:
-    submit: submit
-    natureGallery: Upload nature images
-    showGallery: Upload show images
-    eventGallery: Upload event images
-    sesionGallery: Upload sesion images
-    text_es: Spanish text
-    text_ca: Catalan text
-    text_en: English text
+    submit: enviar
+    natureGallery: Pujar imatges natura
+    showGallery: Pujar imatges espectacles
+    eventGallery: Pujar imatges events
+    sesionGallery: Pujar imatges sessions
+    text_es: Text Espanyol
+    text_ca: Text Català
+    text_en: Text Anglès
+front:
+    portofolio:
+        namePage: Portofoli
+        natureGallery: Natura
+        eventGallery: Events
+        sesionGallery: Sessions
+        showGallery: Espectacles
+        showAll: Mostra tot
 contact_form:
     name: Nom
     email: Email
     message: Missatge
-    email_error: email is not valid
+    email_error: email no és vàlid
 flash_messages:
-    mail_sended: mail was sended!
+    mail_sended: mail ha sigut enviat!

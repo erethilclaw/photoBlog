@@ -1,7 +1,7 @@
 contact:
-    email: email not valid!
-    name_min: your name can't be less than 4
-    name_max: your name can't be more than 20
+    email: email not valid
+    name_min: your name can't be less than 4 chars
+    name_max: your name can't be more than 20 chars
     message_min: that's a too short message, sure you can write more ;)
     message_max: love to read, but try to be more consice
 not_blank: field cannot be empty

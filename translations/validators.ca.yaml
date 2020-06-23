@@ -1,0 +1,7 @@
+contact:
+    email: email no és vàlid
+    name_min: El teu nom no pot tenir menys de 3 caràcters
+    name_max: El teu nom no pot tenir mes de 20 caràcters
+    message_min: Es un missatge molt curt, segur pots escriure més ;)
+    message_max: M'agrada llegir, però intenta ser més concís
+not_blank: Aquest camp no pot estar buid
