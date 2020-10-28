@@ -71,6 +71,7 @@ header {
     padding-top: 0.5rem;
     display: none;
     cursor: pointer;
+    color: lightgrey;
 }
 
 .flag {
@@ -175,6 +176,11 @@ section div {
 .box {
     padding: 1rem;
     flex-basis: 100%;
+}
+
+.box-text-content {
+    padding: 1rem;
+    flex-basis: 60%;
 }
 
 .box p {

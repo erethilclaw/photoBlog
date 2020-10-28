@@ -2,52 +2,55 @@
 {% block title %}{% endblock %}
 {% block body %}
     {% set locale = app.request.locale %}
-    <div class="container">
-        <div class="box">
-            {% if locale == 'en' %}
-                {{ contactPage.textEn|raw }}
-            {% endif %}
-            {% if locale == 'ca' %}
-                {{ contactPage.textCa|raw }}
-            {% endif %}
-            {% if locale == 'es' %}
-                {{ contactPage.textEs|raw }}
-            {% endif %}
-        </div>
-        <div class="box2">
-            <ul>
-                <li><i class="fa fa-map-marker">&nbsp;&nbsp;Barcelona, ES</i></li>
-            </ul>
-            <ul>
-                <li><i class="fa fa-envelope">&nbsp;&nbsp;ernest.riccetto@gmail.com</i></li>
-            </ul>
-            <ul>
-                <li><a href="https://www.facebook.com/EstudiosClaw"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="https://www.instagram.com/erethilclaw/"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="https://www.flickr.com/photos/sr_claw/"><i class="fab fa-flickr"></i></a></li>
-            </ul>
-        </div>
-        <div class="box2">
-            {{ form_start(mailForm, {'attr': {'novalidate': 'novalidate'}}) }}
-            <div>
-                <div class="form_error">
-                    {{ form_errors(mailForm.name) }}
-                    {{ form_errors(mailForm.email) }}
-                </div>
-                {{ form_widget(mailForm.name) }}
-                {{ form_widget(mailForm.email) }}
+    <div class="container row">
+
+            <div class="box-text-content">
+                {% if locale == 'en' %}
+                    {{ contactPage.textEn|raw }}
+                {% endif %}
+                {% if locale == 'ca' %}
+                    {{ contactPage.textCa|raw }}
+                {% endif %}
+                {% if locale == 'es' %}
+                    {{ contactPage.textEs|raw }}
+                {% endif %}
             </div>
-            <div>
-                <div class="form_error">
-                    {{ form_errors(mailForm.message) }}
-                </div>
-                {{ form_widget(mailForm.message) }}
+        </div>
+        <div class="container row">
+            <div class="box2">
+                <ul>
+                    <li><i class="fa fa-map-marker">&nbsp;&nbsp;Barcelona, ES</i></li>
+                </ul>
+                <ul>
+                    <li><i class="fa fa-envelope">&nbsp;&nbsp;ernest.riccetto@gmail.com</i></li>
+                </ul>
+                <ul>
+                    <li><a href="https://www.facebook.com/EstudiosClaw"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://www.instagram.com/erethilclaw/"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://www.flickr.com/photos/sr_claw/"><i class="fab fa-flickr"></i></a></li>
+                </ul>
             </div>
-            <button type="submit">{{ 'form.submit'|trans }}</button>
-            {{ form_end(mailForm) }}
+            <div class="box2">
+                {{ form_start(mailForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                <div>
+                    <div class="form_error">
+                        {{ form_errors(mailForm.name) }}
+                        {{ form_errors(mailForm.email) }}
+                    </div>
+                    {{ form_widget(mailForm.name) }}
+                    {{ form_widget(mailForm.email) }}
+                </div>
+                <div>
+                    <div class="form_error">
+                        {{ form_errors(mailForm.message) }}
+                    </div>
+                    {{ form_widget(mailForm.message) }}
+                </div>
+                <button type="submit">{{ 'form.submit'|trans }}</button>
+                {{ form_end(mailForm) }}
+            </div>
         </div>
 
-    </div>
 
 {% endblock %}
 
