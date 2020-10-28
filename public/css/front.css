@@ -109,10 +109,7 @@ header {
 }
 
 .section-links {
-    display: flex;
-    justify-content: center;
-    background-color: lightgrey;
-    opacity: 75%;
+    display: none;
 }
 
 .section-links span {
@@ -277,6 +274,12 @@ button {
     .box p {
         margin-left: 3rem;
         margin-right: 3rem;
+    }
+    .section-links {
+        display: flex;
+        justify-content: center;
+        background-color: lightgrey;
+        opacity: 75%;
     }
 }
 
