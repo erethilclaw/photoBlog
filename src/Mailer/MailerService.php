@@ -9,7 +9,7 @@ use Symfony\Component\Mailer\MailerInterface;
 class MailerService
 {
     private $mailer;
-    const FROM = "lairofclaw@gmail.com";
+    const FROM = "erethilclaw@estudiosclaw.com";
 
     public function __construct(MailerInterface $mailer)
     {
