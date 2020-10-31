@@ -32,3 +32,7 @@ contact_form:
     email_error: email is not valid
 flash_messages:
     mail_sended: mail was sended!
+mail:
+    hello: Hello
+    reply: Thanks for contact us! we will reply soon, thanks!
+    cheers: Cheers!

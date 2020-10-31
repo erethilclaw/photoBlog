@@ -32,3 +32,7 @@ contact_form:
     email_error: email no és vàlid
 flash_messages:
     mail_sended: mail ha sigut enviat!
+mail:
+    hello: Bones
+    reply: Merci per escriure! ens posarem en contacte amb tú t'han d'hora sigui possible.
+    cheers: Salut!

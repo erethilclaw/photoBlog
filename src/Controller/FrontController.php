@@ -59,6 +59,7 @@ class FrontController extends AbstractController
         $this->em->flush();
 
         $this->mailer->respondContact($mail);
+        $this->mailer->notifyContact($mail);
 
         $this->addFlash('success', $translator->trans('flash_messages.mail_sended'));
 
