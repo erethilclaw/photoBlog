@@ -322,8 +322,17 @@ button {
     }
 
     .box2 input {
-        width: 24.3rem;
+        width: 20rem;
     }
+
+    .box2 textarea {
+        width: 20rem;
+    }
+
+    button{
+    margin-left: 0rem;
+    }
+
     .alert-success {
         margin-bottom: -0.5rem;
         margin-top: 0.4rem;
