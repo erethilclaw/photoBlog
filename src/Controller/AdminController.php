@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\AboutMePage;
 use App\Entity\ContactPage;
 use App\Entity\Image;
+use App\Entity\Navbar;
 use App\Entity\PortofolioPage;
 use App\Form\AboutMePageType;
 use App\Form\ContactPageType;
+use App\Form\NavbarType;
 use App\Form\PortofolioPageType;
 use App\Service\FileUploader;
 use App\Transformer\ImageToPageTransformer;
@@ -25,6 +27,32 @@ class AdminController extends AbstractController
     public function index()
     {
         return $this->render('admin/baseAdmin.html.twig');
+    }
+
+    /**
+     * @Route("/admin/navbar_manager", name="navbar_manager")
+     */
+    public function navbar(Request $request, EntityManagerInterface $em)
+    {
+        $navbar = $this->getDoctrine()->getRepository(Navbar::class)->findAll();
+
+        $form = $this->createForm(NavbarType::class, $navbar[0]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var Navbar $navbar
+             */
+            $navbar = $form->getData();
+            $em->persist($navbar);
+            $em->flush();
+
+            return $this->redirectToRoute('navbar_manager');
+        }
+        return $this->render('admin/navbar.html.twig', [
+            'navbar' => $navbar[0],
+            'navbarForm' => $form->createView()
+        ]);
     }
 
     /**

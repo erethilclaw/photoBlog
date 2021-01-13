@@ -3,6 +3,7 @@ navbar:
     contact: CONTACTO
     aboutMe: SOBRE MI
 sidebar:
+    navbar: Barra navegación
     wellcome: Bienvenido
     navigation: Navegación
     portofolio: Portofolio
