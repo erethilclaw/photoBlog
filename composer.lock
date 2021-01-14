@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b57fbd9bbe0c955b6f27e74ce19d8f0",
+    "content-hash": "fb00c8121b69f44fd030aee36ea27e23",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1417,6 +1417,7 @@
                 "reflection",
                 "static"
             ],
+            "abandoned": "roave/better-reflection",
             "time": "2020-03-27T11:06:43+00:00"
         },
         {
@@ -1755,6 +1756,39 @@
                 "php"
             ],
             "time": "2020-04-10T16:34:50+00:00"
+        },
+        {
+            "name": "ninsuo/symfony-collection",
+            "version": "2.1.33",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ninsuo/symfony-collection.git",
+                "reference": "231f790eee9ea2c3301ac45f5fe4fbb09ec4289c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ninsuo/symfony-collection/zipball/231f790eee9ea2c3301ac45f5fe4fbb09ec4289c",
+                "reference": "231f790eee9ea2c3301ac45f5fe4fbb09ec4289c",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "ScriptHandler.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alain Tiemblo",
+                    "email": "ninsuo@gmail.com"
+                }
+            ],
+            "description": "A jQuery plugin that manages adding, deleting and moving elements from a Symfony collection",
+            "time": "2020-01-13T12:54:48+00:00"
         },
         {
             "name": "ocramius/proxy-manager",

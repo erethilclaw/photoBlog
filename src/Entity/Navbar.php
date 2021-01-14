@@ -24,6 +24,11 @@ class Navbar
      */
     private $pages;
 
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->pages = new ArrayCollection();
@@ -61,6 +66,18 @@ class Navbar
                 $page->setNavbar(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

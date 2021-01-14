@@ -6,6 +6,7 @@ use App\Entity\AboutMePage;
 use App\Entity\ContactPage;
 use App\Entity\Image;
 use App\Entity\Navbar;
+use App\Entity\Page;
 use App\Entity\PortofolioPage;
 use App\Form\AboutMePageType;
 use App\Form\ContactPageType;
@@ -30,28 +31,38 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/navbar_manager", name="navbar_manager")
+     * @Route("/admin/addPage", name="add_page")
      */
-    public function navbar(Request $request, EntityManagerInterface $em)
+    public function addPage()
     {
-        $navbar = $this->getDoctrine()->getRepository(Navbar::class)->findAll();
 
-        $form = $this->createForm(NavbarType::class, $navbar[0]);
-        $form->handleRequest($request);
+    }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            /**
-             * @var Navbar $navbar
-             */
-            $navbar = $form->getData();
-            $em->persist($navbar);
-            $em->flush();
+    /**
+     * @Route("/admin/editPage", name="edit_page")
+     */
+    public function editPage()
+    {
 
-            return $this->redirectToRoute('navbar_manager');
-        }
-        return $this->render('admin/navbarOrderPages.html.twig', [
-            'navbar' => $navbar[0],
-            'navbarForm' => $form->createView()
+    }
+
+    /**
+     * @Route("/admin/delPage", name="del_page")
+     */
+    public function deletePage()
+    {
+
+    }
+
+    /**
+     * @Route("/admin/listPage", name="list_page")
+     */
+    public function listPage()
+    {
+        $pages = $this->getDoctrine()->getRepository(Page::class)->findAll();
+
+        return $this->render('admin/pages/listPages.html.twig', [
+            'pages' => $pages
         ]);
     }
 

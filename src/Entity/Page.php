@@ -27,6 +27,11 @@ class Page
      */
     private $navbar;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $position;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,5 +64,17 @@ class Page
     public function __toString()
     {
         return $this->getSlug();
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): self
+    {
+        $this->position = $position;
+
+        return $this;
     }
 }
