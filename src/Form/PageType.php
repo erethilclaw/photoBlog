@@ -2,28 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Navbar;
+use App\Entity\Page;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class NavbarType extends AbstractType
+class PageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pages', CollectionType::class, [
-                'by_reference' => false,
-                'label' => false
-            ])
+            ->add('slug')
+            ->add('navbar')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Navbar::class,
+            'data_class' => Page::class,
         ]);
     }
 }

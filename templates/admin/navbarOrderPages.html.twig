@@ -1,0 +1,39 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+{% block title %}{% endblock %}
+{% block body %}
+    <section class="content-header">
+        <h1>{{ 'sidebar.navbar'|trans }}</h1>
+    </section>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ 'sidebar.navbar'|trans }}</h3>
+            </div>
+            <div class="box-body">
+                {{ form_start(navbarForm) }}
+                <div class="form-group">
+                    <ul class="pages"
+                        data-prototype="{{ form_widget(navbarForm.pages.vars.prototype)|e('html_attr') }}"
+                        data-widget-tags="{{ '<li></li>'|e }}"
+                        data-widget-counter="{{ navbarForm.children|length }}">
+                        {% for page in navbarForm.pages %}
+                            <li>
+                                {{ form_errors(page) }}
+                                {{ form_widget(page) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">{{ 'form.submit'|trans }}</button>
+                {{ form_end(navbarForm) }}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

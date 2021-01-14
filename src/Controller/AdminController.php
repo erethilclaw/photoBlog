@@ -49,7 +49,7 @@ class AdminController extends AbstractController
 
             return $this->redirectToRoute('navbar_manager');
         }
-        return $this->render('admin/navbar.html.twig', [
+        return $this->render('admin/navbarOrderPages.html.twig', [
             'navbar' => $navbar[0],
             'navbarForm' => $form->createView()
         ]);
