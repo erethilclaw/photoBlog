@@ -11,6 +11,7 @@ use App\Entity\PortofolioPage;
 use App\Form\AboutMePageType;
 use App\Form\ContactPageType;
 use App\Form\NavbarType;
+use App\Form\PageFormType;
 use App\Form\PortofolioPageType;
 use App\Service\FileUploader;
 use App\Transformer\ImageToPageTransformer;
@@ -33,9 +34,26 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/addPage", name="add_page")
      */
-    public function addPage()
+    public function addPage(Request $request, EntityManagerInterface $em)
     {
+        $form = $this->createForm(PageFormType::class);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            /**
+            * @var Page
+            */
+            $page = $form->getData();
+
+            $em->persist($page);
+            $em->flush();
+
+            return $this->redirectToRoute('list_page');
+        }
+
+        return $this->render('admin/pages/addPage.html.twig', [
+            'pageForm' => $form->createView(),
+        ]);
     }
 
     /**

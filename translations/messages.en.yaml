@@ -9,7 +9,12 @@ sidebar:
     portofolio: Portofolio
     contact: Contact
     aboutMe: About me
+page_manager:
+    position: position
+    create_page: Create page
 form:
+    fill: Fill the form
+    back: turn back
     submit: submit
     natureGallery: Upload nature images
     showGallery: Upload show images
