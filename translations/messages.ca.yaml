@@ -42,3 +42,5 @@ mail:
     hello: Bones
     reply: Merci per escriure! ens posarem en contacte amb tú t'han d'hora sigui possible.
     cheers: Salut!
+error:
+    notblank: no pot ser buit

@@ -42,3 +42,5 @@ mail:
     hello: Hello
     reply: Thanks for contact us! we will reply soon, thanks!
     cheers: Cheers!
+error:
+    notblank: can't be empty
