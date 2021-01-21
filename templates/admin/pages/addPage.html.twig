@@ -95,7 +95,29 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    {{ form_errors(pageForm.titleEn)}}
+                    {{ form_errors(pageForm.titleEs)}}
+                    {{ form_errors(pageForm.titleCa)}}
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>{{ form_label(pageForm.titleEn) }}</label>
+                            {{ form_widget(pageForm.titleEn, {'attr': {'class': 'form-control'}})}}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>{{ form_label(pageForm.titleEs) }}</label>
+                            {{ form_widget(pageForm.titleEs, {'attr': {'class': 'form-control'}})}}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>{{ form_label(pageForm.titleCa) }}</label>
+                            {{ form_widget(pageForm.titleCa, {'attr': {'class': 'form-control'}})}}
+                        </div>
+                    </div>
+                </div>
 
                 {#  <div class="form-group">
                     <label>Data:</label>{{ form_errors(butlletiForm.dataButlleti) }}

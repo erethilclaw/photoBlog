@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\PageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PageRepository::class)
+ * @UniqueEntity("slug")
  */
 class Page
 {
@@ -20,7 +22,6 @@ class Page
 
     /**
      * @ORM\Column(type="string", length=25)
-     * @Assert\Unique()
      */
     private $slug;
 
@@ -33,6 +34,21 @@ class Page
      * @ORM\Column(type="integer")
      */
     private $position;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $titleEn;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $titleEs;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $titleCa;
 
     public function getId(): ?int
     {
@@ -76,6 +92,41 @@ class Page
     public function setPosition(int $position): self
     {
         $this->position = $position;
+
+        return $this;
+    }
+    public function getTitleEn(): ?string
+    {
+        return $this->titleEn;
+    }
+
+    public function setTitleEn(string $titleEn): self
+    {
+        $this->titleEn = $titleEn;
+
+        return $this;
+    }
+
+    public function getTitleEs(): ?string
+    {
+        return $this->titleEs;
+    }
+
+    public function setTitleEs(string $titleEs): self
+    {
+        $this->titleEs = $titleEs;
+
+        return $this;
+    }
+
+    public function getTitleCa(): ?string
+    {
+        return $this->titleCa;
+    }
+
+    public function setTitleCa(string $titleCa): self
+    {
+        $this->titleCa = $titleCa;
 
         return $this;
     }

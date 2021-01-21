@@ -19,6 +19,9 @@ class PageFormType extends AbstractType
             ->add('navbar',null, [
                 'placeholder' => false
             ])
+            ->add('titleEn')
+            ->add('titleEs')
+            ->add('titleCa')
         ;
     }
 
