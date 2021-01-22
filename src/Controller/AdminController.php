@@ -23,6 +23,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
+    private $em;
+
+    /**
+     * AdminController constructor.
+     * @param $em
+     */
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
+
     /**
      * @Route("/admin", name="admin")
      */
@@ -34,7 +46,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/addPage", name="add_page")
      */
-    public function addPage(Request $request, EntityManagerInterface $em)
+    public function addPage(Request $request)
     {
         $form = $this->createForm(PageFormType::class);
         $form->handleRequest($request);
@@ -45,8 +57,8 @@ class AdminController extends AbstractController
             */
             $page = $form->getData();
 
-            $em->persist($page);
-            $em->flush();
+            $this->em->persist($page);
+            $this->em->flush();
 
             return $this->redirectToRoute('list_page');
         }
@@ -57,19 +69,35 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/editPage", name="edit_page")
+     * @Route("/admin/editPage/{id}", name="edit_page")
      */
-    public function editPage()
+    public function editPage(Request $request, Page $page)
     {
+        $form = $this->createForm(PageFormType::class, $page);
+        $form->handleRequest($request);
 
+        if ( $form->isSubmitted() && $form->isValid()) {
+          $page = $form->getData();
+          $this->em->persist($page);
+          $this->em->flush();
+
+          return $this->redirectToRoute('list_page');
+        }
+
+        return $this->render('admin/pages/addPage.html.twig', [
+            'pageForm' => $form->createView(),
+        ]);
     }
 
     /**
-     * @Route("/admin/delPage", name="del_page")
+     * @Route("/admin/delPage{id}", name="del_page")
      */
-    public function deletePage()
+    public function deletePage(Page $page)
     {
+        $this->em->remove($page);
+        $this->em->flush();
 
+        return $this->redirectToRoute('list_page');
     }
 
     /**

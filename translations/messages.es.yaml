@@ -12,6 +12,10 @@ sidebar:
 page_manager:
     position: posición
     create_page: Crear pagina
+    delete: estas seguro de eliminar la pagina?
+    title_en: titulo ingles
+    title_es: titulo español
+    title_ca: titulo catalan
 form:
     fill: Llena el formulario
     back: Volver atras

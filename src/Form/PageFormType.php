@@ -19,7 +19,9 @@ class PageFormType extends AbstractType
             ->add('navbar',null, [
                 'placeholder' => false
             ])
-            ->add('titleEn')
+            ->add('titleEn',null, [
+                'label' => 'page_manager.title_en'
+                ])
             ->add('titleEs')
             ->add('titleCa')
         ;

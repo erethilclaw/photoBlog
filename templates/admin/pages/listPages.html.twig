@@ -30,6 +30,7 @@
                     <tr>
                         <th>slug</th>
                         <th> {{ 'page_manager.position'|trans }}</th>
+                        <th><i class="glyphicon glyphicon-wrench"></i></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,6 +41,12 @@
                             </td>
                             <td><a>
                                     {{ page.position }}</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('edit_page', {'id' : page.id}) }}"><span
+                                                class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="{{ path('del_page', {'id' : page.id}) }}" onclick="return confirm('{{ 'page_manager.delete'|trans }}')"><span
+                                            class="glyphicon glyphicon-trash text-red"></span></a>
                             </td>
                         </tr>
                     {% endfor %}

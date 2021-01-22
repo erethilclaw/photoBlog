@@ -12,6 +12,10 @@ sidebar:
 page_manager:
     position: position
     create_page: Create page
+    delete: are you sure to delete page?
+    title_en: title english
+    title_es: title spanish
+    title_ca: title catalan
 form:
     fill: Fill the form
     back: turn back
