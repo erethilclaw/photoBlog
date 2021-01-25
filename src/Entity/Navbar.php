@@ -21,6 +21,7 @@ class Navbar
 
     /**
      * @ORM\OneToMany(targetEntity=Page::class, mappedBy="navbar")
+     * @ORM\OrderBy({"position"="ASC"})
      */
     private $pages;
 

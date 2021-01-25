@@ -8,9 +8,9 @@
             </label>
         </div>
         <ul class="nav-links ">
-            <li><a href="{{ path('front') }}">{{ 'navbar.home'|trans }}</a></li>
-            <li><a href="{{ path('aboutMe') }}">{{ 'navbar.aboutMe'|trans }}</a></li>
-            <li><a href="{{ path('contact_page') }}">{{ 'navbar.contact'|trans }}</a></li>
+            {% for page in navbar.pages %}
+                <li><a href="{{ path('front') }}">{{ page.slug }}</a></li>
+            {% endfor %}
         </ul>
 
         <ul class="nav-links">

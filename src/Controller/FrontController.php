@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\AboutMePage;
 use App\Entity\Contact;
 use App\Entity\ContactPage;
+use App\Entity\Navbar;
 use App\Entity\PortofolioPage;
 use App\Form\ContactType;
 use App\Mailer\MailerService;
@@ -31,12 +32,18 @@ class FrontController extends AbstractController
      */
     public function index()
     {
+        $navbar = $this->em->getRepository(Navbar::class)->findOneBy(['slug'=>'front_header']);
         $portofofiloPage = $this->em->getRepository(PortofolioPage::class)->findOneBy(['slug'=>'portofolioPage']);
 
         return $this->render('front/index.html.twig', [
-            'controller_name' => 'FrontController',
+            'navbar' => $navbar,
             'portofolioPage' => $portofofiloPage
         ]);
+    }
+
+    public function getPage()
+    {
+
     }
 
     /**
