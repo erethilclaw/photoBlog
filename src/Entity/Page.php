@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PageRepository::class)
- * @UniqueEntity("slug")
  */
 class Page
 {

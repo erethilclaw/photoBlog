@@ -44,9 +44,41 @@ class FrontController extends AbstractController
     }
 
     /**
+     * @Route ("/home", name="home")
+     */
+    public function home()
+    {
+        return $this->render('front/home.html.twig');
+    }
+
+    /**
+     * @Route ("/about_me", name="about_me")
+     */
+    public function about_me()
+    {
+        return $this->render('front/home.html.twig');
+    }
+
+    /**
+     * @Route ("/contact", name="contact")
+     */
+    public function contact()
+    {
+        return $this->render('front/home.html.twig');
+    }
+
+    /**
+     * @Route ("/default", name="default")
+     */
+    public function default()
+    {
+        return $this->render('front/default.html.twig');
+    }
+
+    /**
      * @Route ("/{slug}", name="page_redirect")
      */
-    public function getPage(Request $request, TranslatorInterface $translator,Page $page)
+   /* public function getPage(Request $request, TranslatorInterface $translator,Page $page)
     {
         switch ($page->getSlug())
         {
@@ -61,12 +93,12 @@ class FrontController extends AbstractController
                 return $this->render('front/default.html.twig');
                 break;
         }
-    }
+    }*/
 
     /**
-     * @Route("/contact", name="contact_page")
+     * @Route("/contactpage", name="contact_page")
      */
-    public function contact(Request $request, TranslatorInterface $translator)
+    public function contactpage(Request $request, TranslatorInterface $translator)
     {
         $contactPage = $this->em->getRepository(ContactPage::class)->findOneBy(['slug'=>'contactPage']);
 
@@ -98,9 +130,9 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/about_me", name="aboutMe")
+     * @Route("/about_mepage", name="aboutMe")
      */
-    public function aboutMe()
+    public function aboutMepage()
     {
         $aboutMePage = $this->em->getRepository(AboutMePage::class)->findOneBy(['slug'=>'aboutMePage']);
 

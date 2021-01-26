@@ -11,13 +11,13 @@
             {% set locale = app.request.locale %}
             {% for page in navbar.pages %}
                 {% if locale == 'en' %}
-                    <li><a href="{{ path('page_redirect', {'slug' : page.slug}) }}">{{ page.titleEn }}</a></li>
+                    <li><a href="{{ path( page.slug) }}">{{ page.titleEn }}</a></li>
                 {% endif %}
                 {% if locale == 'ca' %}
-                    <li><a href="{{ path('page_redirect', {'slug' : page.slug}) }}">{{ page.titleCa }}</a></li>
+                    <li><a href="">{{ page.titleCa }}</a></li>
                 {% endif %}
                 {% if locale == 'es' %}
-                    <li><a href="{{ path('page_redirect', {'slug' : page.slug}) }}">{{ page.titleEs }}</a></li>
+                    <li><a href="">{{ page.titleEs }}</a></li>
                 {% endif %}
             {% endfor %}
         </ul>

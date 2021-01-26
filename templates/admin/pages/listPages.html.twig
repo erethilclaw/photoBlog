@@ -28,6 +28,9 @@
                 <table id="pageList" class="table table-bordered table-hover table-striped">
                     <thead>
                     <tr>
+                        <th>{{ 'page_manager.title_es'|trans }}</th>
+                        <th>{{ 'page_manager.title_en'|trans }}</th>
+                        <th>{{ 'page_manager.title_ca'|trans }}</th>
                         <th>slug</th>
                         <th> {{ 'page_manager.position'|trans }}</th>
                         <th><i class="glyphicon glyphicon-wrench"></i></th>
@@ -36,6 +39,15 @@
                     <tbody>
                     {% for page in pages %}
                         <tr>
+                            <td><a>
+                                    {{page.titleEs }}</a>
+                            </td>
+                            <td><a>
+                                    {{page.titleEn }}</a>
+                            </td>
+                            <td><a>
+                                    {{page.titleCa }}</a>
+                            </td>
                             <td><a>
                                     {{page.slug }}</a>
                             </td>
