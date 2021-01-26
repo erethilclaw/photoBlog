@@ -6,6 +6,7 @@ use App\Entity\AboutMePage;
 use App\Entity\Contact;
 use App\Entity\ContactPage;
 use App\Entity\Navbar;
+use App\Entity\Page;
 use App\Entity\PortofolioPage;
 use App\Form\ContactType;
 use App\Mailer\MailerService;
@@ -18,6 +19,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FrontController extends AbstractController
 {
+    private $navbar;
     private $em;
     private $mailer;
 
@@ -25,6 +27,7 @@ class FrontController extends AbstractController
     {
         $this->em = $em;
         $this->mailer = $mailer;
+        $this->navbar = $this->em->getRepository(Navbar::class)->findOneBy(['slug'=>'front_header']);
     }
 
     /**
@@ -32,18 +35,32 @@ class FrontController extends AbstractController
      */
     public function index()
     {
-        $navbar = $this->em->getRepository(Navbar::class)->findOneBy(['slug'=>'front_header']);
         $portofofiloPage = $this->em->getRepository(PortofolioPage::class)->findOneBy(['slug'=>'portofolioPage']);
 
         return $this->render('front/index.html.twig', [
-            'navbar' => $navbar,
+            'navbar' => $this->navbar,
             'portofolioPage' => $portofofiloPage
         ]);
     }
 
-    public function getPage()
+    /**
+     * @Route ("/{slug}", name="page_redirect")
+     */
+    public function getPage(Request $request, TranslatorInterface $translator,Page $page)
     {
-
+        switch ($page->getSlug())
+        {
+            case "home":
+                return $this->render('front/home.html.twig');
+                break;
+            case "about_me":
+                break;
+            case "contact":
+                break;
+            default:
+                return $this->render('front/default.html.twig');
+                break;
+        }
     }
 
     /**
