@@ -4,6 +4,7 @@ navbar:
     aboutMe: ABOUT ME
 sidebar:
     pages: Pages
+    article: articles
     wellcome: Wellcome
     navigation: Navigation
     portofolio: Portofolio
@@ -16,6 +17,9 @@ page_manager:
     title_en: title english
     title_es: title spanish
     title_ca: title catalan
+article_manager:
+    create: Create article
+    delete: are you sure to delete this article?
 form:
     fill: Fill the form
     back: turn back

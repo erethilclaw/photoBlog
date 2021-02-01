@@ -1,0 +1,66 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script>
+        $("#pageList").DataTable({
+            "order": [[0, "desc"]],
+        });
+    </script>
+{% endblock %}
+{% block title %}{{ 'sidebar.article'|trans }}{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>
+            {{ 'sidebar.article'|trans }}
+{#            <a href="{{ path() }}" class="btn btn-primary pull-center" role="button">{{ 'article_manager.create'|trans }}</a>#}
+        </h1>
+    </section>
+    <section class="content">
+       <div class="box">
+            <div class="box-body">
+                <table id="pageList" class="table table-bordered table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>{{ 'page_manager.title_es'|trans }}</th>
+                        <th>{{ 'page_manager.title_en'|trans }}</th>
+                        <th>{{ 'page_manager.title_ca'|trans }}</th>
+                        <th> {{ 'page_manager.position'|trans }}</th>
+                     {#   <th><i class="glyphicon glyphicon-wrench"></i></th>#}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in articles %}
+                        <tr>
+                            <td><a>
+                                    {{article.titleEs }}</a>
+                            </td>
+                            <td><a>
+                                    {{article.titleEn }}</a>
+                            </td>
+                            <td><a>
+                                    {{article.titleCa }}</a>
+                            </td>
+                            <td><a>
+                                    {{ article.position }}</a>
+                            </td>
+                          {#  <td>
+                                <a href="{{ path() }}"><span
+                                            class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="{{ path() }}" onclick="return confirm('{{ 'article_manager.delete'|trans }}')"><span
+                                            class="glyphicon glyphicon-trash text-red"></span></a>
+                            </td>#}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -4,6 +4,7 @@ navbar:
     aboutMe: SOBRE MI
 sidebar:
     pages: Pagines
+    article: articles
     wellcome: Benvingut
     navigation: Navegació
     portofolio: Portofoli
@@ -16,6 +17,9 @@ page_manager:
     title_en: titol angles
     title_es: titol espanyol
     title_ca: titol catala
+article_manager:
+    create: Crear article
+    delete: estas segur d'eliminar el article?
 form:
     fill: Omple el formulari
     back: tornar enrere

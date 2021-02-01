@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\AboutMePage;
+use App\Entity\Article;
 use App\Entity\ContactPage;
 use App\Entity\Image;
 use App\Entity\Navbar;
@@ -107,9 +108,34 @@ class AdminController extends AbstractController
     {
         $pages = $this->getDoctrine()->getRepository(Page::class)->findAll();
 
-        return $this->render('admin/pages/listPages.html.twig', [
+        return $this->render('admin/Articles/listArticles.html.twig', [
             'pages' => $pages
         ]);
+    }
+
+    public function addArticle(){
+
+    }
+
+    public function editArticle(){
+
+    }
+
+    public function deleteArticle(){
+
+    }
+
+    /**
+     * @Route("/admin/listArticle", name="list_article")
+     */
+    public function listArticle()
+    {
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
+
+        return $this->render('admin/Articles/listArticles.html.twig', [
+                'articles' => $articles
+        ]);
+
     }
 
     /**
