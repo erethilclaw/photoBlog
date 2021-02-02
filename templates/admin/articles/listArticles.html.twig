@@ -19,7 +19,7 @@
     <section class="content-header">
         <h1>
             {{ 'sidebar.article'|trans }}
-{#            <a href="{{ path() }}" class="btn btn-primary pull-center" role="button">{{ 'article_manager.create'|trans }}</a>#}
+            <a href="{{ path('add_article') }}" class="btn btn-primary pull-center" role="button">{{ 'article_manager.create'|trans }}</a>
         </h1>
     </section>
     <section class="content">
@@ -32,7 +32,7 @@
                         <th>{{ 'page_manager.title_en'|trans }}</th>
                         <th>{{ 'page_manager.title_ca'|trans }}</th>
                         <th> {{ 'page_manager.position'|trans }}</th>
-                     {#   <th><i class="glyphicon glyphicon-wrench"></i></th>#}
+                        <th><i class="glyphicon glyphicon-wrench"></i></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,12 +50,12 @@
                             <td><a>
                                     {{ article.position }}</a>
                             </td>
-                          {#  <td>
-                                <a href="{{ path() }}"><span
+                            <td>
+                                <a href="{{ path('edit_article', {'id' : article.id}) }}"><span
                                             class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{{ path() }}" onclick="return confirm('{{ 'article_manager.delete'|trans }}')"><span
+                                <a href="{{ path('del_article', {'id' : article.id}) }}" onclick="return confirm('{{ 'article_manager.delete'|trans }}')"><span
                                             class="glyphicon glyphicon-trash text-red"></span></a>
-                            </td>#}
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

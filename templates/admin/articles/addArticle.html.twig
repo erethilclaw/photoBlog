@@ -1,0 +1,80 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace('article_from_contentEs');
+        CKEDITOR.replace('article_from_contentCa');
+        CKEDITOR.replace('article_from_contentEn');
+    </script>
+{% endblock %}
+{% block body %}
+    <section class="content-header">
+        <h1>{{ 'article_manager.create'|trans }}</h1>
+    </section>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ 'form.fill'|trans }}</h3>
+                <a href="{{ path('list_article') }}" class="btn btn-default pull-right"
+                   role="button">{{ 'form.back'|trans }}</a>
+            </div>
+            <div class="box-body">
+                {{ form_start(articleForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>{{ form_label(articleForm.position) }}</label>
+                            {{ form_widget(articleForm.position, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>{{ form_label(articleForm.titleEn) }}</label>
+                            {{ form_widget(articleForm.titleEn, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>{{ form_label(articleForm.titleEs) }}</label>
+                            {{ form_widget(articleForm.titleEs, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>{{ form_label(articleForm.titleCa) }}</label>
+                            {{ form_widget(articleForm.titleCa, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="nav nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li><a href="#text_en" data-toggle="tab">{{ 'form.text_en'|trans }}</a></li>
+                        <li><a href="#text_ca" data-toggle="tab">{{ 'form.text_ca'|trans }}</a></li>
+                        <li><a href="#text_es" data-toggle="tab">{{ 'form.text_es'|trans }}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane in active fade" id="text_en">
+                            {{ form_row(articleForm.contentEn) }}
+                        </div>
+                        <div class="tab-pane  fade" id="text_es">
+                            {{ form_row(articleForm.contentEs) }}
+                        </div>
+                        <div class="tab-pane  fade" id="text_ca">
+                            {{ form_row(articleForm.contentCa) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-success">{{ 'form.submit'|trans }}</button>
+                {{ form_end(articleForm) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

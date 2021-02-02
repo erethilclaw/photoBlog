@@ -10,6 +10,7 @@ use App\Entity\Navbar;
 use App\Entity\Page;
 use App\Entity\PortofolioPage;
 use App\Form\AboutMePageType;
+use App\Form\ArticleFromType;
 use App\Form\ContactPageType;
 use App\Form\NavbarType;
 use App\Form\PageFormType;
@@ -108,19 +109,45 @@ class AdminController extends AbstractController
     {
         $pages = $this->getDoctrine()->getRepository(Page::class)->findAll();
 
-        return $this->render('admin/Articles/listArticles.html.twig', [
+        return $this->render('admin/pages/listPages.html.twig', [
             'pages' => $pages
         ]);
     }
 
-    public function addArticle(){
+    /**
+     * @Route("/admin/addArticle", name="add_article")
+     */
+    public function addArticle(Request $request){
+        $form = $this->createForm(ArticleFromType::class);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var Article
+             */
+            $article = $form->getData();
+
+            $this->em->persist($article);
+            $this->em->flush();
+
+            return $this->redirectToRoute('list_article');
+        }
+
+        return $this->render('admin/articles/addArticle.html.twig', [
+            'articleForm' => $form->createView(),
+        ]);
     }
 
+    /**
+     * @Route("/admin/editArticle/{id}", name="edit_article")
+     */
     public function editArticle(){
 
     }
 
+    /**
+     * @Route("/admin/delArticle{id}", name="del_article")
+     */
     public function deleteArticle(){
 
     }
@@ -132,7 +159,7 @@ class AdminController extends AbstractController
     {
         $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
 
-        return $this->render('admin/Articles/listArticles.html.twig', [
+        return $this->render('admin/articles/listArticles.html.twig', [
                 'articles' => $articles
         ]);
 
