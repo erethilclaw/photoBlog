@@ -141,15 +141,31 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/editArticle/{id}", name="edit_article")
      */
-    public function editArticle(){
+    public function editArticle(Request $request, Article $article){
+        $form = $this->createForm(ArticleFromType::class, $article);
+        $form->handleRequest($request);
 
+        if ( $form->isSubmitted() && $form->isValid()) {
+            $article = $form->getData();
+            $this->em->persist($article);
+            $this->em->flush();
+
+            return $this->redirectToRoute('list_article');
+        }
+
+        return $this->render('admin/articles/addArticle.html.twig', [
+            'articleForm' => $form->createView(),
+        ]);
     }
 
     /**
      * @Route("/admin/delArticle{id}", name="del_article")
      */
-    public function deleteArticle(){
+    public function deleteArticle(Article $article){
+        $this->em->remove($article);
+        $this->em->flush();
 
+        return $this->redirectToRoute('list_article');
     }
 
     /**

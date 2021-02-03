@@ -13,6 +13,7 @@ class ArticleFromType extends AbstractType
     {
         $builder
             ->add('position')
+            ->add('slug')
             ->add('titleEn')
             ->add('titleEs')
             ->add('titleCa')
