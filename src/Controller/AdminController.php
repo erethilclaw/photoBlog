@@ -16,10 +16,12 @@ use App\Form\NavbarType;
 use App\Form\PageFormType;
 use App\Form\PortofolioPageType;
 use App\Service\FileUploader;
+use App\Service\UploaderHelper;
 use App\Transformer\ImageToPageTransformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -117,15 +119,25 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/addArticle", name="add_article")
      */
-    public function addArticle(Request $request){
+    public function addArticle(Request $request, UploaderHelper $uploaderHelper){
         $form = $this->createForm(ArticleFromType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /**
-             * @var Article
+             * @var Article $article
              */
             $article = $form->getData();
+
+            /**
+             * @var UploadedFile $uploadedFile
+             */
+            $uploadedFile = $form['imageFile']->getData();
+
+            if ($uploadedFile){
+                $newFileName = $uploaderHelper->uploadArticleImage($uploadedFile);
+                $article->setImageFileName($newFileName);
+            }
 
             $this->em->persist($article);
             $this->em->flush();
@@ -141,12 +153,23 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/editArticle/{id}", name="edit_article")
      */
-    public function editArticle(Request $request, Article $article){
+    public function editArticle(Request $request, Article $article, UploaderHelper $uploaderHelper){
         $form = $this->createForm(ArticleFromType::class, $article);
         $form->handleRequest($request);
 
         if ( $form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();
+
+            /**
+             * @var UploadedFile $uploadedFile
+             */
+            $uploadedFile = $form['imageFile']->getData();
+
+            if ($uploadedFile){
+                $newFileName = $uploaderHelper->uploadArticleImage($uploadedFile);
+                $article->setImageFileName($newFileName);
+            }
+
             $this->em->persist($article);
             $this->em->flush();
 
@@ -179,6 +202,21 @@ class AdminController extends AbstractController
                 'articles' => $articles
         ]);
 
+    }
+
+    /**
+     * @Route("/admin/upload/test", name="upload_test")
+     */
+    public function uploadImage(Request $request)
+    {
+        /**
+         * @var UploadedFile $uploadFile
+         */
+        $uploadFile = $request->files->get('image');
+        $detination = $this->getParameter('kernel.project_dir').'/public/uploads';
+        $originalFileName = pathinfo($uploadFile->getClientOriginalName(), PATHINFO_FILENAME);
+        $newFileName = $originalFileName.'-'.uniqid().'.'.$uploadFile->guessExtension();
+        dd($uploadFile->move($detination, $newFileName));
     }
 
     /**

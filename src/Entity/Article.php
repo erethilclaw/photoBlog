@@ -57,6 +57,11 @@ class Article
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageFileName;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -161,6 +166,18 @@ class Article
     public function __toString()
     {
         return $this->getSlug();
+    }
+
+    public function getImageFileName(): ?string
+    {
+        return $this->imageFileName;
+    }
+
+    public function setImageFileName(?string $imageFileName): self
+    {
+        $this->imageFileName = $imageFileName;
+
+        return $this;
     }
 
 

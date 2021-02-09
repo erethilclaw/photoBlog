@@ -22,6 +22,9 @@
             <div class="box-body">
                 {{ form_start(articleForm) }}
                 <div class="row">
+                    {{ form_errors(articleForm.titleCa) }}
+                    {{ form_errors(articleForm.titleEn) }}
+                    {{ form_errors(articleForm.titleEs) }}
                     <div class="col-md-6">
                         <div class="form-group">
                             {{ form_errors(articleForm.position) }}
@@ -36,39 +39,40 @@
                             {{ form_widget(articleForm.slug, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
-                </div>
-                {{ form_errors(articleForm.position) }}
-                {{ form_errors(articleForm.slug) }}
-                {{ form_errors(articleForm.titleCa) }}
-                {{ form_errors(articleForm.titleEn) }}
-                {{ form_errors(articleForm.titleEs) }}
-                <div class="nav nav-tabs-custom">
-                    <ul class="nav nav-tabs pull-right">
-                        <li><a href="#text_en" data-toggle="tab">{{ 'form.text_en'|trans }}</a></li>
-                        <li><a href="#text_ca" data-toggle="tab">{{ 'form.text_ca'|trans }}</a></li>
-                        <li><a href="#text_es" data-toggle="tab">{{ 'form.text_es'|trans }}</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane in active fade" id="text_en">
-                            <div class="form-group">
-                                <label>{{ form_label(articleForm.titleEn) }}</label>
-                                {{ form_widget(articleForm.titleEn, {'attr': {'class': 'form-control'}}) }}
+                    <div class="col-md-12">
+                        <label>{{ form_label(articleForm.imageFile) }}</label>
+                        {{ form_widget(articleForm.imageFile) }}
+                    </div>
+                    <div class="col-md-12">
+                        <div class="nav nav-tabs-custom">
+                            <ul class="nav nav-tabs pull-right">
+                                <li><a href="#text_en" data-toggle="tab">{{ 'form.text_en'|trans }}</a></li>
+                                <li><a href="#text_ca" data-toggle="tab">{{ 'form.text_ca'|trans }}</a></li>
+                                <li><a href="#text_es" data-toggle="tab">{{ 'form.text_es'|trans }}</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane in active fade" id="text_en">
+                                    <div class="form-group">
+                                        <label>{{ form_label(articleForm.titleEn) }}</label>
+                                        {{ form_widget(articleForm.titleEn, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    {{ form_row(articleForm.contentEn) }}
+                                </div>
+                                <div class="tab-pane  fade" id="text_es">
+                                    <div class="form-group">
+                                        <label>{{ form_label(articleForm.titleEs) }}</label>
+                                        {{ form_widget(articleForm.titleEs, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    {{ form_row(articleForm.contentEs) }}
+                                </div>
+                                <div class="tab-pane  fade" id="text_ca">
+                                    <div class="form-group">
+                                        <label>{{ form_label(articleForm.titleCa) }}</label>
+                                        {{ form_widget(articleForm.titleCa, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    {{ form_row(articleForm.contentCa) }}
+                                </div>
                             </div>
-                            {{ form_row(articleForm.contentEn) }}
-                        </div>
-                        <div class="tab-pane  fade" id="text_es">
-                            <div class="form-group">
-                                <label>{{ form_label(articleForm.titleEs) }}</label>
-                                {{ form_widget(articleForm.titleEs, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                            {{ form_row(articleForm.contentEs) }}
-                        </div>
-                        <div class="tab-pane  fade" id="text_ca">
-                            <div class="form-group">
-                                <label>{{ form_label(articleForm.titleCa) }}</label>
-                                {{ form_widget(articleForm.titleCa, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                            {{ form_row(articleForm.contentCa) }}
                         </div>
                     </div>
                 </div>
