@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ArticleFromType extends AbstractType
 {
@@ -17,7 +18,10 @@ class ArticleFromType extends AbstractType
             ->add('slug')
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'constraints' => new Image([
+                    'maxSize' => '5M'
+                ])
             ])
             ->add('titleEn')
             ->add('titleEs')

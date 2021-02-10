@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\AboutMePage;
+use App\Entity\Article;
 use App\Entity\Contact;
 use App\Entity\ContactPage;
 use App\Entity\Navbar;
@@ -48,7 +49,11 @@ class FrontController extends AbstractController
      */
     public function home()
     {
-        return $this->render('front/home.html.twig');
+        $articles = $this->em->getRepository(Article::class)->findAll();
+        return $this->render('front/home.html.twig', [
+            'navbar' => $this->navbar,
+            'articles' => $articles
+        ]);
     }
 
     /**
