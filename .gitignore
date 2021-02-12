@@ -12,3 +12,7 @@
 /src/DataFixtures/AppFixtures.php
 /public/uploads/
 /src/Migrations/
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

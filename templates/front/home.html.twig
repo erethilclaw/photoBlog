@@ -4,7 +4,7 @@
     <div class="container">
         <div class="box-text-content">
             {% for article in articles %}
-                <img src="{{ uploaded_asset(article.imagePath) }}">
+                <img src="{{ uploaded_asset(article.imagePath)|imagine_filter('squared_thumbnail_small') }}">
             {% endfor %}
         </div>
     </div>
