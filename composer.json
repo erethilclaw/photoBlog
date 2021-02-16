@@ -10,6 +10,7 @@
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-eventmanager": "^3.2",
         "liip/imagine-bundle": "^2.5",
+        "oneup/flysystem-bundle": "^3.7",
         "roave/better-reflection": "^4.12",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/apache-pack": "^1.0",
