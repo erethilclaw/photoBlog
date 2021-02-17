@@ -135,7 +135,7 @@ class AdminController extends AbstractController
             $uploadedFile = $form['imageFile']->getData();
 
             if ($uploadedFile){
-                $newFileName = $uploaderHelper->uploadArticleImage($uploadedFile);
+                $newFileName = $uploaderHelper->uploadArticleImage($uploadedFile, $article->getImageFileName());
                 $article->setImageFileName($newFileName);
             }
 
@@ -166,7 +166,7 @@ class AdminController extends AbstractController
             $uploadedFile = $form['imageFile']->getData();
 
             if ($uploadedFile){
-                $newFileName = $uploaderHelper->uploadArticleImage($uploadedFile);
+                $newFileName = $uploaderHelper->uploadArticleImage($uploadedFile, $article->getImageFilename());
                 $article->setImageFileName($newFileName);
             }
 
