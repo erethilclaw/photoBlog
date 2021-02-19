@@ -5,7 +5,7 @@
         <div class="box-text-content">
             {% for article in articles %}
                 <a href="{{ uploaded_asset(article.imagePath) }}" target="_blank">
-                    <img src="{{ uploaded_asset(article.imagePath)|imagine_filter('squared_thumbnail_small') }}">
+                    <img src="{{ article.imagePath|imagine_filter('squared_thumbnail_small') }}">
                 </a>    
             {% endfor %}
         </div>
