@@ -6,7 +6,7 @@ oneup_flysystem:
                 directory: '%kernel.cache_dir%/flysystem'
         public_uploads_adapter:
             local:
-                directory: '%kernel.project_dir%/public/uploads'         
+                directory: '%kernel.project_dir%/public/%uploads_dir_name%'         
     filesystems:
         default_filesystem:
             adapter: default_adapter
