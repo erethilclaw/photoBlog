@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -24,6 +25,7 @@ class ArticleReferenceAdminController extends AbstractController
     {
         /** @var UploadedFile $uploadedFile */
         $uploadedFile = $request->files->get('reference');
+
         if ($uploadedFile) {
             $filename = $uploaderHelper->uploadArticleReference($uploadedFile);
 
@@ -70,5 +72,25 @@ class ArticleReferenceAdminController extends AbstractController
         return $this->redirectToRoute('edit_article', [
             'id' => $article->getId(),
         ]);
+    }
+
+    /**
+     * @Route("/admin/article/references/{id}/download", name="admin_article_download_reference", methods={"GET"})
+     */
+    public function downloadArticleReference(ArticleReference $reference, UploaderHelper $uploaderHelper)
+    {
+        $article = $reference->getArticle();
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', $article);
+
+        $response = new StreamedResponse(function() use ($reference, $uploaderHelper) {
+            $outputStream = fopen('php://output', 'wb');
+            $fileStream = $uploaderHelper->readStream($reference->getFilePath(), false);
+
+            stream_copy_to_stream($fileStream, $outputStream);
+        });
+
+        $response->headers->set('Content-Type', $reference->getMimeType());
+
+        return $response;
     }
 }

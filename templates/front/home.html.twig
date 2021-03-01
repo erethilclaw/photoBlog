@@ -6,7 +6,13 @@
             {% for article in articles %}
                 <a href="{{ uploaded_asset(article.imagePath) }}" target="_blank">
                     <img src="{{ article.imagePath|imagine_filter('squared_thumbnail_small') }}">
-                </a>    
+                </a>   
+                {% for reference in article.articleReferences %} 
+                     {{ reference.originalFilename }}
+                        <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
+                            <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}">
+                        </a>                                
+                {% endfor %}
             {% endfor %}
         </div>
     </div>

@@ -58,9 +58,9 @@ class UploaderHelper
 
         $stream = fopen($file->getPathname(), 'r');
 
-        $filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
+        //$filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
         
-        $result = $filesystem->writeStream(
+        $result = $this->filesystem->writeStream(
             self::ARTICLE_IMAGE.'/'.$newFilename,
             $stream
         );
@@ -71,5 +71,20 @@ class UploaderHelper
             fclose($stream);
         }
         return $newFilename;
+    }
+
+    /**
+     * @return resource
+     */
+    public function readStream(string $path, bool $isPublic)
+    {
+        $filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
+
+        $resource = $filesystem->readStream($path);
+
+        if ($resource === false) {
+            throw new \Exception(sprintf('Error opening stream for "%s"', $path));
+        }
+        return $resource;
     }
 }

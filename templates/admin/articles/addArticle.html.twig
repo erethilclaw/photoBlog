@@ -2,12 +2,17 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js" integrity="sha256-cs4thShDfjkqFGk5s2Lxj35sgSRr4MRcyccmi0WKqCM=" crossorigin="anonymous"></script>
     <script>
         CKEDITOR.replace('article_from_contentEs');
         CKEDITOR.replace('article_from_contentCa');
         CKEDITOR.replace('article_from_contentEn');
     </script>
 {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" integrity="sha256-e47xOkXs1JXFbjjpoRr1/LhVcqSzRmGmPqsrUQeVs+g=" crossorigin="anonymous" />
+{% endblock %}    
 {% block body %}
     <section class="content-header">
         <h1>{{ 'article_manager.create'|trans }}</h1>
@@ -29,9 +34,25 @@
                             </div>
                         {% endfor %}
                         <form action="{{ path('admin_article_add_reference', {id: article.id}) }}" method="POST" enctype="multipart/form-data">
-                            <input type="file" name="reference">
+                            <input type="file" name="reference" class="dropzone js-reference-dropzone">
                             <button type="submit" class="btn btn-sm btn-primary">Upload</button>
                         </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ul class="list-group small">
+                            {% for reference in article.articleReferences %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ reference.originalFilename }}
+                                    <span>
+                                        <a href="{{ path('admin_article_download_reference', { id: reference.id}) }}">
+                                            <span class="fa fa-download"></span>
+                                        </a>
+                                    </span>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
                 {{ form_start(articleForm) }}
