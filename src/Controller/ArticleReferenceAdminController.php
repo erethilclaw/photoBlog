@@ -25,6 +25,7 @@ class ArticleReferenceAdminController extends AbstractController
     {
         /** @var UploadedFile $uploadedFile */
         $uploadedFile = $request->files->get('reference');
+        dump($uploadedFile);
 
         if ($uploadedFile) {
             $filename = $uploaderHelper->uploadArticleReference($uploadedFile);
