@@ -25,7 +25,6 @@ class ArticleReferenceAdminController extends AbstractController
     {
         /** @var UploadedFile $uploadedFile */
         $uploadedFile = $request->files->get('reference');
-        dump($uploadedFile);
 
         if ($uploadedFile) {
             $filename = $uploaderHelper->uploadArticleReference($uploadedFile);
@@ -57,22 +56,21 @@ class ArticleReferenceAdminController extends AbstractController
             );
 
             if ($violations->count() > 0) {
-                /** @var ConstraintViolation $violation */
-                $violation = $violations[0];
-                $this->addFlash('error', $violation->getMessage());
-
-                return $this->redirectToRoute('edit_article', [
-                    'id' => $article->getId(),
-                ]);
+                return $this->json($violations,400);
             }
 
             $em->persist($articleReference);
             $em->flush();
         }
 
-        return $this->redirectToRoute('edit_article', [
-            'id' => $article->getId(),
-        ]);
+        return $this->json(
+            $articleReference,
+            201,
+            [],
+            [
+                'groups' => ['main']
+            ]            
+        );
     }
 
     /**
