@@ -74,6 +74,21 @@ class ArticleReferenceAdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/editArticle/{id}/references", methods="GET", name="admin_article_list_references")
+     */
+    public function getArticleReferences(Article $article)
+    {
+        return $this->json(
+            $article->getArticleReferences(),
+            201,
+            [],
+            [
+                'groups' => ['main']
+            ]        
+        );
+    }
+
+    /**
      * @Route("/admin/article/references/{id}/download", name="admin_article_download_reference", methods={"GET"})
      */
     public function downloadArticleReference(ArticleReference $reference, UploaderHelper $uploaderHelper)
