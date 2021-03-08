@@ -14,6 +14,10 @@ class ReferenceList
         this.references = [];
         this.render();
 
+        this.$element.on('click', '.js-reference-delete', (event) => {
+            this.handleReferenceDelete(event);
+        });
+
         $.ajax({
             url: this.$element.data('url')
         }).then(data => {
@@ -26,6 +30,23 @@ class ReferenceList
         this.references.push(reference);
         this.render();
     }
+
+    handleReferenceDelete(event) {
+        const $li = $(event.currentTarget).closest('.list-group-item');
+        const id = $li.data('id');
+        $li.addClass('disabled');
+
+        $.ajax({
+            url: '/admin/editArticle/references/'+id,
+            method: 'DELETE'
+        }).then(() => {
+            this.references = this.references.filter(reference => {
+                return reference.id !== id;
+            });
+            this.render();
+        });
+    }
+
     render() {
         const itemsHtml = this.references.map(reference => {
             return `

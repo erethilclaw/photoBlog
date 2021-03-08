@@ -47,6 +47,14 @@ class UploaderHelper
         return $this->uploadFile($file, self::ARTICLE_REFERENCE, false);
     }
 
+    public function deleteFile(String $path, bool $isPublic){
+        $result = $this->filesystem->delete($path);
+
+        if ($result === false) {
+            throw new \Exception(sprintf('Error deleting "%s"', $path));
+        }
+    }
+
     private function uploadFile(UploadedFile $file, string $directory, bool $isPublic): string
     {
         if ($file instanceof UploadedFile) {

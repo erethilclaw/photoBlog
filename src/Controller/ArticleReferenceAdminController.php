@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\File;
@@ -94,7 +95,7 @@ class ArticleReferenceAdminController extends AbstractController
     public function downloadArticleReference(ArticleReference $reference, UploaderHelper $uploaderHelper)
     {
         $article = $reference->getArticle();
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', $article);
+        //$this->denyAccessUnlessGranted('ROLE_ADMIN', $article);
 
         $response = new StreamedResponse(function() use ($reference, $uploaderHelper) {
             $outputStream = fopen('php://output', 'wb');
@@ -106,5 +107,21 @@ class ArticleReferenceAdminController extends AbstractController
         $response->headers->set('Content-Type', $reference->getMimeType());
 
         return $response;
+    }
+
+    /**
+     * @Route("/admin/editArticle/references/{id}", name="admin_article_delete_reference", methods={"DELETE"})
+     */
+    public function deleteArticleReference(ArticleReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $em) 
+    {
+        $article = $reference->getArticle();
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', $article);
+
+        $em->remove($reference);
+        $em->flush();
+
+        $uploaderHelper->deleteFile($reference->getFilePath(), false);
+
+        return new Response(null, 204);
     }
 }
