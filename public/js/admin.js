@@ -18,6 +18,10 @@ class ReferenceList
             this.handleReferenceDelete(event);
         });
 
+        this.$element.on('blur', '.js-edit-filename', (event) => {
+            this.handleReferenceEditFilename(event);
+        });
+
         $.ajax({
             url: this.$element.data('url')
         }).then(data => {
@@ -44,6 +48,21 @@ class ReferenceList
                 return reference.id !== id;
             });
             this.render();
+        });
+    }
+
+    handleReferenceEditFilename(event) {
+        const $li = $(event.currentTarget).closest('.list-group-item');
+        const id = $li.data('id');
+        const reference = this.references.find(reference => {
+            return reference.id === id;
+        });
+        reference.originalFilename = $(event.currentTarget).val();
+
+        $.ajax({
+            url: '/admin/editArticle/references/'+id,
+            method: 'PUT',
+            data: JSON.stringify(reference)
         });
     }
 

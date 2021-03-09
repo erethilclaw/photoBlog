@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -33,7 +34,7 @@ class ArticleReferenceAdminController extends AbstractController
             $articleReference = new ArticleReference($article);
             $articleReference->setFilename($filename);
             $articleReference->setOriginalFilename($uploadedFile->getClientOriginalName() ?? $filename);
-            //$articleReference->setMimeType($uploadedFile->getMimeType() ?? 'application/octet-stream');
+            $articleReference->setMimeType($uploadedFile->getMimeType() ?? 'application/octet-stream');
 
             $violations = $validator->validate(
                 $uploadedFile,
@@ -57,7 +58,7 @@ class ArticleReferenceAdminController extends AbstractController
             );
 
             if ($violations->count() > 0) {
-                return $this->json($violations,400);
+                return $this->json($violations, 400);
             }
 
             $em->persist($articleReference);
@@ -70,7 +71,7 @@ class ArticleReferenceAdminController extends AbstractController
             [],
             [
                 'groups' => ['main']
-            ]            
+            ]
         );
     }
 
@@ -85,7 +86,7 @@ class ArticleReferenceAdminController extends AbstractController
             [],
             [
                 'groups' => ['main']
-            ]        
+            ]
         );
     }
 
@@ -97,7 +98,7 @@ class ArticleReferenceAdminController extends AbstractController
         $article = $reference->getArticle();
         //$this->denyAccessUnlessGranted('ROLE_ADMIN', $article);
 
-        $response = new StreamedResponse(function() use ($reference, $uploaderHelper) {
+        $response = new StreamedResponse(function () use ($reference, $uploaderHelper) {
             $outputStream = fopen('php://output', 'wb');
             $fileStream = $uploaderHelper->readStream($reference->getFilePath(), false);
 
@@ -112,7 +113,7 @@ class ArticleReferenceAdminController extends AbstractController
     /**
      * @Route("/admin/editArticle/references/{id}", name="admin_article_delete_reference", methods={"DELETE"})
      */
-    public function deleteArticleReference(ArticleReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $em) 
+    public function deleteArticleReference(ArticleReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $em)
     {
         $article = $reference->getArticle();
         $this->denyAccessUnlessGranted('ROLE_ADMIN', $article);
@@ -123,5 +124,41 @@ class ArticleReferenceAdminController extends AbstractController
         $uploaderHelper->deleteFile($reference->getFilePath(), false);
 
         return new Response(null, 204);
+    }
+
+    /**
+     * @Route("/admin/editArticle/references/{id}", name="admin_article_update_reference", methods={"PUT"})
+     */
+    public function updateArticleReference(ArticleReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $em, SerializerInterface $serialazer, Request $request, ValidatorInterface $validator)
+    {
+        $article = $reference->getArticle();
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', $article);
+
+        $serialazer->deserialize(
+            $request->getContent(),
+            ArticleReference::class,
+            'json',
+            [
+                'object_to_populate' => $reference,
+                'groups' => ['input']
+            ]
+        );
+
+        $violations = $validator->validate($reference);
+        if ($violations->count() > 0) {
+            return $this->json($violations, 400);
+        }
+
+        $em->persist($reference);
+        $em->flush();
+
+        return $this->json(
+            $reference,
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
     }
 }

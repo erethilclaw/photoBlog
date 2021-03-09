@@ -6,6 +6,7 @@ use App\Repository\ArticleReferenceRepository;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleReferenceRepository::class)
@@ -34,9 +35,17 @@ class ArticleReference
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("main")
+     * @Groups({"main", "input"})
+     * @Assert\NotBlank()
+     * @Assert\Length(max=100)
      */
     private $originalFilename;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups("main")
+     */
+    private $mimeType;
 
     public function __construct(Article $article)
     {
@@ -61,6 +70,18 @@ class ArticleReference
     public function setFilename(string $filename): self
     {
         $this->filename = $filename;
+
+        return $this;
+    }
+
+    public function getMimeType(): ?string
+    {
+        return $this->mimeType;
+    }
+
+    public function setMimeType(string $mimeType): self
+    {
+        $this->mimeType = $mimeType;
 
         return $this;
     }
