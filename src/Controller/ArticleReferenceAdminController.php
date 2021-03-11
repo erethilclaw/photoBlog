@@ -91,6 +91,35 @@ class ArticleReferenceAdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/editArticle/{id}/references/reorder", methods="POST", name="admin_article_reorder_references")
+     */
+    public function reorderArticleReferences(Article $article, Request $request, EntityManagerInterface $em)
+    {
+        $orderedIds = json_decode($request->getContent(), true);
+
+        if ($orderedIds === false) {
+            return $this->json(['detail'=> 'invalid body'], 400);
+        }
+
+        $orderedIds = array_flip($orderedIds);
+
+        foreach ($article->getArticleReferences() as $reference) {
+            $reference->setPosition($orderedIds[$reference->getId()]); 
+        }
+
+        $em->flush();
+
+        return $this->json(
+            $article->getArticleReferences(),
+            201,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
+
+    /**
      * @Route("/admin/article/references/{id}/download", name="admin_article_download_reference", methods={"GET"})
      */
     public function downloadArticleReference(ArticleReference $reference, UploaderHelper $uploaderHelper)
