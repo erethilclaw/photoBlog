@@ -29,7 +29,6 @@
             <div class="box-body">
                 <div class="row">
                         <div class="col-md-8">
-                        <h3>references</h3>
                           {% for message in app.flashes('error') %}
                             <div class="alert alert-danger">
                                 {{ message }}
@@ -39,9 +38,9 @@
                         </form>
                     </div>
                      <div class="col-md-4">
-                        <ul class="list-group small js-reference-list" data-url="{{ path('admin_article_list_references', {id: article.id}) }}">
+                        <div class="js-reference-list" data-url="{{ path('admin_article_list_references', {id: article.id}) }}">
                       
-                        </ul>
+                        </div>
                     </div>
                 </div>           
                 {{ form_start(articleForm) }}

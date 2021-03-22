@@ -80,15 +80,16 @@ class ReferenceList
     render() {
         const itemsHtml = this.references.map(reference => {
             return `
-<li class="list-group-item d-flex justify-content-between align-items-center" data-id="${reference.id}">
+<div class="card col-md-4 gallery-reference" data-id="${reference.id}">
     <span class="drag-handle fa fa-reorder"></span>
+    <img class="img-thumbnail" src="/uploads/article_image/${ reference.filename}">
     <input type="text" value="${reference.originalFilename}" class="form-control js-edit-filename" style="width: auto;">
 
     <span>
         <a href="/admin/article/references/${reference.id}/download" class="btn btn-link btn-sm"><span class="fa fa-download" style="vertical-align: middle"></span></a>
         <button class="js-reference-delete btn btn-link btn-sm"><span class="fa fa-trash"></span></button>
     </span>
-</li>
+</div>
 `
         });
 
