@@ -12,21 +12,18 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class UploaderHelper
 {
     const ARTICLE_IMAGE = 'article_image';
-
+    const ARTICLE_REFERENCE = 'article_reference';
     private $requestStackContext;
     private $filesystem;
     private $logger;
     private $publicAssetBaseUrl;
-    private $privateFilesystem;
-    const ARTICLE_REFERENCE = 'article_reference';
-
-    public function __construct(RequestStackContext $requestStackContext, FilesystemInterface $publicUploadsFilesystem, LoggerInterface $logger, string $uploadedAssetsBaseUrl, FilesystemInterface $privateUploadsFilesystem)
+    
+    public function __construct(RequestStackContext $requestStackContext, FilesystemInterface $publicUploadsFilesystem, LoggerInterface $logger, string $uploadedAssetsBaseUrl)
     {
         $this->requestStackContext = $requestStackContext;
         $this->filesystem = $publicUploadsFilesystem;
         $this->logger = $logger;
         $this->publicAssetBaseUrl = $uploadedAssetsBaseUrl;
-        $this->privateFilesystem = $privateUploadsFilesystem;
     }
 
     public function getPublicPath(string $path): string
@@ -78,8 +75,6 @@ class UploaderHelper
         $newFilename = pathinfo($originalFilename, PATHINFO_FILENAME).'-'.uniqid().'.'.$file->guessExtension();
 
         $stream = fopen($file->getPathname(), 'r');
-
-        //$filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
         
         $result = $this->filesystem->writeStream(
             self::ARTICLE_IMAGE.'/'.$newFilename,
@@ -99,9 +94,8 @@ class UploaderHelper
      */
     public function readStream(string $path, bool $isPublic)
     {
-        $filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
 
-        $resource = $filesystem->readStream($path);
+        $resource = $this->filesystem->readStream($path);
 
         if ($resource === false) {
             throw new \Exception(sprintf('Error opening stream for "%s"', $path));
