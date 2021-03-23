@@ -28,22 +28,21 @@
             </div>
             <div class="box-body">
                 <div class="row">
-                        <div class="col-md-8">
-                          {% for message in app.flashes('error') %}
+                    <div class="col-md-4 pull-right">
+                        <div class="row">
+                            <div class="js-reference-list" data-url="{{ path('admin_article_list_references', {id: article.id}) }}"></div>
+                        </div>
+                        <div class="row">
+                        {% for message in app.flashes('error') %}
                             <div class="alert alert-danger">
                                 {{ message }}
                             </div>
                         {% endfor %}
-                        <form action="{{ path('admin_article_add_reference', {id: article.id}) }}" method="POST" enctype="multipart/form-data" class="dropzone js-reference-dropzone">
-                        </form>
+                            <form action="{{ path('admin_article_add_reference', {id: article.id}) }}" method="POST" enctype="multipart/form-data" class="dropzone js-reference-dropzone"></form>
+                        </div>  
                     </div>
-                     <div class="col-md-4">
-                        <div class="js-reference-list" data-url="{{ path('admin_article_list_references', {id: article.id}) }}">
-                      
-                        </div>
-                    </div>
-                </div>           
-                {{ form_start(articleForm) }}
+                    <div class="col-md-8">
+                        {{ form_start(articleForm) }}
                 <div class="row">
                     {{ form_errors(articleForm.titleCa) }}
                     {{ form_errors(articleForm.titleEn) }}
@@ -106,6 +105,8 @@
                         </div>
                     </div>
                 </div>
+                    </div>
+                </div>           
             </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-success">{{ 'form.submit'|trans }}</button>

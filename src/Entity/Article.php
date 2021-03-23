@@ -53,7 +53,7 @@ class Article
     /**
      * @ORM\Column(type="integer")
      */
-    private $position;
+    private $position = 0;
 
     /**
      * @ORM\Column(type="string", length=25)
