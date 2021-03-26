@@ -20,6 +20,8 @@ page_manager:
 article_manager:
     create: Create article
     delete: are you sure to delete this article?
+    article_slug: article slug
+    page_slug: page slug
 form:
     fill: Fill the form
     back: turn back

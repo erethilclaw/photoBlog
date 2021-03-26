@@ -53,7 +53,7 @@ class Article
     /**
      * @ORM\Column(type="integer")
      */
-    private $position = 0;
+    private $position =0;
 
     /**
      * @ORM\Column(type="string", length=25)
@@ -70,6 +70,12 @@ class Article
      * @ORM\OrderBy({"position"="ASC"})
      */
     private $articleReferences;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $page;
 
     public function __construct()
     {
@@ -205,6 +211,18 @@ class Article
     public function getArticleReferences(): Collection
     {
         return $this->articleReferences;
+    }
+
+    public function getPage(): ?Page
+    {
+        return $this->page;
+    }
+
+    public function setPage(?Page $page): self
+    {
+        $this->page = $page;
+
+        return $this;
     }
 
 }

@@ -137,6 +137,7 @@ class ArticleReferenceAdminController extends AbstractController
      */
     public function deleteArticleReference(ArticleReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $em)
     {
+    
         $article = $reference->getArticle();
         $this->denyAccessUnlessGranted('ROLE_ADMIN', $article);
 

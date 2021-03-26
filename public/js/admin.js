@@ -80,7 +80,7 @@ class ReferenceList
     render() {
         const itemsHtml = this.references.map(reference => {
             return `
-<div class="card col-md-4" data-id="${reference.id}">
+<div class="list-group-item card col-md-4" data-id="${reference.id}">
     <div class="card-header">
         <span class="drag-handle fa fa-reorder"></span>
     </div>

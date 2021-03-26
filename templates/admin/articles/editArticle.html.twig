@@ -49,19 +49,12 @@
                     {{ form_errors(articleForm.titleEs) }}
                     <div class="col-md-6">
                         <div class="form-group">
-                            {{ form_errors(articleForm.position) }}
-                            <label>{{ form_label(articleForm.position) }}</label>
-                            {{ form_widget(articleForm.position, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             {{ form_errors(articleForm.slug) }}
                             <label>{{ form_label(articleForm.slug) }}</label>
                             {{ form_widget(articleForm.slug, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         {{ form_errors(articleForm.imageFile) }}
                         <label>{{ form_label(articleForm.imageFile) }}</label>
                         {{ form_widget(articleForm.imageFile) }}

@@ -14,7 +14,6 @@ class ArticleFromType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('position')
             ->add('slug')
             ->add('imageFile', FileType::class, [
                 'mapped' => false,

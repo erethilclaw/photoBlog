@@ -20,6 +20,8 @@ page_manager:
 article_manager:
     create: Crear article
     delete: estas segur d'eliminar el article?
+    article_slug: slug article
+    page_slug: slug pàgina
 form:
     fill: Omple el formulari
     back: tornar enrere

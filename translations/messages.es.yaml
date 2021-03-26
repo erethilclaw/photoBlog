@@ -20,6 +20,8 @@ page_manager:
 article_manager:
     create: Crear página
     delete: estás seguro de eliminar el artículo?
+    article_slug: slug articulo
+    page_slug: slug pagina
 form:
     fill: Llena el formulario
     back: Volver atras
