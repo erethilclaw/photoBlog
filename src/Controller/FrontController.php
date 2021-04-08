@@ -61,23 +61,58 @@ class FrontController extends AbstractController
      */
     public function about_me()
     {
-        return $this->render('front/home.html.twig');
+        $articles = $this->em->getRepository(Article::class)->findAll();
+        return $this->render('front/home.html.twig', [
+            'navbar' => $this->navbar,
+            'articles' => $articles
+        ]);
     }
 
     /**
      * @Route ("/contact", name="contact")
      */
-    public function contact()
+    public function contact(Request $request, TranslatorInterface $translator)
     {
-        return $this->render('front/home.html.twig');
+        $contactPage = $this->em->getRepository(Page::class)->findOneBy(['slug'=>'contact']);
+
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        /**
+         * @var Contact
+         */
+        $mail = $form->getData();
+
+        $this->em->persist($mail);
+        $this->em->flush();
+
+        $this->mailer->respondContact($mail);
+        $this->mailer->notifyContact($mail);
+
+        $this->addFlash('success', $translator->trans('flash_messages.mail_sended'));
+
+        return $this->redirectToRoute('front');
+    }
+
+    return $this->render('front/contact.html.twig', [
+        'navbar' => $this->navbar,
+        'mailForm' => $form->createView(),
+        'contactPage' => $contactPage
+    ]);
     }
 
     /**
-     * @Route ("/default", name="default")
+     * @Route ("/{slug}", name="page")
      */
-    public function default()
+    public function page(Page $page)
     {
-        return $this->render('front/default.html.twig');
+        dd($page);
+        $articles = $this->em->getRepository(Article::class)->findAll();
+        return $this->render('front/default.html.twig', [
+            'navbar' => $this->navbar,
+            'articles' => $articles
+        ]);
     }
 
     /**

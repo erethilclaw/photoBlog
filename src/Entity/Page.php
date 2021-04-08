@@ -57,6 +57,11 @@ class Page
      */
     private $articles;
 
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $template = "base";
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -169,6 +174,18 @@ class Page
                 $article->setPage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTemplate(): ?string
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(string $template): self
+    {
+        $this->template = $template;
 
         return $this;
     }

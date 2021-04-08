@@ -11,7 +11,11 @@
             {% set locale = app.request.locale %}
             {% for page in navbar.pages %}
                 {% if locale == 'en' %}
-                    <li><a href="{{ path( page.slug) }}">{{ page.titleEn }}</a></li>
+                    {% if page.template == 'base' %}
+                        <li><a href="{{ path('page', {'slug' : page.slug}) }}">{{ page.titleEn }}</a></li>
+                    {% else %}
+                        <li><a href="{{ path( page.template) }}">{{ page.titleEn }}</a></li>
+                    {% endif %}
                 {% endif %}
                 {% if locale == 'ca' %}
                     <li><a href="">{{ page.titleCa }}</a></li>
