@@ -61,10 +61,10 @@ class FrontController extends AbstractController
      */
     public function about_me()
     {
-        $articles = $this->em->getRepository(Article::class)->findAll();
-        return $this->render('front/home.html.twig', [
+        $aboutMePage = $this->em->getRepository(Page::class)->findOneBy(['slug'=>'about_me']);
+        dd($aboutMePage);
+        return $this->render('front/aboutMe.html.twig', [
             'navbar' => $this->navbar,
-            'articles' => $articles
         ]);
     }
 
@@ -74,7 +74,7 @@ class FrontController extends AbstractController
     public function contact(Request $request, TranslatorInterface $translator)
     {
         $contactPage = $this->em->getRepository(Page::class)->findOneBy(['slug'=>'contact']);
-
+        dd($contactPage);
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
