@@ -11,6 +11,8 @@ sidebar:
     contact: Contacto
     aboutMe: Sobre mi
 page_manager:
+    slug: Identificador
+    list: Lista
     position: posición
     create_page: Crear pagina
     delete: estas seguro de eliminar la pagina?

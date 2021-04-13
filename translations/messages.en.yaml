@@ -11,6 +11,8 @@ sidebar:
     contact: Contact
     aboutMe: About me
 page_manager:
+    slug: Slug
+    list: List
     position: position
     create_page: Create page
     delete: are you sure to delete page?
