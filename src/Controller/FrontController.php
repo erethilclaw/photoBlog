@@ -75,6 +75,7 @@ class FrontController extends AbstractController
     {
         $contactPage = $this->em->getRepository(Page::class)->findOneBy(['slug'=>'contact']);
         dd($contactPage);
+        
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
@@ -103,7 +104,7 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route ("/{slug}", name="page")
+     * @Route ("/page/{slug}", name="page")
      */
     public function page(Page $page)
     {
