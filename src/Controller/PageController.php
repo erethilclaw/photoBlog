@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PageController extends AbstractController
 {
     private $em;
+    private $navbar;
 
     /**
      * AdminController constructor.
@@ -23,6 +24,7 @@ class PageController extends AbstractController
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
+        $this->navbar = $this->em->getRepository(Navbar::class)->findOneBy(['slug'=>'front_header']);
     }
 
      /**
@@ -30,11 +32,11 @@ class PageController extends AbstractController
      */
     public function addPage(Request $request)
     {
-        $navbar = $this->getDoctrine()->getRepository(Navbar::class)->findOneBy(['slug'=>'front_header']);
+        //$navbar = $this->getDoctrine()->getRepository(Navbar::class)->findOneBy(['slug'=>'front_header']);
         $page = new Page;
         $slug = $request->get('page_slug');
         $page->setSlug($slug);
-        $page->setNavbar($navbar);
+        $page->setNavbar($this->navbar);
         $page->setTitleCa($page->getSlug().'-ca');
         $page->setTitleEs($page->getSlug().'-es');
         $page->setTitleEn($page->getSlug().'-en');
@@ -42,7 +44,29 @@ class PageController extends AbstractController
         $this->em->persist($page);
         $this->em->flush();
 
-        return $this->redirectToRoute('list_page');
+        return $this->json(
+            $page,
+            201,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
+
+    /**
+     * @Route("/admin/editNavbar/", methods="GET", name="admin_navbar_pages")
+     */
+    public function getNavbarPages()
+    {
+        return $this->json(
+            $this->navbar->getPages(),
+            201,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
     }
 
     /**
@@ -85,7 +109,8 @@ class PageController extends AbstractController
         $pages = $this->getDoctrine()->getRepository(Page::class)->findAll();
 
         return $this->render('admin/pages/listPages.html.twig', [
-            'pages' => $pages
+            'pages' => $pages,
+            'navbar' => $this->navbar
         ]);
     }
 }
