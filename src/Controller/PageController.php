@@ -91,7 +91,7 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/admin/delPage{id}", name="del_page")
+     * @Route("/admin/delPage/{id}", name="del_page")
      */
     public function deletePage(Page $page)
     {

@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    var pageList = new PageList($('.js-page-list')); 
+    var getDelMessage = document.querySelector('.js-del-message');
+    var delMessage = getDelMessage.dataset.delMessage;
+    console.log(delMessage);
+    var pageList = new PageList($('.js-page-list'));   
 });
 
 class PageList
@@ -11,6 +14,10 @@ class PageList
 
         this.$element.on('click', '.js-add-page', () => {
             this.addPage();
+        });
+
+        this.$element.on('click', '.js-page-delete', () => {
+            confirm(delMessage);
         });
 
         $.ajax({
@@ -35,6 +42,13 @@ class PageList
             <span>
                 <button class="js-reference-delete btn btn-link btn-sm"><span class="fa fa-trash"></span></button>
             </span>
+
+            <a href="/admin/editPage/${page.id}">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <a href="/admin/delPage/${page.id}" class="js-page-delete" onclick="return confirm(delMessage)"><span
+                                            class="glyphicon glyphicon-trash text-red"></span></a>
         </li>
         `
         });
