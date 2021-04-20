@@ -30,7 +30,7 @@
                             {{ message }}
                         </div>
                     {% endfor %}
-                        <form action="{{ path('add_page') }}" method="POST" class="js-add-page">
+                        <form action="{{ path('add_page') }}" method="POST" class="js-add-page" id="js-add-page">
                             <div class="form-group">
                                 <label>{{ 'page_manager.slug'|trans }}</label>
                                 <input type="text" class="form-control" name="page_slug">

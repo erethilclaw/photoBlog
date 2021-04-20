@@ -32,7 +32,6 @@ class PageController extends AbstractController
      */
     public function addPage(Request $request)
     {
-        //$navbar = $this->getDoctrine()->getRepository(Navbar::class)->findOneBy(['slug'=>'front_header']);
         $page = new Page;
         $slug = $request->get('page_slug');
         $page->setSlug($slug);
@@ -44,14 +43,7 @@ class PageController extends AbstractController
         $this->em->persist($page);
         $this->em->flush();
 
-        return $this->json(
-            $page,
-            201,
-            [],
-            [
-                'groups' => ['main']
-            ]
-        );
+        return $this->redirectToRoute('list_page');
     }
 
     /**

@@ -2,6 +2,8 @@ $(document).ready(function() {
     var getDelMessage = document.querySelector('.js-del-message');
     var delMessage = getDelMessage.dataset.delMessage;
     console.log(delMessage);
+
+
     var pageList = new PageList($('.js-page-list'));   
 });
 
@@ -11,10 +13,6 @@ class PageList
         this.$element = $element;
         this.pages = [];
         this.render();
-
-        this.$element.on('click', '.js-add-page', () => {
-            this.addPage();
-        });
 
         this.$element.on('click', '.js-page-delete', () => {
             confirm(delMessage);
@@ -28,8 +26,9 @@ class PageList
         })
     }
 
-    addPage() {
-       alert('linkat!');
+    addPage(event){
+        alert('add page!');
+        this.render();
     }
 
     render() {
