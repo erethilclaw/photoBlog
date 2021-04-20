@@ -83,14 +83,14 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/admin/delPage/{id}", name="del_page")
+     * @Route("/admin/delPage/{id}", name="del_page", methods={"DELETE"})
      */
     public function deletePage(Page $page)
     {
         $this->em->remove($page);
         $this->em->flush();
 
-        return $this->redirectToRoute('list_page');
+        return new Response(null, 204);
     }
 
     /**

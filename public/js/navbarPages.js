@@ -1,9 +1,4 @@
 $(document).ready(function() {
-    var getDelMessage = document.querySelector('.js-del-message');
-    var delMessage = getDelMessage.dataset.delMessage;
-    console.log(delMessage);
-
-
     var pageList = new PageList($('.js-page-list'));   
 });
 
@@ -14,8 +9,11 @@ class PageList
         this.pages = [];
         this.render();
 
-        this.$element.on('click', '.js-page-delete', () => {
+        this.$element.on('click', '.js-page-delete', (event) => {
+            var getDelMessage = document.querySelector('.js-del-message');
+            var delMessage = getDelMessage.dataset.delMessage;
             confirm(delMessage);
+            this.handlePageDelete(event);
         });
 
         $.ajax({
@@ -26,9 +24,20 @@ class PageList
         })
     }
 
-    addPage(event){
-        alert('add page!');
-        this.render();
+    handlePageDelete(event) {
+        const $li = $(event.currentTarget).closest('.list-group-item');
+        const id = $li.data('id');
+        $li.addClass('disabled');
+
+        $.ajax({
+            url: '/admin/delPage/'+id,
+            method: 'DELETE'
+        }).then(() => {
+            this.pages = this.pages.filter(page => {
+                return page.id !== id;
+            });
+            this.render();
+        });
     }
 
     render() {
@@ -37,16 +46,13 @@ class PageList
             <li class="list-group-item d-flex justify-content-between align-items-center" data-id="${page.id}">
             <span class="drag-handle fa fa-reorder"></span>
             <input type="text" value="${page.slug}" class="form-control js-edit-filename" style="width: auto;">
-        
-            <span>
-                <button class="js-reference-delete btn btn-link btn-sm"><span class="fa fa-trash"></span></button>
-            </span>
+            
 
             <a href="/admin/editPage/${page.id}">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <a href="/admin/delPage/${page.id}" class="js-page-delete" onclick="return confirm(delMessage)"><span
+            <a class="js-page-delete" ><span
                                             class="glyphicon glyphicon-trash text-red"></span></a>
         </li>
         `
