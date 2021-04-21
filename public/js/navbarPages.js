@@ -16,6 +16,10 @@ class PageList
             this.handlePageDelete(event);
         });
 
+        this.$element.on('blur', '.js-edit-pageslug', (event) => {
+            this.handlePageEditSlug(event);
+        });
+
         $.ajax({
             url: this.$element.data('url')
         }).then(data => {
@@ -40,12 +44,28 @@ class PageList
         });
     }
 
+    handlePageEditSlug(event) {
+        const $li = $(event.currentTarget).closest('.list-group-item');
+        const id = $li.data('id');
+        const page = this.pages.find(page => {
+            return page.id === id;
+        });
+        page.slug = $(event.currentTarget).val();
+        console.log(page);
+
+        $.ajax({
+            url: '/admin/editPageSlug/'+id,
+            method: 'PUT',
+            data: JSON.stringify(page)
+        });
+    }
+
     render() {
         const itemsHtml = this.pages.map(page => {
             return `
             <li class="list-group-item d-flex justify-content-between align-items-center" data-id="${page.id}">
             <span class="drag-handle fa fa-reorder"></span>
-            <input type="text" value="${page.slug}" class="form-control js-edit-filename" style="width: auto;">
+            <input type="text" value="${page.slug}" class="form-control js-edit-pageslug" style="width: auto;">
             
 
             <a href="/admin/editPage/${page.id}">

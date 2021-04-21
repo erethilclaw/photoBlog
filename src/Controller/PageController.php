@@ -10,6 +10,8 @@ use App\Entity\Navbar;
 use App\Entity\Page;
 use App\Form\PageFormType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 class PageController extends AbstractController
@@ -91,6 +93,43 @@ class PageController extends AbstractController
         $this->em->flush();
 
         return new Response(null, 204);
+    }
+
+    /**
+     * @Route("/admin/editPageSlug/{id}", name="admin_page_update_slug", methods={"PUT"})
+     */
+    public function updatePageSlug(Page $page, SerializerInterface $serialazer, Request $request, ValidatorInterface $validator)
+    {
+        $serialazer->deserialize(
+            $request->getContent(),
+            Page::class,
+            'json',
+            [
+                'object_to_populate' => $page,
+                'groups' => ['main']
+            ]
+        );
+
+        $violations = $validator->validate($page);
+        if ($violations->count() > 0) {
+            return $this->json($violations, 400);
+        }
+
+        $page->setTitleCa($page->getSlug().'-ca');
+        $page->setTitleEs($page->getSlug().'-es');
+        $page->setTitleEn($page->getSlug().'-en');
+
+        $this->em->persist($page);
+        $this->em->flush();
+
+        return $this->json(
+            $page,
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
     }
 
     /**

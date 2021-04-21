@@ -36,7 +36,6 @@ class Page
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Positive()
      */
     private $position = 0;
 
