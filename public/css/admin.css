@@ -1,3 +1,6 @@
 .gallery-reference {
    height: 345px;
 }
+span {
+   padding: 0.75rem 0rem;
+}
