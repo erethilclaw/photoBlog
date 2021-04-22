@@ -37,7 +37,7 @@ class Page
     /**
      * @ORM\Column(type="integer")
      */
-    private $position = 0;
+    private $position = 10;
 
     /**
      * @ORM\Column(type="string", length=25)

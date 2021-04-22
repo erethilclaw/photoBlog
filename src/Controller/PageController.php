@@ -26,10 +26,10 @@ class PageController extends AbstractController
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
-        $this->navbar = $this->em->getRepository(Navbar::class)->findOneBy(['slug'=>'front_header']);
+        $this->navbar = $this->em->getRepository(Navbar::class)->findOneBy(['slug' => 'front_header']);
     }
 
-     /**
+    /**
      * @Route("/admin/addPage", name="add_page", methods={"POST"} )
      */
     public function addPage(Request $request)
@@ -38,9 +38,9 @@ class PageController extends AbstractController
         $slug = $request->get('page_slug');
         $page->setSlug($slug);
         $page->setNavbar($this->navbar);
-        $page->setTitleCa($page->getSlug().'-ca');
-        $page->setTitleEs($page->getSlug().'-es');
-        $page->setTitleEn($page->getSlug().'-en');
+        $page->setTitleCa($page->getSlug() . '-ca');
+        $page->setTitleEs($page->getSlug() . '-es');
+        $page->setTitleEn($page->getSlug() . '-en');
 
         $this->em->persist($page);
         $this->em->flush();
@@ -71,12 +71,12 @@ class PageController extends AbstractController
         $form = $this->createForm(PageFormType::class, $page);
         $form->handleRequest($request);
 
-        if ( $form->isSubmitted() && $form->isValid()) {
-          $page = $form->getData();
-          $this->em->persist($page);
-          $this->em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $page = $form->getData();
+            $this->em->persist($page);
+            $this->em->flush();
 
-          return $this->redirectToRoute('list_page');
+            return $this->redirectToRoute('list_page');
         }
 
         return $this->render('admin/pages/addPage.html.twig', [
@@ -115,9 +115,9 @@ class PageController extends AbstractController
             return $this->json($violations, 400);
         }
 
-        $page->setTitleCa($page->getSlug().'-ca');
-        $page->setTitleEs($page->getSlug().'-es');
-        $page->setTitleEn($page->getSlug().'-en');
+        $page->setTitleCa($page->getSlug() . '-ca');
+        $page->setTitleEs($page->getSlug() . '-es');
+        $page->setTitleEn($page->getSlug() . '-en');
 
         $this->em->persist($page);
         $this->em->flush();
@@ -125,6 +125,35 @@ class PageController extends AbstractController
         return $this->json(
             $page,
             200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
+
+    /**
+     * @Route("/admin/reorderPages", methods="POST", name="admin_navbar_reorder_pages")
+     */
+    public function reorderNavbarPages( Request $request)
+    {
+        $orderedIds = json_decode($request->getContent(), true);
+
+        if ($orderedIds === false) {
+            return $this->json(['detail' => 'invalid body'], 400);
+        }
+
+        $orderedIds = array_flip($orderedIds);
+
+        foreach ($this->navbar->getPages() as $page) {
+            $page->setPosition($orderedIds[$page->getId()]);
+        }
+
+        $this->em->flush();
+
+        return $this->json(
+            $this->navbar->getPages(),
+            201,
             [],
             [
                 'groups' => ['main']

@@ -6,6 +6,7 @@ use App\Repository\NavbarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=NavbarRepository::class)
@@ -22,6 +23,7 @@ class Navbar
     /**
      * @ORM\OneToMany(targetEntity=Page::class, mappedBy="navbar")
      * @ORM\OrderBy({"position"="ASC"})
+     * @Groups("main")
      */
     private $pages;
 

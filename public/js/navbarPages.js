@@ -6,6 +6,17 @@ class PageList
 {
     constructor($element) {
         this.$element = $element;
+        this.sortable = Sortable.create(this.$element[0], {
+            handle: '.drag-handle',
+            animation: 150,
+            onEnd: () => {
+                $.ajax({
+                    url: '/admin/reorderPages',
+                    method: 'POST',
+                    data: JSON.stringify(this.sortable.toArray())
+                })
+            }
+        });
         this.pages = [];
         this.render();
 
