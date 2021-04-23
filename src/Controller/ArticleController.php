@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Entity\Page;
 use App\Form\ArticleFromType;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class ArticleController extends AbstractController
 {
@@ -27,38 +30,46 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/admin/addArticle", name="add_article")
+     * @Route("/admin/page/{id}/article", name="admin_page_add_article", methods={"POST"})
      */
-    // public function addArticle(Request $request, UploaderHelper $uploaderHelper){
-    //     $form = $this->createForm(ArticleFromType::class);
-    //     $form->handleRequest($request);
+    public function addArticleToPage(Page $page, Request $request)
+    {
+        $article = new Article();
+        $slug = $request->get('article_slug');
+        $article->setSlug($slug);
+        $article->setTitleEn($slug.'_en');
+        $article->setTitleCa($slug.'_ca');
+        $article->setTitleEs($slug.'_es');
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         /**
-    //          * @var Article $article
-    //          */
-    //         $article = $form->getData();
+        $page->addArticle($article);
 
-    //         /**
-    //          * @var UploadedFile $uploadedFile
-    //          */
-    //         $uploadedFile = $form['imageFile']->getData();
+        $this->em->persist($article);
+        $this->em->flush();
 
-    //         if ($uploadedFile){
-    //             $newFileName = $uploaderHelper->uploadArticleImage($uploadedFile, $article->getImageFileName());
-    //             $article->setImageFileName($newFileName);
-    //         }
+        return $this->json(
+            $article,
+            201,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
 
-    //         $this->em->persist($article);
-    //         $this->em->flush();
-
-    //         return $this->redirectToRoute('list_article');
-    //     }
-
-    //     return $this->render('admin/articles/addArticle.html.twig', [
-    //         'articleForm' => $form->createView(),
-    //     ]);
-    // }
+    /**
+     * @Route("/admin/page/{id}/article", methods="GET", name="admin_page_list_articles")
+     */
+    public function getPageArticles(Page $page)
+    {
+        return $this->json(
+            $page->getArticles(),
+            201,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
 
     /**
      * @Route("/admin/editArticle/{id}", name="edit_article")
