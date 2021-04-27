@@ -35,11 +35,11 @@ class ArticleController extends AbstractController
     public function addArticleToPage(Page $page, Request $request)
     {
         $article = new Article();
-        $slug = $request->get('article_slug');
+        $slug = json_decode($request->getContent(), true);
         $article->setSlug($slug);
-        $article->setTitleEn($slug.'_en');
-        $article->setTitleCa($slug.'_ca');
-        $article->setTitleEs($slug.'_es');
+        $article->setTitleEn($article->getSlug().'_en');
+        $article->setTitleCa($article->getSlug().'_ca');
+        $article->setTitleEs($article->getSlug().'_es');
 
         $page->addArticle($article);
 

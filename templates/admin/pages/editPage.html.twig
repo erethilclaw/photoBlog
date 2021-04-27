@@ -72,12 +72,12 @@
                 {{ form_end(pageForm) }}
                 <div class="row">
                     <div class="col-lg-6">
-                        <form action="{{ path('admin_page_add_article', {id: page.id}) }}" method="POST" class="js-add-article" id="js-add-article">
+                        <form action="{{ path('admin_page_add_article', {id: page.id}) }}" method="POST"  id="js-add-article">
                             <div class="form-group">
                                 <label>{{ 'article_manager.article_slug'|trans }}</label>
-                                <input type="text" class="form-control" name="article_slug">
+                                <input type="text" class="form-control" name="article_slug" id="article_slug">
                             </div>
-                            <button class="btn btn-primary ">{{ 'article_manager.create'|trans }}</button>
+                            <button class="btn btn-primary js-add-article" >{{ 'article_manager.create'|trans }}</button>
                         </form>
                     </div>
                     <div class="js-del-message" data-del-message="{{ 'page_manager.delete'|trans }}"></div>

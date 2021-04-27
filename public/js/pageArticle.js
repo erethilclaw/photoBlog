@@ -1,11 +1,15 @@
 $(document).ready(function() {
-    var articleList = new ArticleList($('.js-article-list'));   
+    document.getElementById("js-add-article").addEventListener("submit", function(event){
+        event.preventDefault();
+    });
+    var articleList = new ArticleList($('.js-article-list'),$('.js-add-article'));   
 });
 
 class ArticleList
 {
-    constructor($element) {
+    constructor($element, $button) {
         this.$element = $element;
+        this.$button = $button;
         this.articles = [];
         this.render();
 
@@ -15,10 +19,31 @@ class ArticleList
             this.articles = data;
             this.render();
         })
-        console.log(this.articles);
+        
+        this.$button.on('click', (event) => {
+            this.handelAddArticle(event);
+        });
     }
 
-    
+    handelAddArticle(event) {
+        const $route = $('#js-add-article');
+        var $input = $("#article_slug").val();
+        console.log(JSON.stringify($input));
+        $.ajax({
+            url: $route.attr('action'),
+            method: 'POST',
+            data: JSON.stringify($input)
+        }).then(() => {
+            $.ajax({
+                url: this.$element.data('url')
+            }).then(data => {
+                this.articles = data;
+                this.render();
+                $("#article_slug").val('');
+            })
+        });
+       
+    }
 
     render() {
         const itemsHtml = this.articles.map(article => {

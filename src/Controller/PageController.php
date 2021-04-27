@@ -79,7 +79,7 @@ class PageController extends AbstractController
             return $this->redirectToRoute('list_page');
         }
 
-        return $this->render('admin/pages/addPage.html.twig', [
+        return $this->render('admin/pages/editPage.html.twig', [
             'pageForm' => $form->createView(),
             'page' => $page
         ]);
