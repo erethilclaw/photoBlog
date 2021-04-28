@@ -23,7 +23,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ 'form.fill'|trans }}</h3>
-                <a href="{{ path('list_article') }}" class="btn btn-default pull-right"
+                <a href="{{ path('edit_page', {'id' : article.page.id}) }}" class="btn btn-default pull-right"
                    role="button">{{ 'form.back'|trans }}</a>
             </div>
             <div class="box-body">

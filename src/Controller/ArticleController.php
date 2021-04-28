@@ -94,7 +94,9 @@ class ArticleController extends AbstractController
             $this->em->persist($article);
             $this->em->flush();
 
-            return $this->redirectToRoute('list_article');
+            $pageId = $article->getPage()->getId();
+
+            return $this->redirectToRoute('edit_page', ['id' => $pageId]);
         }
 
         return $this->render('admin/articles/editArticle.html.twig', [
@@ -124,6 +126,35 @@ class ArticleController extends AbstractController
                 'articles' => $articles
         ]);
 
+    }
+
+    /**
+     * @Route("/admin/page/{id}/article/reorder", methods="POST", name="admin_page_reorder_articles")
+     */
+    public function reorderArticleReferences(Page $page, Request $request)
+    {
+        $orderedIds = json_decode($request->getContent(), true);
+
+        if ($orderedIds === false) {
+            return $this->json(['detail'=> 'invalid body'], 400);
+        }
+
+        $orderedIds = array_flip($orderedIds);
+
+        foreach ($page->getArticles() as $article) {
+            $article->setPosition($orderedIds[$article->getId()]); 
+        }
+
+        $this->em->flush();
+
+        return $this->json(
+            $page->getArticles(),
+            201,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
     }
    
 }

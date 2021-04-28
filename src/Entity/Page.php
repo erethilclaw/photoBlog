@@ -56,6 +56,7 @@ class Page
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="page")
+     * @ORM\OrderBy({"position"="ASC"})
      */
     private $articles;
 
