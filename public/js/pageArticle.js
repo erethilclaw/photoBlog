@@ -32,6 +32,13 @@ class ArticleList
             this.handleEditArticleSlug(event);
         });
 
+        this.$element.on('click', '.js-article-delete', (event) => {
+            var getDelMessage = document.querySelector('.js-del-message');
+            var delMessage = getDelMessage.dataset.delMessage;
+            confirm(delMessage);
+            this.handleArticleDelete(event);
+        });
+
         $.ajax({
             url: this.$element.data('url')
         }).then(data => {
@@ -70,6 +77,22 @@ class ArticleList
             url: '/admin/page/article/'+id,
             method: 'PUT',
             data: JSON.stringify(article)
+        });
+    }
+
+    handleArticleDelete(event){
+        const $li = $(event.currentTarget).closest('.list-group-item');
+        const id = $li.data('id');
+        $li.addClass('disabled');
+
+        $.ajax({
+            url: '/admin/page/article/'+id,
+            method: 'DELETE'
+        }).then(() => {
+            this.articles = this.articles.filter(article => {
+                return article.id !== id;
+            });
+            this.render();
         });
     }
 

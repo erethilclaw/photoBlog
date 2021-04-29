@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController extends AbstractController
 {
@@ -188,5 +189,16 @@ class ArticleController extends AbstractController
                 'groups' => ['main']
             ]
         );
+    }
+
+     /**
+     * @Route("/admin/page/article/{id}", name="admin_page_delete_article", methods={"DELETE"})
+     */
+    public function deleteArticleReference(Article $article)
+    {
+        $this->em->remove($article);
+        $this->em->flush();
+
+        return new Response(null, 204);
     }
 }
