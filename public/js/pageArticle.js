@@ -24,22 +24,25 @@ class ArticleList
         this.articles = [];
         this.render();
 
+        this.$button.on('click', (event) => {
+            this.handelAddArticle(event);
+        });
+
+        this.$element.on('blur', '.js-edit-article-slug', (event) => {
+            this.handleEditArticleSlug(event);
+        });
+
         $.ajax({
             url: this.$element.data('url')
         }).then(data => {
             this.articles = data;
             this.render();
-        })
-        
-        this.$button.on('click', (event) => {
-            this.handelAddArticle(event);
-        });
+        })     
     }
 
     handelAddArticle(event) {
         const $route = $('#js-add-article');
         var $input = $("#article_slug").val();
-        console.log(JSON.stringify($input));
         $.ajax({
             url: $route.attr('action'),
             method: 'POST',
@@ -52,8 +55,22 @@ class ArticleList
                 this.render();
                 $("#article_slug").val('');
             })
+        }); 
+    }
+
+    handleEditArticleSlug(event){
+        const $li = $(event.currentTarget).closest('.list-group-item');
+        const id = $li.data('id');
+        const article = this.articles.find(article => {
+            return article.id === id;
         });
-       
+        article.slug = $(event.currentTarget).val();
+
+        $.ajax({
+            url: '/admin/page/article/'+id,
+            method: 'PUT',
+            data: JSON.stringify(article)
+        });
     }
 
     render() {

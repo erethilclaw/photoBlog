@@ -156,5 +156,37 @@ class ArticleController extends AbstractController
             ]
         );
     }
-   
+
+    /**
+     * @Route("/admin/page/article/{id}", name="admin_page_update_article", methods={"PUT"})
+     */
+    public function updateArticleReference(Article $article, SerializerInterface $serialazer, Request $request, ValidatorInterface $validator)
+    {
+        $serialazer->deserialize(
+            $request->getContent(),
+            Article::class,
+            'json',
+            [
+                'object_to_populate' => $article,
+                'groups' => ['main']
+            ]
+        );
+
+        $violations = $validator->validate($article);
+        if ($violations->count() > 0) {
+            return $this->json($violations, 400);
+        }
+
+        $this->em->persist($article);
+        $this->em->flush();
+
+        return $this->json(
+            $article,
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
 }
