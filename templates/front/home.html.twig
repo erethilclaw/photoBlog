@@ -3,7 +3,8 @@
 {% block body %}
     <div class="container">
         <div class="box-text-content">
-            {% for article in articles %}
+        {% for page in pages %}
+            {% for article in page.articles %}
                 <a href="{{ uploaded_asset(article.imagePath) }}" target="_blank">
                     <img src="{{ article.imagePath|imagine_filter('squared_thumbnail_small') }}">
                 </a>   
@@ -13,6 +14,7 @@
                             <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}">
                         </a>                                
                 {% endfor %}
+            {% endfor %}
             {% endfor %}
         </div>
     </div>

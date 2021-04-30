@@ -15,10 +15,6 @@ class PageFormType extends AbstractType
     {
         $builder
             ->add('slug')
-            ->add('position')
-            ->add('navbar',null, [
-                'placeholder' => false
-            ])
             ->add('titleEn',null, [
                 'label' => 'page_manager.title_en'
                 ])

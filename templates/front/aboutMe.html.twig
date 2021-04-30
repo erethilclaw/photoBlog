@@ -4,16 +4,23 @@
     <div class="container">
         <div class="box-text-content">
             {% set locale = app.request.locale %}
-
-            {% if locale == 'en' %}
-                {{ aboutMePage.textEn|raw }}
+            {% for article in aboutMePage.articles %}  
+                {% if locale == 'en' %}
+                    <h3>{{ article.titleEn }}</h3>
+                    <br>
+                    {{ article.contentEn|raw }}   
             {% endif %}
-            {% if locale == 'ca' %}
-                {{ aboutMePage.textCa|raw }}
-            {% endif %}
-            {% if locale == 'es' %}
-                {{ aboutMePage.textEs|raw }}
-            {% endif %}
+                {% if locale == 'ca' %}
+                    <h3>{{ article.titleCa }}</h3>
+                    <br>
+                    {{ article.contentCa|raw }}
+                {% endif %}
+                {% if locale == 'es' %}
+                    <h3>{{ article.titleEs }}</h3>
+                    <br>
+                    {{ article.contentEs|raw }}
+                {% endif %}
+             {% endfor %} 
         </div>
     </div>
 {% endblock %}

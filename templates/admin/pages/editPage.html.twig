@@ -22,24 +22,10 @@
                 {{ form_start(pageForm) }}
                 <div class="row">
                     {{ form_errors(pageForm.slug)}}
-                    {{ form_errors(pageForm.position)}}
-                    {{ form_errors(pageForm.navbar)}}
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>{{ form_label(pageForm.slug) }}</label>
                             {{ form_widget(pageForm.slug, {'attr': {'class': 'form-control'}})}}
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>{{ form_label(pageForm.position) }}</label>
-                            {{ form_widget(pageForm.position, {'attr': {'class': 'form-control'}})}}
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>{{ form_label(pageForm.navbar) }}</label>
-                            {{ form_widget(pageForm.navbar, {'attr': {'class': 'form-control'}})}}
                         </div>
                     </div>
                 </div>

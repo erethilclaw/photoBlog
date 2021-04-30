@@ -18,10 +18,18 @@
                     {% endif %}
                 {% endif %}
                 {% if locale == 'ca' %}
-                    <li><a href="">{{ page.titleCa }}</a></li>
+                    {% if page.template == 'base' %}
+                        <li><a href="{{ path('page', {'slug' : page.slug}) }}">{{ page.titleCa }}</a></li>
+                    {% else %}
+                        <li><a href="{{ path( page.template) }}">{{ page.titleCa }}</a></li>
+                    {% endif %}
                 {% endif %}
                 {% if locale == 'es' %}
-                    <li><a href="">{{ page.titleEs }}</a></li>
+                    {% if page.template == 'base' %}
+                        <li><a href="{{ path('page', {'slug' : page.slug}) }}">{{ page.titleEs }}</a></li>
+                    {% else %}
+                        <li><a href="{{ path( page.template) }}">{{ page.titleEs }}</a></li>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </ul>

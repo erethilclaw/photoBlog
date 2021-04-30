@@ -49,10 +49,10 @@ class FrontController extends AbstractController
      */
     public function home()
     {
-        $articles = $this->em->getRepository(Article::class)->findAll();
+        $pages = $this->em->getRepository(Page::class)->findAll();
         return $this->render('front/home.html.twig', [
             'navbar' => $this->navbar,
-            'articles' => $articles
+            'pages' => $pages
         ]);
     }
 
@@ -62,9 +62,10 @@ class FrontController extends AbstractController
     public function about_me()
     {
         $aboutMePage = $this->em->getRepository(Page::class)->findOneBy(['slug'=>'about_me']);
-        dd($aboutMePage);
+
         return $this->render('front/aboutMe.html.twig', [
             'navbar' => $this->navbar,
+            'aboutMePage' => $aboutMePage
         ]);
     }
 
