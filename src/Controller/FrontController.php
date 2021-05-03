@@ -75,7 +75,6 @@ class FrontController extends AbstractController
     public function contact(Request $request, TranslatorInterface $translator)
     {
         $contactPage = $this->em->getRepository(Page::class)->findOneBy(['slug'=>'contact']);
-        dd($contactPage);
         
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);

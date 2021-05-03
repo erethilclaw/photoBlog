@@ -5,15 +5,23 @@
     <div class="container row">
 
             <div class="box-text-content">
+                {% for article in contactPage.articles %}  
                 {% if locale == 'en' %}
-                    {{ contactPage.textEn|raw }}
-                {% endif %}
+                    <h3>{{ article.titleEn }}</h3>
+                    <br>
+                    {{ article.contentEn|raw }}   
+            {% endif %}
                 {% if locale == 'ca' %}
-                    {{ contactPage.textCa|raw }}
+                    <h3>{{ article.titleCa }}</h3>
+                    <br>
+                    {{ article.contentCa|raw }}
                 {% endif %}
                 {% if locale == 'es' %}
-                    {{ contactPage.textEs|raw }}
+                    <h3>{{ article.titleEs }}</h3>
+                    <br>
+                    {{ article.contentEs|raw }}
                 {% endif %}
+             {% endfor %} 
             </div>
         </div>
         <div class="container row">
