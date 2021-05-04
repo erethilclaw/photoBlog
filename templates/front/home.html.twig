@@ -3,7 +3,30 @@
 {% block body %}
     <div class="container">
         <div class="box-text-content">
-        {% for page in pages %}
+        {% set locale = app.request.locale %}
+            {% for article in homePage.articles %} 
+                <a href="{{ uploaded_asset(article.imagePath) }}" target="_blank">
+                    <img src="{{ article.imagePath|imagine_filter('squared_thumbnail_small') }}">
+                </a>    
+                {% if locale == 'en' %}
+                    <h2>{{ article.titleEn }}</h2>
+                    <br>
+                    {{ article.contentEn|raw }}   
+            {% endif %}
+                {% if locale == 'ca' %}
+                    <h2>{{ article.titleCa }}</h2>
+                    <br>
+                    {{ article.contentCa|raw }}
+                {% endif %}
+                {% if locale == 'es' %}
+                    <h2>{{ article.titleEs }}</h2>
+                    <br>
+                    {{ article.contentEs|raw }}
+                {% endif %}
+                <hr>
+             {% endfor %} 
+
+        {# {% for page in pages %}
             {% for article in page.articles %}
                 <a href="{{ uploaded_asset(article.imagePath) }}" target="_blank">
                     <img src="{{ article.imagePath|imagine_filter('squared_thumbnail_small') }}">
@@ -15,7 +38,8 @@
                         </a>                                
                 {% endfor %}
             {% endfor %}
-            {% endfor %}
+            <hr>
+        {% endfor %} #}
         </div>
     </div>
 {% endblock %}

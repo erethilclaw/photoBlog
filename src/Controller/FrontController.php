@@ -49,10 +49,10 @@ class FrontController extends AbstractController
      */
     public function home()
     {
-        $pages = $this->em->getRepository(Page::class)->findAll();
+        $homePage = $this->em->getRepository(Page::class)->findOneBy(['slug'=>'home']);
         return $this->render('front/home.html.twig', [
             'navbar' => $this->navbar,
-            'pages' => $pages
+            'homePage' => $homePage
         ]);
     }
 
@@ -115,26 +115,6 @@ class FrontController extends AbstractController
             'articles' => $articles
         ]);
     }
-
-    /**
-     * @Route ("/{slug}", name="page_redirect")
-     */
-   /* public function getPage(Request $request, TranslatorInterface $translator,Page $page)
-    {
-        switch ($page->getSlug())
-        {
-            case "home":
-                return $this->render('front/home.html.twig');
-                break;
-            case "about_me":
-                break;
-            case "contact":
-                break;
-            default:
-                return $this->render('front/default.html.twig');
-                break;
-        }
-    }*/
 
     /**
      * @Route("/contactpage", name="contact_page")
