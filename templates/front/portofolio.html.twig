@@ -1,0 +1,15 @@
+{% extends 'front/base.html.twig' %}
+{% block title %}{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="box-text-content">
+         {% set locale = app.request.locale %}
+            {% for reference in article.articleReferences %} 
+                {{ reference.originalFilename }}
+                    <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
+                        <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}">
+                    </a>                                
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

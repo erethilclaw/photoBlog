@@ -57,6 +57,17 @@ class FrontController extends AbstractController
     }
 
     /**
+     * @Route ("/portofolio/{slug}", name="portofolio")
+     */
+    public function portofolio(Article $article)
+    {
+        return $this->render('front/portofolio.html.twig', [
+            'navbar' => $this->navbar,
+            'article' => $article
+        ]);
+    }
+
+    /**
      * @Route ("/about_me", name="about_me")
      */
     public function about_me()
