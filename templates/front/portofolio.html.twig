@@ -1,5 +1,19 @@
 {% extends 'front/base.html.twig' %}
 {% block title %}{% endblock %}
+{% block leng %}
+    <ul class="nav-links">
+        <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
+        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en', 'slug':article.slug }) }}"><img class="flag" alt="en"
+                                                                                                   src="{{ asset('images/uk.png') }}"/></a>
+        </li>
+        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca', 'slug':article.slug }) }}"><img class="flag" alt="ca"
+                                                                                                   src="{{ asset('images/catalan.png') }}"/></a>
+        </li>
+        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es', 'slug':article.slug }) }}"><img class="flag" alt="es"
+                                                                                               src="{{ asset('images/spain.png') }}"/></a>
+        </li>
+    </ul> 
+{% endblock %}
 {% block body %}
     <div class="container">
         <div class="box-text-content">
