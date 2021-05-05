@@ -8,6 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.3/Sortable.min.js" integrity="sha256-uNITVqEk9HNQeW6mAAm2PJwFX2gN45l8a4yocqsFI6I=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/pageArticle.js') }}"></script>
 {% endblock %}
+{% block leng %}
+            <ul class="nav navbar-nav">                        
+                  <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
+                <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en', 'id': page.id }) }}"><img class="flag" alt="en"
+                                                                                                   src="{{ asset('images/uk.png') }}"/></a>
+                </li>
+                <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca', 'id': page.id }) }}"><img class="flag" alt="ca"
+                                                                                                   src="{{ asset('images/catalan.png') }}"/></a>
+                </li>
+                <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es', 'id': page.id }) }}"><img class="flag" alt="es"
+                                                                                                   src="{{ asset('images/spain.png') }}"/></a>
+                </li>
+            </ul>                
+{% endblock %}
 {% block body %}
     <section class="content-header">
         <h1>{{ 'page_manager.create_page'|trans }}</h1>

@@ -14,6 +14,20 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css" integrity="sha512-zoIoZAaHj0iHEOwZZeQnGqpU8Ph4ki9ptyHZFPe+BmILwqAksvwm27hR9dYH4WXjYY/4/mz8YDBCgVqzc2+BJA==" crossorigin="anonymous" />
+{% endblock %}
+{% block leng %}
+            <ul class="nav navbar-nav">                        
+                  <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
+                <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en', 'id': article.id }) }}"><img class="flag" alt="en"
+                                                                                                   src="{{ asset('images/uk.png') }}"/></a>
+                </li>
+                <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca', 'id': article.id }) }}"><img class="flag" alt="ca"
+                                                                                                   src="{{ asset('images/catalan.png') }}"/></a>
+                </li>
+                <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es', 'id': article.id }) }}"><img class="flag" alt="es"
+                                                                                                   src="{{ asset('images/spain.png') }}"/></a>
+                </li>
+            </ul>                
 {% endblock %}    
 {% block body %}
     <section class="content-header">
