@@ -155,10 +155,29 @@ section div {
     padding: 1rem 2rem;
 }
 
+/*portofolio v1.4 */
+.container_portofolio {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item img{
+	transition: .8s opacity;
+    height: 500px;    
+    margin: 0 1rem 1rem 0;
+    flex: 1 0 auto;
+}
+.item:hover img {
+	opacity: 0.3;
+}
+.item:hover img:hover {
+	opacity: 1;
+}
+
 /* Create four equal columns that sits next to each other */
 .column {
-    flex: 25%;
-    max-width: 25%;
+    flex: 33%;
+    max-width: 33%;
     padding: 0 0.3rem;
 }
 

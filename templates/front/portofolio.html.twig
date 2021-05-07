@@ -17,13 +17,28 @@
 {% block body %}
     <div class="container">
         <div class="box-text-content">
-         {% set locale = app.request.locale %}
-            {% for reference in article.articleReferences %} 
-                {{ reference.originalFilename }}
-                    <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
-                        <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}">
-                    </a>                                
-            {% endfor %}
+            {% set locale = app.request.locale %}
+            {% if locale == 'en' %}
+                    <h3>{{ article.titleEn }}</h3>
+                    <br> 
+            {% endif %}
+                {% if locale == 'ca' %}
+                    <h3>{{ article.titleCa }}</h3>
+                    <br>
+                {% endif %}
+                {% if locale == 'es' %}
+                    <h3>{{ article.titleEs }}</h3>
+                {% endif %}
         </div>
+    </div>            
+        <div class="container">
+            {% for reference in article.articleReferences %} 
+            <div class="item">    
+                <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
+                    <img src="{{ reference.filePath|imagine_filter('portolio_thumbnail') }}"> 
+                </a>
+            </div>                                            
+            {% endfor %}
+        </div>    
     </div>
 {% endblock %}

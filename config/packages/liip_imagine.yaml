@@ -8,7 +8,11 @@ liip_imagine:
                 thumbnail:
                     size: [200,200]
                     mode: outbound
-                    allow_upscale: true    
+                    allow_upscale: true
+        portolio_thumbnail: 
+            filters:
+                scale:
+                    dim: [800,1000]
     loaders:
         flysystem_loader:
             flysystem:
