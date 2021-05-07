@@ -157,21 +157,23 @@ section div {
 
 /*portofolio v1.4 */
 .container_portofolio {
-    display: flex;
-    flex-wrap: wrap;
+    columns: 3;
+    column-gap: 1.5rem;
+    width: 90%;
+    margin: 0 auto;
 }
 
-.item img{
-	transition: .8s opacity;
-    height: 500px;    
-    margin: 0 1rem 1rem 0;
-    flex: 1 0 auto;
+.item {
+    width: 150px;
+    margin: 0 1.5rem 1.5rem 0;
+    display: inline-block;
+    width: 100%;
+    transition: all .25s ease-in-out;
 }
-.item:hover img {
-	opacity: 0.3;
-}
-.item:hover img:hover {
-	opacity: 1;
+
+.item a img {
+    width: 100%;
+   
 }
 
 /* Create four equal columns that sits next to each other */
