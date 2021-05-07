@@ -32,6 +32,10 @@ h3 {
     text-align: center;
 }
 
+hr {
+    margin: 1rem;
+}
+
 li, a {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;

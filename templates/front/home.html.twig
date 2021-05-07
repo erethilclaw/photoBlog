@@ -9,17 +9,17 @@
                     <img src="{{ article.imagePath|imagine_filter('squared_thumbnail_small') }}">
                 </a>    
                 {% if locale == 'en' %}
-                    <a href="{{ path('portofolio', {'slug': article.slug}) }}"><h2>{{ article.titleEn }}</h2></a>
+                    <a href="{{ path('portofolio', {'slug': article.slug}) }}"><h3>{{ article.titleEn }}</h3></a>
                     <br>
                     {{ article.contentEn|raw }}   
             {% endif %}
                 {% if locale == 'ca' %}
-                    <a href="{{ path('portofolio', {'slug': article.slug}) }}"><h2>{{ article.titleCa }}</h2></a>
+                    <a href="{{ path('portofolio', {'slug': article.slug}) }}"><h3>{{ article.titleCa }}</h3></a>
                     <br>
                     {{ article.contentCa|raw }}
                 {% endif %}
                 {% if locale == 'es' %}
-                    <a href="{{ path('portofolio', {'slug': article.slug}) }}"><h2>{{ article.titleEs }}</h2></a>
+                    <a href="{{ path('portofolio', {'slug': article.slug}) }}"><h3>{{ article.titleEs }}</h3></a>
                     <br>
                     {{ article.contentEs|raw }}
                 {% endif %}
