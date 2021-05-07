@@ -157,7 +157,7 @@ section div {
 
 /*portofolio v1.4 */
 .container_portofolio {
-    columns: 3;
+    columns: 3 400px;
     column-gap: 1.5rem;
     width: 90%;
     margin: 0 auto;
