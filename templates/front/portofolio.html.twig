@@ -1,4 +1,5 @@
 {% extends 'front/base.html.twig' %}
+
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/simple-lightbox.js') }}"></script>
@@ -8,12 +9,15 @@
         });
     </script>
 {% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/simple-lightbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/filter-gallery.css') }}">
 {% endblock %}
+
 {% block title %}{% endblock %}
+
 {% block leng %}
     <ul class="nav-links">
         <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
@@ -28,6 +32,7 @@
         </li>
     </ul> 
 {% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="box-text-content">

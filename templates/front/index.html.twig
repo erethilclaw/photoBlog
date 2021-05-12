@@ -1,47 +1,25 @@
 {% extends 'front/base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/simple-lightbox.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/filter-gallery.css') }}">
-{% endblock %}
-
-{% block body %}
-    <div class="row">
-        <div class="sesionGallery column" id="sesion-gallery">
-            {% for image in portofolioPage.sesionGallery %}
-                <a href="{{ asset('uploads/sesionGallery/' ~ image.name) }}"><img
-                            src="{{ asset('uploads/sesionGallery/' ~ image.name) }}"/></a>
-            {% endfor %}
-        </div>
-        <div class="showGallery column" id="show-gallery">
-            {% for image in portofolioPage.showGallery %}
-                <a href="{{ asset('uploads/showGallery/' ~ image.name) }}"><img
-                            src="{{ asset('uploads/showGallery/' ~ image.name) }}"/></a>
-            {% endfor %}
-        </div>
-        <div class="natureGallery column" id="nature-gallery">
-            {% for image in portofolioPage.natureGallery %}
-                <a href="{{ asset('uploads/natureGallery/' ~ image.name) }}"><img
-                            src="{{ asset('uploads/natureGallery/' ~ image.name) }}"/></a>
-            {% endfor %}
-        </div>
-        <div class="eventGallery column" id="event-gallery">
-            {% for image in portofolioPage.eventGallery %}
-                <a href="{{ asset('uploads/eventGallery/' ~ image.name) }}"><img
-                            src="{{ asset('uploads/eventGallery/' ~ image.name) }}"/></a>
-            {% endfor %}
-        </div>
-    </div>
-{% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/simple-lightbox.js') }}"></script>
-    <script>
-        var sesion = new SimpleLightbox('.sesionGallery a', { /* options */});
-        var show = new SimpleLightbox('.showGallery a', { /* options */});
-        var nature = new SimpleLightbox('.natureGallery a', { /* options */});
-        var event = new SimpleLightbox('.eventGallery a', { /* options */});
-    </script>
+    <script src="{{ asset('js/flickity.js') }}"></script>
 {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/flickity.css') }}">
+{% endblock %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="carrousel js-flickity"
+  data-flickity-options='{ "autoPlay": true, "imagesLoaded": true, "percentPosition": false }'>
+    {% for article in homePage.articles %}
+        
+            <img src="{{ asset('uploads/article_image/' ~ article.imageFileName) }}"></img>
+        
+    {% endfor %}
+</div>
+{% endblock %}
+

@@ -163,10 +163,6 @@ section div {
     margin: 0 auto;
 }
 
-.sl-wrapper .sl-close {
-    color: black !important;
-}
-
 .item {
     width: 150px;
     margin: 0 1.5rem 1.5rem 0;
@@ -180,18 +176,11 @@ section div {
    
 }
 
-/* Create four equal columns that sits next to each other */
-.column {
-    flex: 33%;
-    max-width: 33%;
-    padding: 0 0.3rem;
-}
-
-.column a img {
-    margin-top: 8px;
-    vertical-align: middle;
-    width: 100%;
-}
+/* carrousel v1.4 */
+.carrousel img {
+    display: block;
+    max-height: 75rem;
+  }
 
 .container {
     display: flex;

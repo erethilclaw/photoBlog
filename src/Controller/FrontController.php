@@ -36,11 +36,11 @@ class FrontController extends AbstractController
      */
     public function index()
     {
-        $portofofiloPage = $this->em->getRepository(PortofolioPage::class)->findOneBy(['slug'=>'portofolioPage']);
+        $homePage = $this->em->getRepository(Page::class)->findOneBy(['slug'=>'home']);
 
         return $this->render('front/index.html.twig', [
             'navbar' => $this->navbar,
-            'portofolioPage' => $portofofiloPage
+            'homePage' => $homePage
         ]);
     }
 
