@@ -45,7 +45,6 @@ li, a {
 }
 
 .parent {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -81,9 +80,7 @@ header {
 .flag {
     cursor: pointer;
     max-height: 1.2rem;
-}
-
-
+} 
 
 .nav-links {
     list-style: none;
@@ -108,9 +105,8 @@ header {
     display: block !important;
     opacity: 1;
     animation: fade 1s;
+    
 }
-
-
 
 .section-links {
     display: none;
@@ -152,7 +148,6 @@ section div {
 .row {
     display: flex;
     flex-wrap: wrap;
-    padding: 1rem 2rem;
 }
 
 /*portofolio v1.4 */
@@ -177,9 +172,12 @@ section div {
 }
 
 /* carrousel v1.4 */
+.carrousel {
+    margin-top: -3.75rem;
+}
 .carrousel img {
     display: block;
-    max-height: 89vh;
+    max-height: 91vh;
 }
 
 .container {
@@ -294,6 +292,7 @@ button {
         background-color: lightgrey;
         opacity: 75%;
     }
+  
 }
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
@@ -302,23 +301,6 @@ button {
         flex-direction: column;
         max-height: fit-content;
     }
-
-    #overlay {
-        position: fixed; /* Sit on top of the page content */
-        display: none; /* Hidden by default */
-        width: 100%; /* Full width (cover the whole page) */
-        height: 100%; /* Full height (cover the whole page) */
-        background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-        cursor: pointer; /* Add a pointer on hover */
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        font-size: 50px;
-        color: white;
-        transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-      }
 
     .logo {
         max-height: 2.2rem;
