@@ -108,21 +108,6 @@ header {
     
 }
 
-.section-links {
-    display: none;
-}
-
-.section-links span {
-    padding: 0.2rem 0.5rem;
-    cursor: pointer;
-    font-family: 'Merienda';
-    font-size: 0.7rem;
-}
-
-.section-links a {
-    color: black;
-}
-
 /* Style the footer */
 .footer {
     background-color: #f1f1f1;
@@ -174,7 +159,15 @@ section div {
 /* carrousel v1.4 */
 .carrousel {
     margin-top: -3.75rem;
+    background: #FAFAFA;
 }
+
+.carrousel div p {
+    text-align: center;
+    color: black;
+    font-family: 'Merienda';
+}
+
 .carrousel img {
     display: block;
     max-height: 91vh;
@@ -286,13 +279,6 @@ button {
         margin-left: 3rem;
         margin-right: 3rem;
     }
-    .section-links {
-        display: flex;
-        justify-content: center;
-        background-color: lightgrey;
-        opacity: 75%;
-    }
-  
 }
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */

@@ -16,9 +16,17 @@
 <div class="carrousel js-flickity"
   data-flickity-options='{ "autoPlay": true, "imagesLoaded": true, "percentPosition": false }'>
     {% for article in homePage.articles %}
-        
-            <img src="{{ asset('uploads/article_image/' ~ article.imageFileName) }}"></img>
-        
+    <div>
+            {% if locale == 'en' %}
+                <a href="{{ path('portofolio', {'slug': article.slug}) }}"><p>{{ article.titleEn }}</p><img src="{{ asset('uploads/article_image/' ~ article.imageFileName) }}"></img></a>   
+            {% endif %}
+            {% if locale == 'ca' %}
+                <a href="{{ path('portofolio', {'slug': article.slug}) }}"><p>{{ article.titleCa }}</p><img src="{{ asset('uploads/article_image/' ~ article.imageFileName) }}"></img></a>
+            {% endif %}
+            {% if locale == 'es' %}
+                <a href="{{ path('portofolio', {'slug': article.slug}) }}"><p>{{ article.titleEs }}</p><img src="{{ asset('uploads/article_image/' ~ article.imageFileName) }}"></img></a>
+            {% endif %}
+    </div>    
     {% endfor %}
 </div>
 {% endblock %}
