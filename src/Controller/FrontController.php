@@ -2,13 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\AboutMePage;
 use App\Entity\Article;
 use App\Entity\Contact;
-use App\Entity\ContactPage;
 use App\Entity\Navbar;
 use App\Entity\Page;
-use App\Entity\PortofolioPage;
 use App\Form\ContactType;
 use App\Mailer\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -124,53 +121,6 @@ class FrontController extends AbstractController
         return $this->render('front/default.html.twig', [
             'navbar' => $this->navbar,
             'articles' => $articles
-        ]);
-    }
-
-    /**
-     * @Route("/contactpage", name="contact_page")
-     */
-    public function contactpage(Request $request, TranslatorInterface $translator)
-    {
-        $contactPage = $this->em->getRepository(ContactPage::class)->findOneBy(['slug'=>'contactPage']);
-
-        $form = $this->createForm(ContactType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-        /**
-         * @var Contact
-         */
-        $mail = $form->getData();
-
-        $this->em->persist($mail);
-        $this->em->flush();
-
-        $this->mailer->respondContact($mail);
-        $this->mailer->notifyContact($mail);
-
-        $this->addFlash('success', $translator->trans('flash_messages.mail_sended'));
-
-        return $this->redirectToRoute('front');
-    }
-
-    return $this->render('front/contact.html.twig', [
-        'mailForm' => $form->createView(),
-        'contactPage' => $contactPage
-    ]);
-
-    }
-
-    /**
-     * @Route("/about_mepage", name="aboutMe")
-     */
-    public function aboutMepage()
-    {
-        $aboutMePage = $this->em->getRepository(AboutMePage::class)->findOneBy(['slug'=>'aboutMePage']);
-
-
-        return $this->render('front/aboutMe.html.twig', [
-           'aboutMePage' => $aboutMePage
         ]);
     }
 
