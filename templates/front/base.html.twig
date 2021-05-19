@@ -1,87 +1,102 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>{% block title %}Lair of claw{% endblock %}</title>
+    <title>
+      {% block title %}Lair of claw{% endblock %}
+    </title>
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/front.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/front.css') }}">
     {% endblock %}
-</head>
-<div class="site-wraper">
+  </head>
+  <div class="site-wraper">
     <body>
-    <div class="parent">
-    <header id="navbar">
-        <div class="row">
+      <div class="parent">
+        <header id="navbar">
+          <div class="row">
             <a href="{{ path('front') }}"><img src="{{ asset('images/logo.png') }}" class="logo" alt="logo"></a>
             <input type="checkbox" id="hamburger">
             <label for="hamburger" class="hamburgerBtn">
-                <i class="fas fa-bars"></i>
+              <i class="fas fa-bars"></i>
             </label>
-        </div>
-        
+          </div>
+
+          <div class="row">
+            <ul class="nav-links ">
+              {% set locale = app.request.locale %}
+              {% for page in navbar.pages %}
+                {% if locale == 'en' %}
+                  {% if page.template == 'base' %}
+                    <li>
+                      <a href="{{ path('page', {'slug' : page.slug}) }}">{{ page.titleEn }}</a>
+                    </li>
+                  {% else %}
+                    <li>
+                      <a href="{{ path( page.template) }}">{{ page.titleEn }}</a>
+                    </li>
+                  {% endif %}
+                {% endif %}
+                {% if locale == 'ca' %}
+                  {% if page.template == 'base' %}
+                    <li>
+                      <a href="{{ path('page', {'slug' : page.slug}) }}">{{ page.titleCa }}</a>
+                    </li>
+                  {% else %}
+                    <li>
+                      <a href="{{ path( page.template) }}">{{ page.titleCa }}</a>
+                    </li>
+                  {% endif %}
+                {% endif %}
+                {% if locale == 'es' %}
+                  {% if page.template == 'base' %}
+                    <li>
+                      <a href="{{ path('page', {'slug' : page.slug}) }}">{{ page.titleEs }}</a>
+                    </li>
+                  {% else %}
+                    <li>
+                      <a href="{{ path( page.template) }}">{{ page.titleEs }}</a>
+                    </li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+            </div>
             <div class="row">
-                <ul class="nav-links ">
-                {% set locale = app.request.locale %}
-                {% for page in navbar.pages %}
-                    {% if locale == 'en' %}
-                        {% if page.template == 'base' %}
-                            <li><a href="{{ path('page', {'slug' : page.slug}) }}">{{ page.titleEn }}</a></li>
-                        {% else %}
-                            <li><a href="{{ path( page.template) }}">{{ page.titleEn }}</a></li>
-                        {% endif %}
-                    {% endif %}
-                    {% if locale == 'ca' %}
-                        {% if page.template == 'base' %}
-                            <li><a href="{{ path('page', {'slug' : page.slug}) }}">{{ page.titleCa }}</a></li>
-                        {% else %}
-                            <li><a href="{{ path( page.template) }}">{{ page.titleCa }}</a></li>
-                        {% endif %}
-                    {% endif %}
-                    {% if locale == 'es' %}
-                        {% if page.template == 'base' %}
-                            <li><a href="{{ path('page', {'slug' : page.slug}) }}">{{ page.titleEs }}</a></li>
-                        {% else %}
-                            <li><a href="{{ path( page.template) }}">{{ page.titleEs }}</a></li>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-                </ul>
-            <div class="row">
-            {% block leng %}
+              {% block leng %}
                 <ul class="nav-links">
-                    <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
-                    <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}"><img class="flag" alt="en"
-                                                                                                        src="{{ asset('images/uk.png') }}"/></a>
-                    </li>
-                    <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}"><img class="flag" alt="ca"
-                                                                                                        src="{{ asset('images/catalan.png') }}"/></a>
-                    </li>
-                    <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}"><img class="flag" alt="es"
-                                                                                                        src="{{ asset('images/spain.png') }}"/></a>
-                    </li>
-                </ul> 
-            {% endblock %}
+                  <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
+                  <li>
+                    <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en' }) }}"><img class="flag" alt="en" src="{{ asset('images/uk.png') }}"/></a>
+                  </li>
+                  <li>
+                    <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca' }) }}"><img class="flag" alt="ca" src="{{ asset('images/catalan.png') }}"/></a>
+                  </li>
+                  <li>
+                    <a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es' }) }}"><img class="flag" alt="es" src="{{ asset('images/spain.png') }}"/></a>
+                  </li>
+                </ul>
+              {% endblock %}
             </div>
-          
-    </header>
-</div>
-    <div class="site-content">
-        {% for message in app.flashes('success') %}
+
+          </header>
+        </div>
+        <div class="site-content">
+          {% for message in app.flashes('success') %}
             <div class="alert alert-success">
-                {{ message }}
+              {{ message }}
             </div>
-        {% endfor %}
-        {% block body %}{% endblock %}
+          {% endfor %}
+          {% block body %}{% endblock %}
+        </div>
+        {{ include('front/footer.html.twig') }}
+        {% block javascripts %}
+          <!-- jQuery 3 -->
+          <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+          <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+          <script src="{{ asset('js/general.js') }}"></script>
+        {% endblock %}
+      </body>
     </div>
-    {{ include('front/footer.html.twig') }}
-    {% block javascripts %}
-        <!-- jQuery 3 -->
-        <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <script src="{{ asset('js/general.js') }}"></script>
-    {% endblock %}
-    </body>
-</div>
-</html>
+  </html>
