@@ -23,8 +23,9 @@ class PageList
         this.$element.on('click', '.js-page-delete', (event) => {
             var getDelMessage = document.querySelector('.js-del-message');
             var delMessage = getDelMessage.dataset.delMessage;
-            confirm(delMessage);
-            this.handlePageDelete(event);
+            if (confirm(delMessage)){
+                this.handlePageDelete(event);
+            }    
         });
 
         this.$element.on('blur', '.js-edit-pageslug', (event) => {

@@ -35,8 +35,9 @@ class ArticleList
         this.$element.on('click', '.js-article-delete', (event) => {
             var getDelMessage = document.querySelector('.js-del-message');
             var delMessage = getDelMessage.dataset.delMessage;
-            confirm(delMessage);
-            this.handleArticleDelete(event);
+            if (confirm(delMessage)) {
+                this.handleArticleDelete(event);
+            }
         });
 
         $.ajax({
