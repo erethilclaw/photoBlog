@@ -21,7 +21,7 @@
     {{ parent() }}
     <script src="{{ asset('js/simple-lightbox.js') }}"></script>
     <script>
-        var gallery = new SimpleLightbox('a', { 
+        var gallery = new SimpleLightbox('.image-container a', { 
             disableRightClick : true
         });
     </script>
@@ -46,11 +46,13 @@
                     <br>
                     {{ article.contentEn|raw }}
                     <br>
+                    <div class="image-container">
                     {% for reference in article.articleReferences %} 
                         <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
                             <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}"> 
                         </a>                                              
                     {% endfor %}
+                    </div>
                     <hr>
             {% endfor %}   
         {% endif %}
@@ -62,11 +64,13 @@
                     <br>
                     {{ article.contentCa|raw }}
                     <br>
+                    <div class="image-container">
                     {% for reference in article.articleReferences %} 
                         <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
                             <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}"> 
                         </a>                                              
                     {% endfor %}
+                    </div>
                     <hr>
             {% endfor %}
         {% endif %}
@@ -78,11 +82,13 @@
                     <br>
                     {{ article.contentEs|raw }}
                     <br>
+                    <div class="image-container">
                     {% for reference in article.articleReferences %} 
                         <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
                             <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}"> 
                         </a>                                              
                     {% endfor %}
+                    </div>
                     <hr>
             {% endfor %}    
         {% endif %}            
