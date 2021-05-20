@@ -1,1 +1,91 @@
-default
+{% extends 'front/base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block leng %}
+    <ul class="nav-links">
+        <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
+        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'en', 'slug':page.slug }) }}"><img class="flag" alt="en"
+                                                                                                   src="{{ asset('images/uk.png') }}"/></a>
+        </li>
+        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'ca', 'slug':page.slug }) }}"><img class="flag" alt="ca"
+                                                                                                   src="{{ asset('images/catalan.png') }}"/></a>
+        </li>
+        <li><a href="{{ path(app.request.attributes.get('_route'), { _locale: 'es', 'slug':page.slug }) }}"><img class="flag" alt="es"
+                                                                                               src="{{ asset('images/spain.png') }}"/></a>
+        </li>
+    </ul> 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/simple-lightbox.js') }}"></script>
+    <script>
+        var gallery = new SimpleLightbox('a', { 
+            disableRightClick : true
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/simple-lightbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/filter-gallery.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="box-text-content">
+        {% set locale = app.request.locale %}
+        {% if locale == 'en' %}
+            <h3>{{ page.titleEn }}</h3>
+            <br>
+            {% for article in page.articles %}
+                    <img src="{{ article.imagePath|imagine_filter('squared_thumbnail_small') }}">
+                    <h3>{{ article.titleEn }}</h3>
+                    <br>
+                    {{ article.contentEn|raw }}
+                    <br>
+                    {% for reference in article.articleReferences %} 
+                        <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
+                            <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}"> 
+                        </a>                                              
+                    {% endfor %}
+                    <hr>
+            {% endfor %}   
+        {% endif %}
+        {% if locale == 'ca' %}
+            <h1>{{ page.titleCa }}</h1>
+            {% for article in page.articles %}
+                    <img src="{{ article.imagePath|imagine_filter('squared_thumbnail_small') }}">
+                    <h3>{{ article.titleCa }}</h3>
+                    <br>
+                    {{ article.contentCa|raw }}
+                    <br>
+                    {% for reference in article.articleReferences %} 
+                        <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
+                            <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}"> 
+                        </a>                                              
+                    {% endfor %}
+                    <hr>
+            {% endfor %}
+        {% endif %}
+        {% if locale == 'es' %}
+            <h1>{{ page.titleEs }}</h1>
+            {% for article in page.articles %}
+                    <img src="{{ article.imagePath|imagine_filter('squared_thumbnail_small') }}">
+                    <h3>{{ article.titleEs }}</h3>
+                    <br>
+                    {{ article.contentEs|raw }}
+                    <br>
+                    {% for reference in article.articleReferences %} 
+                        <a href="{{ uploaded_asset(reference.filePath) }}" target="_blank">
+                            <img src="{{ reference.filePath|imagine_filter('squared_thumbnail_small') }}"> 
+                        </a>                                              
+                    {% endfor %}
+                    <hr>
+            {% endfor %}    
+        {% endif %}            
+        </div>
+    </div>
+{% endblock %}

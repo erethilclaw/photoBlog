@@ -116,11 +116,9 @@ class FrontController extends AbstractController
      */
     public function page(Page $page)
     {
-        dd($page);
-        $articles = $this->em->getRepository(Article::class)->findAll();
         return $this->render('front/default.html.twig', [
             'navbar' => $this->navbar,
-            'articles' => $articles
+            'page' => $page
         ]);
     }
 
