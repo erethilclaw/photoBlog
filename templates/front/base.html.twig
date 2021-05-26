@@ -11,10 +11,7 @@
       <link rel="stylesheet" href="{{ asset('css/front.css') }}">
     {% endblock %}
   </head>
-  <div class="site-wraper">
-    <body>
-      <div class="parent">
-        <header id="navbar">
+     <header id="navbar">
           <div class="row">
             <a href="{{ path('front') }}"><img src="{{ asset('images/logo.png') }}" class="logo" alt="logo"></a>
             <input type="checkbox" id="hamburger">
@@ -81,6 +78,9 @@
             </div>
 
           </header>
+  <div class="site-wraper">
+    <body>
+      <div class="parent">
         </div>
         <div class="site-content">
           {% for message in app.flashes('success') %}
