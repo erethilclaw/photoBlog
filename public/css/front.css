@@ -73,7 +73,7 @@ header {
 }
 
 .hamburgerBtn {
-    padding-top: 0.5rem;
+    padding: 0.7rem;
     display: none;
     cursor: pointer;
     color: lightgrey;
